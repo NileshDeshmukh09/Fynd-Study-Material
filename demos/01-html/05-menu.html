@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Menu | Learning HTML</title>
+        <style>
+            #main-menu {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            #main-menu li {
+                display: inline; /* default is block */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- li is a block-level element -->
+        <!-- Other block-level elements : h1, h2, ... h6, p, hr, div, nav, ol, thead -->
+        <nav>
+            <ol id="main-menu">
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ol>
+        </nav>
+
+        <!-- anchor (a) is an inline element -->
+        <!-- Other examples: img, input, span -->
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+    </body>
+</html>

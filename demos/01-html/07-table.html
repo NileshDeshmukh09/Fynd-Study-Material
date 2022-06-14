@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Table | Learning HTML</title>
+        <style>
+            table {
+                border-collapse: collapse; /* triggers border collapsing algorithm for rendering borders within the table */
+            }
+
+            /* DRY - DONT REPEAT YOURSELF */
+            table,
+            th,
+            td {
+                border: 1px solid red;
+            }
+
+            th,
+            td {
+                padding: 1em; /* space between border and content */
+            }
+
+            tbody th {
+                text-align: left;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Explore scope, colgroup, caption attributes -->
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="2">Name</th>
+                    <th rowspan="2">Email</th>
+                    <th colspan="3">Present</th>
+                </tr>
+                <tr>
+                    <th>Jun 14</th>
+                    <th>Jun 15</th>
+                    <th>Jun 16</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Vishal</th>
+                    <td>vishal@example.com</td>
+                    <td>Y</td>
+                    <td>N</td>
+                    <td>Y</td>
+                </tr>
+                <tr>
+                    <th>Naman</th>
+                    <td>naman@example.com</td>
+                    <td>Y</td>
+                    <td>Y</td>
+                    <td>N</td>
+                </tr>
+                <tr>
+                    <th>Rutuja</th>
+                    <td>rutuja@example.com</td>
+                    <td>Y</td>
+                    <td>Y</td>
+                    <td>N</td>
+                </tr>
+            </tbody>
+
+            <!-- <tfoot></tfoot> -->
+        </table>
+    </body>
+</html>
