@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Conflict resolution</title>
+        <style>
+            /* id selector is very "specific" */
+            /* class / attribute selector is less specific */
+            /* type selector is least specific */
+            #p1 {
+                color: green;
+            }
+
+            .x {
+                color: blue;
+            }
+
+            p {
+                color: crimson;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="x" id="p1">
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ullam esse neque dolores ea voluptas nam corrupti, porro officia veritatis eaque quam enim vitae tempora nemo commodi, blanditiis cumque iste eum?
+        </p>
+    </body>
+</html>

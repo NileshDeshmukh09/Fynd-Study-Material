@@ -5,6 +5,18 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Forms | Learning HTML</title>
+        <style>
+            .form-group {
+                padding: 1em;
+                margin-top: 1em;
+                margin-bottom: 1em;
+            }
+
+            .highlighted-group {
+                /*padding: 4em;*/
+                background-color: lightgray;
+            }
+        </style>
     </head>
     <body>
         <!-- the browser reads an input field's value ONLY if name attribute is present on that input -->
@@ -15,9 +27,91 @@
             username=johndoe&password=password123 -> query string
             username, password are query string parameters
         -->
-        <form action="08-success.html" method="post">
-            <input type="text" name="username" value="janedoe" />
-            <input type="password" name="password" />
+        <!--
+            Input fields
+            number
+            email
+            date
+            time
+            dropdown
+            textarea
+            checkbox
+            radio
+            reset button
+        -->
+        <form action="08-success.html" method="post" enctype="multipart/form-data">
+            <div class="form-group highlighted-group">
+                <div>
+                    <label for="username">Username</label>
+                </div>
+                <div>
+                    <input type="text" id="username" name="username" value="janedoe" pattern="[A-Za-z ]+" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="password">Password</label>
+                </div>
+                <div>
+                    <input type="password" name="password" id="password" />
+                </div>
+            </div>
+            
+            <div class="form-group highlighted-group">
+                <div>
+                    <label for="quantity">Quantity</label>
+                </div>
+                <div>
+                    <input type="number" name="quantity" id="quantity" min="1" max="10" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div>
+                    <label for="registered-email">Fynd Email</label>
+                </div>
+                <div>
+                    <!-- https://javascript.info/regular-expressions -->
+                    <input 
+                        type="email"
+                        name="registered-email"
+                        id="registered-email"
+                        pattern="[A-Za-z_\.0-9]+@fynd\.com"
+                        placeholder="ninad@fynd.com"
+                    />
+                </div>
+            </div>
+
+            <input type="date" name="start-date" min="2022-01-01" max="2022-12-31" />
+            <input type="time" name="start-time" />
+
+            <!-- Explore: multiple attribute -->
+            <select name="city">
+                <option value="chn">Chennai</option>
+                <option value="mum">Mumbai</option>
+                <option value="ndls" selected>New Delhi</option>
+                <option value="blr">Bangalore</option>
+            </select>
+
+            <textarea cols="80" rows="5"></textarea>
+
+            <!-- Explore: An HTML element to group related inputs, and one more element to give label the group -->
+            <label>
+                <input type="checkbox" value="javascript" name="interests" /> JavaScript
+            </label>
+            <label>
+                <input type="checkbox" value="nodejs" name="interests" /> Node JS
+            </label>
+            <label>
+                <input type="checkbox" value="mongodb" name="interests" /> Mongo DB
+            </label>
+
+            <!-- Explore: color, url -->
+
+            <input type="file" name="profile-pic" multiple />
+
+            <input type="reset" value="Reset" />
             <input type="submit" value="Login" />
         </form>
     </body>

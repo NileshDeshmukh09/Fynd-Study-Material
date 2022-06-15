@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .highlight {
+                font-weight: bold;
+                background-color: yellow;
+            }
+
+            div {
+                display: inline-block;
+                width: 40%; /* width is ignored  if inline. inline-block accepts width. */
+                margin-bottom: 4px;
+                background-color: lightgray;
+            }
+
+            input {
+                display: inline-block;
+                width: 45%;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- div is a block-level "container" tag -->
+        <div>
+            <input /><input />
+        </div>
+        <div>
+            <input />
+        </div>
+        <div>
+            <input />
+        </div>
+        <div>
+            <input />
+        </div>
+
+        <!-- span is a generic inline container tag -->
+        <p>
+            <!-- lorem*2 -->
+            Lorem ipsum dolor sit <span class="highlight">amet</span> consectetur adipisicing elit. Commodi perspiciatis id quam dolorum recusandae <span class="highlight">praesentium illum</span> aperiam quaerat? Quae dolore non dolor ut laboriosam beatae aliquam! Voluptate animi vitae obcaecati.
+        </p>
+    </body>
+</html>

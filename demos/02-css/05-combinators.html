@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Combinators</title>
+        <style>
+            a {
+                font-weight: bold;
+            }
+
+            /* space is a "combinator" - the "ancestor descendant" combinator */
+            section a {
+                color: crimson;
+            }
+
+            /* > is the "parent > child" combinator (selects direct descendant) */
+            section > a {
+                font-style: italic;
+            }
+
+            /* no spaces */
+            /* select elements that satisfy ALL the selectors */
+            section.x {
+                padding: 1em;
+                border: 1px solid black;
+                border-radius: 20px;
+            }
+
+            /* select anchor tags that have a title attribute as well */
+            /* a[title] {
+
+            } */
+
+            /* comma-separated selectors */
+            h2,
+            h3 {
+                color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h2>Section 1</h2>
+            <h3>Section 1.1</h3>
+            <h4>Section 1.1.1</h4>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, a cum! Adipisci reprehenderit deserunt dolor temporibus in, porro nihil labore cum voluptatibus, quisquam similique iusto, id praesentium molestias alias veniam!
+            
+            <a href="#">Link 1</a>
+
+            <p>
+                <strong>para: </strong>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio dolor, explicabo corporis ab quidem in numquam molestiae, deleniti cupiditate rerum voluptatem. Ex tempora impedit possimus adipisci voluptates enim quo magni.
+
+                <a href="#">Link 2</a>
+            </p>
+        </section>
+
+        <section class="x">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ullam commodi officia voluptatum est, obcaecati, ex nesciunt enim porro quo qui facere dignissimos blanditiis similique aut velit in nemo ipsum?
+        </section>
+        
+        <section class="x">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quidem ullam commodi officia voluptatum est, obcaecati, ex nesciunt enim porro quo qui facere dignissimos blanditiis similique aut velit in nemo ipsum?
+        </section>
+
+        <p class="x">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nemo modi deleniti veniam aut, labore, veritatis at obcaecati quidem velit delectus aperiam aspernatur exercitationem incidunt! Facere quasi non voluptate enim error!
+        </p>
+
+        <a href="#">Link 3</a>
+    </body>
+</html>
