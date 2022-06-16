@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Structural pseudo class selectors</title>
+        <style>
+            /* Explore: :nth-of-type */
+            :nth-child(1) {
+                padding: 1em;
+                border: 1px solid black;
+            }
+            
+            :nth-child(2) {
+                padding: 1em;
+                border: 1px solid crimson;
+            }
+
+            tr:nth-child(2n + 1) {
+                background-color: gold;
+                color: white;
+            }
+
+            tr:last-child {
+                background-color: green;
+            }
+        </style>
+    </head>
+    <body>
+        <section>
+            <h2>Section 1</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis atque ipsum dolorem, fuga ut temporibus perspiciatis recusandae facere dolore distinctio vero sunt provident obcaecati totam, assumenda blanditiis? Eum, nostrum impedit!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis atque ipsum dolorem, fuga ut temporibus perspiciatis recusandae facere dolore distinctio vero sunt provident obcaecati totam, assumenda blanditiis? Eum, nostrum impedit!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis atque ipsum dolorem, fuga ut temporibus perspiciatis recusandae facere dolore distinctio vero sunt provident obcaecati totam, assumenda blanditiis? Eum, nostrum impedit!</p>
+        </section>
+        <section>
+            <h2>Section 2</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis atque ipsum dolorem, fuga ut temporibus perspiciatis recusandae facere dolore distinctio vero sunt provident obcaecati totam, assumenda blanditiis? Eum, nostrum impedit!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis atque ipsum dolorem, fuga ut temporibus perspiciatis recusandae facere dolore distinctio vero sunt provident obcaecati totam, assumenda blanditiis? Eum, nostrum impedit!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis atque ipsum dolorem, fuga ut temporibus perspiciatis recusandae facere dolore distinctio vero sunt provident obcaecati totam, assumenda blanditiis? Eum, nostrum impedit!</p>
+        </section>
+
+        <table>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+        </table>
+    </body>
+</html>

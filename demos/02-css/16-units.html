@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            p:nth-child(1) {
+                /* px is an "absolute unit" */
+                font-size: 24px; /* 1.5 times usual size */
+            }
+
+            section {
+                font-size: 24px;
+            }
+
+            /* on devices where width <= 600px */
+            @media (max-width: 600px) {
+                section {
+                    font-size: 12px;
+                }
+            }
+
+            section p:nth-child(1) {
+                /* 1em -> the font-size that is inherited */
+                font-size: 1.5em; /* 1.5 * 24px = 36px */
+            }
+
+            section a {
+                font-size: 1.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat necessitatibus provident, eveniet architecto quibusdam obcaecati earum sed excepturi cumque a odio, quae ratione sit atque cupiditate. Quis a amet odio.</p>
+        <section>
+            <p>Enim eveniet iure dolorem amet accusamus! Velit quibusdam nihil nostrum, hic neque repellat rem animi! Delectus omnis exercitationem officiis dolore eos ullam culpa vitae aliquid atque, natus dolores asperiores cum!
+                <a href="#">Link</a>
+            </p>
+        </section>
+        <p>Aliquam magnam voluptatem iste maxime autem aut perferendis laborum esse quasi reprehenderit voluptatum optio voluptas sapiente, nulla iusto dicta, vel eum natus temporibus quo sit nostrum rem quas quis. Natus.</p>
+        <p>Harum sed praesentium expedita cupiditate esse, iure neque recusandae quaerat iste magnam modi eveniet quasi voluptas, earum suscipit facere, soluta quae nam quisquam quibusdam vitae nostrum vel culpa alias. Laboriosam.</p>
+        <p>Quos, ipsa? Delectus iure tempore reprehenderit nobis inventore suscipit, dolore maiores quae, voluptatibus fugiat laudantium dignissimos, deleniti laboriosam aspernatur obcaecati consectetur in. Sit, ipsam error quos saepe laborum repellat voluptatum?</p>
+        <p>Ullam, sequi quo amet, autem soluta culpa distinctio itaque animi dolores consequatur ut dicta magni quasi esse nisi magnam quaerat tenetur corrupti modi alias eum molestias! Voluptatum pariatur aperiam dolore.</p>
+        <p>Quisquam debitis quae dolorum beatae perferendis. Architecto nihil dolores harum itaque. Est ipsum nulla dignissimos exercitationem nam fuga repellat. Tempore, cumque eligendi? Illum a nobis eligendi vel. Tenetur, repudiandae error!</p>
+        <p>Iure cum suscipit beatae quos in doloremque, officia totam? Accusamus perferendis nostrum atque blanditiis repellat itaque consectetur cum tempore, totam ipsa, possimus tempora hic vitae est porro nulla laboriosam vel.</p>
+        <p>Facere autem reiciendis voluptas ipsum quod magnam ab? In similique molestias assumenda minus ex dolor blanditiis aliquam soluta, facilis ut, quisquam earum harum unde. Temporibus possimus ab tempore animi natus?</p>
+        <p>Aperiam omnis voluptatem a deleniti pariatur numquam laboriosam sapiente assumenda quas error perspiciatis incidunt similique dolor voluptatum, explicabo officiis quisquam quibusdam ea excepturi possimus libero aut. Error earum hic tempora?</p>
+    </body>
+</html>
