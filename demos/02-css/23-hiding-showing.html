@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            div {
+                padding: 1em;
+                border: 1px solid black;
+                margin: 1em;
+            }
+
+            div:nth-of-type(2) {
+                display: none;
+                background-color: lightblue;
+            }
+            
+            div:nth-of-type(4) {
+                opacity: 0.4; /* take to 0 to make it transparent */
+            }
+
+            div:nth-of-type(6) {
+                visibility: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            1. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum esse suscipit, error dolores totam aliquid voluptas! Quibusdam modi eos impedit sequi tempora aperiam libero nam mollitia magni? Minus, facilis unde.
+        </div>
+        <!-- <input type="button" value="Toggle" /> -->
+        <button id="toggle-div-2">Toggle the 2nd div</button>
+        <div id="div-2">
+            2. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum esse suscipit, error dolores totam aliquid voluptas! Quibusdam modi eos impedit sequi tempora aperiam libero nam mollitia magni? Minus, facilis unde.
+        </div>
+        <div>
+            3. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum esse suscipit, error dolores totam aliquid voluptas! Quibusdam modi eos impedit sequi tempora aperiam libero nam mollitia magni? Minus, facilis unde.
+        </div>
+        <div>
+            4. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum esse suscipit, error dolores totam aliquid voluptas! Quibusdam modi eos impedit sequi tempora aperiam libero nam mollitia magni? Minus, facilis unde.
+        </div>
+        <div>
+            5. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum esse suscipit, error dolores totam aliquid voluptas! Quibusdam modi eos impedit sequi tempora aperiam libero nam mollitia magni? Minus, facilis unde.
+        </div>
+        <div>
+            6. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum esse suscipit, error dolores totam aliquid voluptas! Quibusdam modi eos impedit sequi tempora aperiam libero nam mollitia magni? Minus, facilis unde.
+        </div>
+        <div>
+            7. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Earum esse suscipit, error dolores totam aliquid voluptas! Quibusdam modi eos impedit sequi tempora aperiam libero nam mollitia magni? Minus, facilis unde.
+        </div>
+
+        <script>
+            /* get hold of the button DOM node (an object) */
+            const btn = document.getElementById( 'toggle-div-2' );
+            
+            btn.onclick = function() {
+                // alert( 'You clicked me' );
+                const div2 = document.getElementById( 'div-2' );
+                
+                if( div2.style.display === 'block' ) {
+                    div2.style.display = 'none';
+                } else {
+                    div2.style.display = 'block';
+                }
+            };
+        </script>
+    </body>
+</html>
