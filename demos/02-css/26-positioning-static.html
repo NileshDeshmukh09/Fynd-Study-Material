@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            div {
+                padding: 1em;
+                border: 1px solid black;
+                margin: 1em;
+                font-size: 1.5em;
+                line-height: 1.5;
+            }
+
+            div:nth-child(1) {
+                position: static; /* default position value */
+                top: 20px; /* did not make any difference - ignored */
+                background-color: rgba( 255, 0, 0, 0.5 );
+            }
+            
+            div:nth-child(2) {
+                background-color: rgba( 0, 255, 0, 0.5 );
+            }
+        </style>
+    </head>
+    <body>
+        <!-- "normal flow of rendering" - pick up elements one-by-one in the order they occur in the source code, and allot the boxes -->
+        <div>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Est, cum ab aperiam natus, voluptate labore veniam consequuntur ratione expedita voluptas quasi. Ea recusandae debitis odit ipsa odio esse veniam adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi laborum libero laudantium cupiditate laboriosam, temporibus aperiam explicabo ratione eos iure ab! At nostrum veniam sunt, distinctio doloremque quod obcaecati veritatis.
+            Impedit quaerat odio optio accusamus minus natus rerum veniam, distinctio nisi, exercitationem enim nesciunt, asperiores est delectus. Dolor debitis ratione exercitationem temporibus deleniti nam distinctio deserunt corrupti itaque, maiores earum.
+        </div>
+        <div>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veniam dolor magni hic consequuntur reiciendis illum soluta aperiam facere, recusandae perferendis rem unde aut! Temporibus cum eum accusamus odit nostrum ullam! Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum illum doloremque modi, dolor aliquid explicabo quo laborum ratione temporibus totam earum facere fugit ex possimus maxime quaerat laudantium perspiciatis? Quidem.
+            Totam amet sint molestias itaque nesciunt natus ullam necessitatibus possimus porro a officiis sit aut quaerat nemo provident, eum, distinctio quos. Harum, labore numquam quibusdam similique beatae libero quod aliquam?
+        </div>
+    </body>
+</html>
