@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .row {
+                display: flex;
+                flex-wrap: wrap;
+                
+                /* space-around, space-evenly, flex-start, flex-end, center */
+                /*justify-content: space-between;*/ /* main axis arrangement */
+                
+                /* align-items: stretch - children should stretch to occupy the same height */
+                /* flex-start, flex-end, center, stretch */
+                align-items: center; /* cross-axis arrangement */
+            }
+
+            .col {
+                flex-basis: 20%;
+                background-color: lightblue;
+            }
+
+            .col:nth-child(1) {
+                flex-grow: 1; /* if there is extra width, I can take it in this ratio */
+            }
+            
+            .col:nth-child(2) {
+                flex-grow: 2; /* if there is extra width, I can take it in this ratio */
+            }
+            
+            .col:nth-child(3) {
+                flex-grow: 3; /* if there is extra width, I can take it in this ratio */
+            }
+
+            /**
+             * Explore: flex-shrink (if there is an overflow, and there is not enough space for children, how much is a child willing to give up)
+            */
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Id nobis iste natus tempore vero ex distinctio nostrum animi error tenetur cum eum ipsum sit neque, est nulla a aut! Veniam.
+            </div>
+            <div class="col">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae voluptatem officiis ullam rem quis dolore qui fuga hic neque perspiciatis, sunt harum perferendis illum consequatur quas culpa reprehenderit omnis accusantium.
+                Perspiciatis, nam, quo cupiditate in nihil ipsa ad aspernatur ducimus assumenda itaque ratione debitis? Laborum voluptatem iusto veritatis aliquam at exercitationem, dolorem nihil veniam sint, aut praesentium ex rerum officiis.
+            </div>
+            <div class="col">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iure quod debitis molestias, cumque placeat in adipisci doloremque saepe tempore, quos id! Ullam vitae nisi, accusamus obcaecati id distinctio! Molestias, assumenda?
+                At natus veniam reprehenderit consequatur molestiae cumque aliquam iste laudantium rem, dicta assumenda. Nisi aliquid officiis delectus, velit ducimus corporis tenetur, fuga officia blanditiis assumenda pariatur ratione error modi necessitatibus?
+                Impedit quam dignissimos quia, maiores illum mollitia porro iusto, sunt, architecto quos soluta error quasi voluptate. Nisi, error? Consequuntur voluptates error animi consequatur ab cupiditate saepe repellendus quo debitis iste.
+            </div>
+        </div>
+    </body>
+</html>
