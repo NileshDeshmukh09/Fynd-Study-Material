@@ -20,6 +20,10 @@
                 margin: 0;
             }
 
+            .menu img {
+                height: 100px;
+            }
+
             .menu a {
                 padding: 0.5em;
                 border-radius: 0.5em;
@@ -31,6 +35,11 @@
 
             .menu a:hover {
                 background-color: rgba( 64, 64, 64, 0.3 );
+            }
+
+            .search {
+                padding: 0.5em 0.25em;
+                font-size: 1.5em;
             }
         </style>
     </head>
@@ -67,7 +76,11 @@
                     </a>
                 </li>
                 <li>
-                    <input type="search" />
+                    <input
+                        type="search"
+                        class="search"
+                        placeholder="Search articles..."
+                    />
                 </li>
             </ul>
         </nav>
