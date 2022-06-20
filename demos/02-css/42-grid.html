@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .grid {
+                display: grid;
+
+                /* this defines the direction of the grid */
+                /* ...just like flex-direction for flex layout */
+                grid-auto-flow: row; /* or column */
+                justify-content: center;
+
+                /* height of the rows */
+                /* grid-template-rows: 300px 300px 300px 300px; */
+                grid-template-rows: repeat( 4, 400px );
+                
+                /* width of the columns */
+                grid-template-columns: repeat( 3, 300px );
+                gap: 1em 1em;
+
+                width: 100%;
+            }
+
+            .col {
+                background-color: lightgray;
+            }
+
+            @media all and ( max-width : 1000px ) {
+                .grid {
+                    grid-template-rows: repeat( 5, 400px );
+                    grid-template-columns: repeat( 2, 300px );
+                }
+            }
+            
+            @media all and ( max-width : 600px ) {
+                .grid {
+                    grid-template-rows: repeat( 10, 400px );
+                    grid-template-columns: repeat( 1, 400px );
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!--
+            Three steps to using grid layout
+            1. Define the grid - how a row is going to look like, and how a column is going to look like (this step is like setting up a graph sheet) - we get grid cells
+            2. Define grid areas (optional) - group the grid cells
+            3. Place children on the grid areas
+        -->
+        <div class="grid">
+            <div class="col">1</div>
+            <div class="col">2</div>
+            <div class="col">3</div>
+            <div class="col">4</div>
+            <div class="col">5</div>
+            <div class="col">6</div>
+            <div class="col">7</div>
+            <div class="col">8</div>
+            <div class="col">9</div>
+            <div class="col">10</div>
+        </div>
+    </body>
+</html>
