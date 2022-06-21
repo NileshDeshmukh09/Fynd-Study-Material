@@ -34,3 +34,15 @@
 .text-right {
     text-align: right;
 }
+
+@media ( max-width: 600px ) {
+    .d-sm-none {
+        display: none;
+    }
+}
+
+@media ( min-width: 600px ) {
+    .d-lg-none {
+        display: none;
+    }
+}
