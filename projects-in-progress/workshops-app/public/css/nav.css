@@ -1,0 +1,13 @@
+nav {
+    background-color: #eee;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu a {
+    display: inline-block;
+    padding: 0.5em;
+    margin-right: 1em;
+}
