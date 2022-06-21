@@ -18,6 +18,10 @@ nav {
     margin-right: 1em;
 }
 
+.nav-items-selected a {
+    color: blue;
+}
+
 @media ( min-width: 600px ) {
     .menu li {
         flex-basis: auto;
