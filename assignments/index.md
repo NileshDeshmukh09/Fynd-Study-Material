@@ -9,3 +9,5 @@
     - Q. 3, 7, 8 -> 02-CSS Lab Guide
 - Jun 20
     - All remaining questions -> 02-CSS Lab Guide
+- Jun 24
+    - Array - Q. 1, Conditional and loop statement - Q.1, Q. 6, Q. 11 (this one is optional), Functions - Q. 2, 3, 4, 5
