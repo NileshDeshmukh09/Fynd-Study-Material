@@ -68,7 +68,9 @@ const john = `John
 Doe`;
 console.log( john );
 
+const titles = [ 'Mr', 'Dr' ];
+
 // ${variable} -> called "string interpolation"
 // ` : (below esc key, above tab) -> backtick
-const greeting2 = `${message} ${name}`;
+const greeting2 = `${message} ${titles[1]}. ${name}`;
 console.log( greeting2 );
