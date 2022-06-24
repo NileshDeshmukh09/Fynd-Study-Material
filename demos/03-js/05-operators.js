@@ -56,3 +56,19 @@ console.clear();
 x = 20, y = 10;
 const absDiff = x < y ? y - x : x - y;
 console.log( absDiff );
+
+console.clear();
+
+// string concatenation : +
+const message = 'Good morning', name = 'John';
+const greeting = message + ' ' + name + '!';
+console.log( greeting );
+
+const john = `John 
+Doe`;
+console.log( john );
+
+// ${variable} -> called "string interpolation"
+// ` : (below esc key, above tab) -> backtick
+const greeting2 = `${message} ${name}`;
+console.log( greeting2 );
