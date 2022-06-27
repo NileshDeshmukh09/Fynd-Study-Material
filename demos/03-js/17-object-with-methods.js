@@ -27,6 +27,9 @@ const john = {
         this.address.city = city;
         this.address.area = area;
         this.address.pinCode = pinCode;
+    },
+    getNumChildren() {
+        return this.children.length;
     }
 };
 
@@ -34,3 +37,4 @@ john.celebrateBirthday();
 john.addChild( 'Jamie' );
 john.changeAddress( 'Bangalore', 'Indiranagar', 560050 )
 console.log( john );
+console.log( john.getNumChildren() );
