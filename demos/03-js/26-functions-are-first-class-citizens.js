@@ -8,7 +8,7 @@ function getPerson( name, age ) {
     return person;
 }
 
-const john = getPerson( 'John', 32 );
+const john = getPerson( 'John', 32 ); // copied by reference
 console.log( john );
 
 function getFoo() {
@@ -24,3 +24,6 @@ function getFoo() {
 const bar = getFoo(); // functions are copied by reference
 console.log( bar ); // Function
 bar();
+
+const car = bar; // function copied by reference
+car();
