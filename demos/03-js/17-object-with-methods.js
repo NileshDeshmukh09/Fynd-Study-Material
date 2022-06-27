@@ -36,5 +36,13 @@ const john = {
 john.celebrateBirthday();
 john.addChild( 'Jamie' );
 john.changeAddress( 'Bangalore', 'Indiranagar', 560050 )
+
+// add a new function at runtime
+john.addEmail = function( email ) {
+    this.emails.push( email );
+};
+
+john.addEmail( 'john@yahoo.com' );
+
 console.log( john );
 console.log( john.getNumChildren() );
