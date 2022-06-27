@@ -17,6 +17,7 @@ const bar1 = foo1( 10 ); // bar gets created afresh - x1, y1 are in the "closure
 // the local x2, y2 which are created will continue to be in memory
 const bar2 = foo1( 20 ); // another bar gets created afresh
 
+// the local x3, y3 which are created will continue to be in memory
 const bar3 = foo1( 30 ); // another bar gets created afresh
 
 bar1(); // prints x1, y1 without any problems
