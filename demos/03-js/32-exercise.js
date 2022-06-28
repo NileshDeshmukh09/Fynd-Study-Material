@@ -1,7 +1,7 @@
 // create this function
 const filter = () => {
 
-}
+};
 
 // x => x % 2 === 1 returns true when x is odd
 filter( [ 1, 4, 7, 2, 9, 11, 41, 34 ], x => x % 2 === 1 ); // [ 1, 7, 9, 11, 41 ]
