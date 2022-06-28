@@ -50,10 +50,11 @@ words.sort();
 console.log( words );
 
 const numbers = [ 10, 40, 30, 100, 400, 33, 340 ];
-// a = 30, b = 100, return -70; So 30 will be placed before 100
+// RULES FOR THE HELPER FUNCTION FOR sort()
 // if a should come before b in sorted order, return a -ve number
 // if a should come after b in sorted order, return a +ve number
 // if a and b are to be treated as equal, return 0
+// a = 30, b = 100, return -70; So 30 will be placed before 100
 numbers.sort(
     ( a, b ) => {
         if( a < b ) {

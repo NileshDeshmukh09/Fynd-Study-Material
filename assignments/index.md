@@ -11,3 +11,7 @@
     - All remaining questions -> 02-CSS Lab Guide
 - Jun 24
     - Array - Q. 1, Conditional and loop statement - Q.1, Q. 6, Q. 11 (this one is optional), Functions - Q. 2, 3, 4, 5
+- Jun 28
+    - Functions - Q.5, 10
+    - Objects - Q.4
+    - BUILT-IN CLASSES – STRINGS, ARRAYS - Q. 3, 6
