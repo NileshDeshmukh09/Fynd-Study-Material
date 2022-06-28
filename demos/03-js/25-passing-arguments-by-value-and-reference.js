@@ -9,7 +9,7 @@ console.log( 'a = ', a ); // 100
 
 function printPerson( person ) {
     person.age++;
-    console.log( `${person.name} is ${person.age} years old` );
+    console.log( `${person.name} is ${person.age} years old` ); // age is 33
 };
 
 let john = {
@@ -18,4 +18,4 @@ let john = {
 };
 
 printPerson( john ); // person = john (copied by reference)
-console.log( `${john.name} is ${john.age} years old` );
+console.log( `${john.name} is ${john.age} years old` ); // age is 33

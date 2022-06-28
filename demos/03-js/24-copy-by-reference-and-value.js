@@ -12,8 +12,13 @@ let a = [ 1, 2, 3, 4 ];
 let b = a; // b and a refer to the SAME array in memory (copy by reference)
 b.push( 5 );
 
-console.log( 'a = ', a ); // ?
+console.log( 'a = ', a ); // [ 1, 2, 3, 4, 5 ]
 console.log( 'b = ', b ); // [ 1, 2, 3, 4, 5 ]
+
+const c = [];
+for( let i = 0; i < a.length; i++ ) {
+    c.push( a[i] ); // copt by value of items, since items are primtive (numbers)
+}
 
 let john = {
     name: 'John',

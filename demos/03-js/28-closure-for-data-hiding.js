@@ -18,7 +18,7 @@ function getCart() {
     return cart;
 }
 
-const shoppingCart = getCart();
+const shoppingCart = getCart(); // items is created locally, and shoppingCart.add() and shoppingCart.show() get access to it
 shoppingCart.add( 'Soap' );
 shoppingCart.add( 'Shampoo' );
 shoppingCart.add( 'Detergent' );
