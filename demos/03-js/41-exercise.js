@@ -1,4 +1,4 @@
-[
+const workshops = [
     {
         name: "Angular JS Bootcamp",
         category: "frontend",
