@@ -262,8 +262,8 @@ const workshops = [
 
 // get a list of workshops with simplified structure
 // [
-//     { name: 'Angular JS', id: 1 },
-//     { name: 'React', id: 2 }
+//     { name: 'Angular JS Bootcamp', id: 1 },
+//     { name: 'React JS Masterclass', id: 2 }
 //     ...
 // ]
 
