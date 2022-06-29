@@ -20,7 +20,7 @@ const john = {
 
 const {
     age,
-    name,
+    name : firstName,
     spouse = 'Single',
     address: {
         city,
@@ -31,4 +31,4 @@ const {
     ]
 } = john;
 
-console.log( name, age, spouse, city, area, firstEmail );
+console.log( firstName, age, spouse, city, area, firstEmail );
