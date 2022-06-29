@@ -291,3 +291,9 @@ console.log( numOnline );
 // get the number of inPerson workshops
 const numInPerson = workshops.reduce( ( acc, w ) => acc + ( w.modes.inPerson ? 1 : 0 ), 0 );
 console.log( numInPerson );
+
+// get a list of names of frontend workshops
+// [ 'Angular JS Bootcamp', 'React JS Masterclass',  ]
+
+// get one single string which has the names of frontend workshops separated by commas
+// 'Angular JS Bootcamp, React JS Masterclass, ...'
