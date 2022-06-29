@@ -1,6 +1,12 @@
 // create this function
-const filter = () => {
+const filter = ( arr, predicate ) => {
+    const result = [];
 
+    for( let i = 0; i < arr.length; i++ ) {
+        // your code... please complete it
+    }
+
+    return result;
 };
 
 // x => x % 2 === 1 returns true when x is odd
