@@ -254,12 +254,21 @@ const workshops = [
 ];
 
 // find all workshops which have category "frontend"
+const frontendWorkshops = workshops.filter( w => w.category === 'frontend' );
+console.log( frontendWorkshops );
+
 // find all workshops in Bangalore
+const bangaloreWorkshops = workshops.filter( w => w.location.city === 'Bangalore' );
+console.log( bangaloreWorkshops );
 
 // find the first workshop which is available only in online mode
+console.log( workshops.find( w => w.modes.online ) );
+
 // find the first workshop which is available only in both online and inPerson modes
+console.log( workshops.find( w => w.modes.online && w.modes.inPerson ) );
 
 // get a list of workshop imageUrl
+console.log( workshops.map( w => w.imageUrl ) );
 
 // get a list of workshops with simplified structure
 // [
@@ -267,6 +276,15 @@ const workshops = [
 //     { name: 'React JS Masterclass', id: 2 }
 //     ...
 // ]
+const workshopsSimplified = workshops.map( w => {
+    return {
+        name: w.name,
+        id: w.id
+    };
+});
+console.log( workshopsSimplified );
 
 // get the number of online workshops
+
+
 // get the number of inPerson workshops
