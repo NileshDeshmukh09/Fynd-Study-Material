@@ -294,6 +294,10 @@ console.log( numInPerson );
 
 // get a list of names of frontend workshops
 // [ 'Angular JS Bootcamp', 'React JS Masterclass',  ]
+const wNames = workshops.filter( w => w.category === 'frontend' ).map( w => w.name );
+console.log( wNames );
 
 // get one single string which has the names of frontend workshops separated by commas
 // 'Angular JS Bootcamp, React JS Masterclass, ...'
+const wNamesStr = wNames.join( ', ' );
+console.log( wNamesStr );
