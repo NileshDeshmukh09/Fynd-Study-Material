@@ -285,6 +285,9 @@ const workshopsSimplified = workshops.map( w => {
 console.log( workshopsSimplified );
 
 // get the number of online workshops
-
+const numOnline = workshops.reduce( ( acc, w ) => acc + ( w.modes.online ? 1 : 0 ), 0 );
+console.log( numOnline );
 
 // get the number of inPerson workshops
+const numInPerson = workshops.reduce( ( acc, w ) => acc + ( w.modes.inPerson ? 1 : 0 ), 0 );
+console.log( numInPerson );
