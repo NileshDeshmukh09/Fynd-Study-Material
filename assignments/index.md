@@ -15,3 +15,6 @@
     - Functions - Q.5, 10
     - Objects - Q.4
     - BUILT-IN CLASSES – STRINGS, ARRAYS - Q. 3, 6
+- Jun 29
+    - 04 - JS (ES2015+) Lab Guide
+        - Q. 1, 3, 4, 5, 7, 8

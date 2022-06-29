@@ -29,5 +29,3 @@ console.log( persons2 ); // has mary
 
 
 // use it on an object
-
-
