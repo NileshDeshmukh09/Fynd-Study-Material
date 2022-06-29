@@ -258,6 +258,7 @@ const workshops = [
 
 // find the first workshop which is available only in online mode
 // find the first workshop which is available only in both online and inPerson modes
+
 // get a list of workshop imageUrl
 
 // get a list of workshops with simplified structure
