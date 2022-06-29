@@ -32,3 +32,11 @@ const {
 } = john;
 
 console.log( firstName, age, spouse, city, area, firstEmail );
+
+function printPerson( { name, age } ) { // destructure in the args
+    // const { name, age } = person; // destructuring syntax (more later!)
+
+    console.log( `${name} is ${age} years old` );
+}
+
+printPerson( john );
