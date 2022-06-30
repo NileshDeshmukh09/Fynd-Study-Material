@@ -37,7 +37,7 @@ john2.emails[0] = 'john.doe@gmail.com'; // it will change john.emails[0]
 console.log( john );
 console.log( john2 );
 
-// let us make a proper cop (deep copy)
+// let us make a proper copy (deep copy)
 const john3 = {
     ...john,
     emails: [
