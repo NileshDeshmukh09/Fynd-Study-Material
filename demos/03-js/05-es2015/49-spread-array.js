@@ -27,5 +27,6 @@ persons2.push({
 console.log( persons ); // does not have mary
 console.log( persons2 ); // has mary
 
-
-// use it on an object
+const arr1 = [ 1, 2, 3 ], arr2 = [ 4, 5, 6 ];
+const arr3 = [ -3, -2, -1, 0, ...arr1, 3.25, 3.5, 3.75, ...arr2, 7, 8, 9 ];
+console.log( arr3 );
