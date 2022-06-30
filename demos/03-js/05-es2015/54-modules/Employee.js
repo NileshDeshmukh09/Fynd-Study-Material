@@ -1,6 +1,8 @@
-import { Person, RelationshipStatus } from './Person.js';
+import Human, { RelationshipStatus as RS } from './Person.js';
 
-class Employee extends Person {
+console.log( RS[0] );
+
+class Employee extends Human {
     // if no constructor is provided, a default constructor will call Person constructor, and pass it whatever it receives
     constructor( name, age, role, dept ) {
         super( name, age );

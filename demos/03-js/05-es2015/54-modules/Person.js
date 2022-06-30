@@ -1,4 +1,4 @@
-class Person {
+/*export default */class Person {
     nationality = 'Indian';
     relationshipStatus = 'Single';
 
@@ -12,7 +12,7 @@ class Person {
     }
 }
 
-const RelationshipStatus = [
+/*export */const RelationshipStatus = [
     'Single',
     'Married',
     'Committed',
@@ -20,6 +20,11 @@ const RelationshipStatus = [
 ];
 
 export {
-    Person,
-    RelationshipStatus
-};
+    Person as default, // only 1 default export can be there in a module
+    RelationshipStatus // named export
+}
+
+// export {
+//     Person,
+//     RelationshipStatus
+// };
