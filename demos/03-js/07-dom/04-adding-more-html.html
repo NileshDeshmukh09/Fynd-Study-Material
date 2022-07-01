@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <table id="persons-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Primary email</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <script>
+            const persons = [
+                {
+                    name: 'John',
+                    age: 32,
+                    emails: [
+                        'john@gmail.com',
+                        'john@fynd.com'
+                    ]
+                },
+                {
+                    name: 'Jane',
+                    age: 28,
+                    emails: [
+                        'jane@gmail.com',
+                        'jane@fynd.com'
+                    ]
+                },
+                {
+                    name: 'Mark',
+                    age: 40,
+                    emails: [
+                        'mark@gmail.com',
+                        'mark@fynd.com'
+                    ]
+                }
+            ];
+
+            // document.querySelector( '#persons-table tbody' );
+            const tbody = document.getElementById( 'persons-table' ).querySelector( 'tbody' );
+
+            let rows = '';
+
+            persons.forEach(
+                person => {
+                    const row = `
+                        <tr>
+                            <td>${person.name}</td>
+                            <td>${person.age}</td>
+                            <td>${person.emails[0]}</td>
+                        </tr>
+                    `;
+
+                    rows = rows + row;
+
+                    // tbody.innerHTML = tbody.innerHTML + row;
+                }
+            );
+
+            tbody.innerHTML = rows;
+        </script>
+    </body>
+</html>
