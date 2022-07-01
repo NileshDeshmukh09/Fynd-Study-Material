@@ -1,8 +1,8 @@
 function sum( x, y, callback ) {
     setTimeout(
         () => { // Node JS calls this function
-            // return x + y; // returns to Node JS
-            callback( x + y );
+            // return x + y; // returns to Node JS - useless
+            callback( x + y ); // calls our function and passes the result - useful
         },
         3000
     );
