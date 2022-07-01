@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Query methods</title>
+    </head>
+    <body>
+        <a href="https://www.google.com" id="google-link-1">Google search</a>
+
+        <section id="introduction">
+            <p>
+                Para 1
+                <a href="https://www.google.com" id="google-link-2">Google search</a>
+                <a href="https://www.facebook.com">FB</a>
+            </p>
+            <p>Para 2</p>
+        </section>
+
+        <script>
+            // document.getElementsByClassName()
+            const googleLink = document.getElementById( 'google-link-1' );
+            console.dir( googleLink );
+
+            // use any CSS selector in querySelectorAll
+            const allLinksWithinParas = document.querySelectorAll( 'p a' );
+            console.dir( allLinksWithinParas ); // list
+            
+            // use any CSS selector in querySelector (first matched element)
+            const firstLinkWithinPara = document.querySelector( 'p a' );
+            console.dir( firstLinkWithinPara ); // single object
+
+            const googleLink2 = document.querySelector( '#google-link-2' );
+            console.dir( googleLink2 );
+
+            // querySelector(), querySelectorAll() can be used on ANY DOM node
+            const intro = document.getElementById( 'introduction' );
+            intro.querySelector( 'a' ); // gives the first link WITHIN the intro section
+        </script>
+    </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DOM Introduction</title>
+        
+        <!-- using script this way is even better than including at the bottom - the script download starts immediately, but execution is postponed (deferred) to after page shows up -->
+        <!-- <script defer src=""></script> -->
+    </head>
+    <body>
+        <!--
+            Operations on an HTML document
+            - Change HTML within an element (change the text, add a new element, remove an element)
+            - Change the styles - background image, color, hide / show
+            - Handle user interactions
+        -->
+        <p>Default text within the para</p>
+
+        <script>
+            // dir() shows the object structure of the document DOM node
+            console.dir( window );
+            console.dir( document ); // represents the HTML document which is loaded
+            console.dir( document.children ); // [ html ]
+            console.dir( document.children[0] ); // html
+            console.dir( document.children[0].children ); // [ head, body ]
+            console.log( document.children[0].children[1].children ); // [ p, script ]
+
+            // "DOM node" of the paragraph element
+            const p = document.children[0].children[1].children[0];
+
+            // Explore: Check parentNode, nextElementSibling, previousElementSibling
+        </script>
+    </body>
+</html>
