@@ -15,6 +15,7 @@ function sum( x, y ) {
 }
 
 // an async function can be paused and resumed
+// async function ALWAYS return a promise
 const doSerialSums = async () => {
     console.log( 1 );
     // pause the function till the promise is fulfilled (resolves / rejects)
@@ -26,9 +27,18 @@ const doSerialSums = async () => {
 
     result = await sum( result, 14 );
     console.log( 'result = ', result );
+    
+    result = await sum( result, 15 );
+    console.log( 'result = ', result );
+
+    return result;
 };
 
-doSerialSums();
+doSerialSums()
+    .then( finalResult => {
+        console.log( 'final result = ', finalResult );
+    });
+
 console.log( 3 );
 
 for( let i = 0; i < 1e10; i++ ) {
