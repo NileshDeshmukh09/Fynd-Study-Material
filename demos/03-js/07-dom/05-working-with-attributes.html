@@ -22,10 +22,13 @@
 
             setInterval(
                 () => {
-                    linkEl.textContent = links[idx].text;
-                    linkEl.href = links[idx].href;
-                    // linkEl.setAttribute( 'href', links[idx].href );
-                    linkEl.setAttribute( 'data-description', links[idx].company );
+                    // create helper variables when you repeat access to array's item / object's property
+                    const link = links[idx];
+
+                    linkEl.textContent = link.text;
+                    linkEl.href = link.href;
+                    // linkEl.setAttribute( 'href', link.href );
+                    linkEl.setAttribute( 'data-description', link.company );
                     idx = ++idx % 3;
 
                     // EXERCISE: Please check getAttribute() to read attribute value, hasAttribute() to check existence of an attribute, removeAttribute() to remove an attribute
