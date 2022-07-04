@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <button id="btn-click-me">Click me</button>
+        <button id="btn-click-me-2">Click me too</button>
+
+        <script>
+            // Exercise: Please read on event flow (bubbling and capture)
+            // https://javascript.info/bubbling-and-capturing
+            // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture
+
+            const btnClickMe = document.querySelector( '#btn-click-me' );
+            const btnClickMe2 = document.querySelector( '#btn-click-me-2' );
+
+            btnClickMe.onclick = function() {
+                alert( 'I was clicked (1)' );
+            };
+            
+            btnClickMe.onclick = function() {
+                alert( 'I was clicked (2)' );
+            };
+
+            function clickHandler() {
+                alert( 'I was clicked (3)' );
+            }
+
+            btnClickMe2.addEventListener( 'click', clickHandler );
+            btnClickMe2.addEventListener( 'click', function() {
+                alert( 'I was clicked (4)' );
+            });
+
+            btnClickMe.addEventListener( 'click', clickHandler );
+            btnClickMe.addEventListener( 'mouseover', clickHandler );
+        </script>
+    </body>
+</html>
