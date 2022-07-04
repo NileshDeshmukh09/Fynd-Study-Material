@@ -12,6 +12,21 @@
                 border-style: solid;
                 border-radius: 5px;
             }
+
+            .alert-danger {
+                border-color: crimson;
+                background-color: #ff6461;
+            }
+
+            .alert-success {
+                border-color: green;
+                background-color: #64ff61;
+            }
+
+            .alert-info {
+                border-color: navy;
+                background-color: #6461ff;
+            }
         </style>
     </head>
     <body>
@@ -33,21 +48,20 @@
                     const item = messages[idx];
                     alert.textContent = item.message;
 
+                    alert.classList.remove( 'alert-success' );
+                    alert.classList.remove( 'alert-danger' );
+                    alert.classList.remove( 'alert-info' );
+
                     switch( item.type ) {
                         case 'error':
-                            alert.style.borderColor = 'crimson';
-                            alert.style.backgroundColor = '#ff6461';
+                            alert.classList.add( 'alert-danger' );
                             break;
                         case 'success':
-                            alert.style.borderColor = 'green';
-                            alert.style.backgroundColor = '#64ff61';
+                            alert.classList.add( 'alert-success' );
                             break;
                         case 'info':
-                            alert.style.borderColor = 'navy';
-                            alert.style.backgroundColor = '#6461ff';
+                            alert.classList.add( 'alert-info' );
                             break;
-                        default:
-                            alert.style.borderColor = 'black';
                     }
 
                     idx = ( idx + 1 ) % 3;
