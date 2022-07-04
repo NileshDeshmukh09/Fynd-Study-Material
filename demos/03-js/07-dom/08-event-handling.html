@@ -10,10 +10,15 @@
         <button id="btn-click-me">Click me</button>
         <button id="btn-click-me-2">Click me too</button>
 
+        <a href="https://www.google.com" id="google-link">Google</a>
+
         <script>
             // Exercise: Please read on event flow (bubbling and capture)
             // https://javascript.info/bubbling-and-capturing
             // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events#event_bubbling_and_capture
+            // event.stopPropagation()
+
+            // Event reference: https://developer.mozilla.org/en-US/docs/Web/Events
 
             const btnClickMe = document.querySelector( '#btn-click-me' );
             const btnClickMe2 = document.querySelector( '#btn-click-me-2' );
@@ -26,7 +31,12 @@
                 alert( 'I was clicked (2)' );
             };
 
-            function clickHandler() {
+            // we do not use arrow function syntax for event handlers ("this" reference to the element would be lost in arrow function)
+            const clickHandler = function( event ) {
+                console.log( event );
+                console.log( event.target );
+                console.log( this );
+
                 alert( 'I was clicked (3)' );
             }
 
@@ -37,6 +47,16 @@
 
             btnClickMe.addEventListener( 'click', clickHandler );
             btnClickMe.addEventListener( 'mouseover', clickHandler );
+
+            document.getElementById( 'google-link' ).addEventListener( 'click', function( event ) {
+                // blocking function (very bad)
+                const choice = confirm( 'Are you sure you want to go to Google?' );
+
+                if( !choice ) {
+                    // prevent the browser's default event handling for this event
+                    event.preventDefault();
+                }
+            });
         </script>
     </body>
 </html>
