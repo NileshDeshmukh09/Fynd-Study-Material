@@ -107,8 +107,6 @@
             document.querySelector( '#login-form' ).addEventListener( 'submit', function( event ) {
                 event.preventDefault();
 
-                console.log( 'submit' );
-
                 const errors = {
                     email: validateEmail(),
                     password: validatePassword()
@@ -118,6 +116,9 @@
 
                 // EXERCISE: Show the error messages based on the errors
 
+                if( !errors.email && !errors.password ) {
+                    this.submit();
+                }
 
                 // document.querySelector( '#' )
 
@@ -128,7 +129,18 @@
 
                 // any time you want to submit the form programatically do this...
                 // this.submit();
-            })
+            });
+
+            const emailEl = document.querySelector( '#email' );
+
+            emailEl.addEventListener( 'blur', function() {
+                // validate and display error messges for email
+                console.log( 'moved away from email' );
+            });
+
+            emailEl.addEventListener( 'input', function( event ) {
+                console.log( event.target.value );
+            });
         </script>
     </body>
 </html>
