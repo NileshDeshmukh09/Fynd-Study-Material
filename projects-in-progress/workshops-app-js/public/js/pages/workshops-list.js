@@ -1,5 +1,12 @@
 const fetchWorkshops = async () => {
-    const response = await fetch( `https://workshops-server.herokuapp.com/workshops` );
+    const response = await fetch( `https://workshops-server.herokuapp.com/workshop` );
+    
+    // take care of cases when backend returns an error - we need to throw the error from this function ourselves
+    if( !response.ok ) {
+        const responseText = await response.text();
+        throw new Error( responseText || 'Some error occured' );
+    }
+
     const workshops = await response.json();
     return workshops;
 };
@@ -17,7 +24,8 @@ const showWorkshops = ( workshops ) => {
                 startDate,
                 endDate,
                 time,
-                description
+                description,
+                id
             } = workshop;
 
             const workshopStr = `
@@ -36,7 +44,6 @@ const showWorkshops = ( workshops ) => {
             `;
 
             workshopsListStr += workshopStr;
-
         }
     );
 
@@ -44,6 +51,16 @@ const showWorkshops = ( workshops ) => {
 };
 
 window.addEventListener( 'load', async function() {
-    const workshops = await fetchWorkshops();
-    showWorkshops( workshops );
+    try {
+        const workshops = await fetchWorkshops();    
+        showWorkshops( workshops );
+    } catch( error ) {
+        const errorMessage = document.getElementById( 'error-message' );
+        errorMessage.classList.remove( 'd-none' );
+        errorMessage.textContent = error.message;
+    }
+
+    // hide the loading message now...
+    const loadingMessage = document.getElementById( 'loading-message' );
+    loadingMessage.classList.add( 'd-none' );
 });

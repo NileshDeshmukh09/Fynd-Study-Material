@@ -32,6 +32,13 @@
         <main class="container mt-3 mb-3">
             <h1>List of workshops</h1>
             <hr />
+            
+            <div class="alert alert-primary" id="loading-message">
+                Please wait while we fetch workshops...
+            </div>
+            
+            <div class="alert alert-danger d-none" id="error-message"></div>
+            
             <div class="workshops-list"></div>
         </main>
 
