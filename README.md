@@ -1,5 +1,8 @@
 # Fynd Academy Full-stack Training content
 
+## Meetings app backend
+- http://mymeetingsapp.herokuapp.com/
+
 ## Meeting times
 - Mon-Fri: 5:00 - 9:15 PM
 
