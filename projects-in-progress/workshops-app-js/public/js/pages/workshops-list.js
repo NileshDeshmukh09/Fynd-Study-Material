@@ -1,5 +1,5 @@
 const fetchWorkshops = async () => {
-    const response = await fetch( `https://workshops-server.herokuapp.com/workshop` );
+    const response = await fetch( `https://workshops-server.herokuapp.com/workshops` );
     
     // take care of cases when backend returns an error - we need to throw the error from this function ourselves
     if( !response.ok ) {
