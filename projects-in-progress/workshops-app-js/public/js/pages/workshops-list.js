@@ -1,4 +1,7 @@
-import { fetchWorkshops } from '../services/workshops.js';
+import {
+    fetchWorkshops,
+    deleteWorkshop
+} from '../services/workshops.js';
 
 let page = 1;
 
@@ -20,18 +23,21 @@ const showWorkshops = ( workshops ) => {
             } = workshop;
 
             const workshopStr = `
-                <a class="workshops-list-item link-plain" href="/workshop-details.html">
-                    <img src="${imageUrl}" alt="${name}" class="img-responsive img-workshop" />
-                    <div class="workshop-title mt-3 mb-3">
-                        ${name}
-                    </div>
-                    <div class="workshop-date mt-2 mb-2">
-                        ${startDate} - ${endDate}
-                    </div>
-                    <div class="workshop-time mt-2 mb-2">
-                        ${time}
-                    </div>
-                </a>
+                <div class="workshops-list-item" data-id="${workshop.id}">
+                    <a class="link-plain" href="/workshop-details.html">
+                        <img src="${imageUrl}" alt="${name}" class="img-responsive img-workshop" />
+                        <div class="workshop-title mt-3 mb-3">
+                            ${name}
+                        </div>
+                        <div class="workshop-date mt-2 mb-2">
+                            ${startDate} - ${endDate}
+                        </div>
+                        <div class="workshop-time mt-2 mb-2">
+                            ${time}
+                        </div>
+                    </a>
+                    <button id="delete-workshop-${workshop.id}" class="delete-workshop">Delete this workshop</button>
+                </div>
             `;
 
             workshopsListStr += workshopStr;
@@ -41,10 +47,34 @@ const showWorkshops = ( workshops ) => {
     workshopsListEl.innerHTML = workshopsListStr;
 };
 
+const onDeleteWorkshop = async function( event ) {
+    const button = event.target;
+    const workshopListItem = button.closest( '.workshops-list-item' );
+    const workshopId = workshopListItem.getAttribute( 'data-id' );
+    
+    try {
+        await deleteWorkshop( workshopId );
+        workshopListItem.remove();
+
+        alert( 'Workshop deleted' );
+    } catch( error ) {
+        alert( error.message );
+    }
+};
+
+const addDeleteWorkshopHandler = () => {
+    document.querySelectorAll( '.delete-workshop' ).forEach(
+        button => {
+            button.addEventListener( 'click', onDeleteWorkshop );
+        }
+    )
+};
+
 const fetchAndShowWorkshops = async () => {
     try {
         const workshops = await fetchWorkshops( page );
         showWorkshops( workshops );
+        addDeleteWorkshopHandler();
     } catch( error ) {
         const errorMessage = document.getElementById( 'error-message' );
         errorMessage.classList.remove( 'd-none' );

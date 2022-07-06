@@ -32,7 +32,19 @@ const addWorkshop = async ( workshop ) => {
     return response.json();
 };
 
+const deleteWorkshop = async ( workshopId ) => {
+    const response = await fetch( `https://workshops-server.herokuapp.com/workshops/${workshopId}`, {
+        method: 'delete'
+    });
+
+    if( !response.ok ) {
+        const responseText = await response.text();
+        throw new Error( responseText || 'Some error occured' );
+    }
+}
+
 export {
     fetchWorkshops,
-    addWorkshop
+    addWorkshop,
+    deleteWorkshop
 }
