@@ -1,26 +1,11 @@
+import { addWorkshop } from '../services/workshops.js';
+
 const nameEl = document.getElementById( 'name' );
 const description = document.getElementById( 'description' );
 const startDate = document.getElementById( 'startDate' );
 const endDate = document.getElementById( 'endDate' );
 const time = document.getElementById( 'time' );
 const imageUrl = document.getElementById( 'imageUrl' );
-
-async function addWorkshop( workshop ) {
-    const response = await fetch( `https://workshops-server.herokuapp.com/workshops`, {
-        method: 'post',
-        body: JSON.stringify( workshop ),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-
-    if( !response.ok ) {
-        const responseText = await response.text(); // get the text error message from the backend
-        throw new Error( responseText || 'Some error occured' );
-    }
-
-    return response.json();
-}
 
 function validate() {
     return nameEl.value.trim() !== '' &&

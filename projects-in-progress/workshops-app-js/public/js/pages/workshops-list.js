@@ -1,19 +1,6 @@
+import { fetchWorkshops } from '../services/workshops.js';
+
 let page = 1;
-
-const fetchWorkshops = async () => {
-    const response = await fetch( `https://workshops-server.herokuapp.com/workshops?` + new URLSearchParams({
-        _page: page
-    }));
-    
-    // take care of cases when backend returns an error - we need to throw the error from this function ourselves
-    if( !response.ok ) {
-        const responseText = await response.text(); // get the text error message from the backend
-        throw new Error( responseText || 'Some error occured' );
-    }
-
-    const workshops = await response.json();
-    return workshops;
-};
 
 const showWorkshops = ( workshops ) => {
     const workshopsListEl = document.querySelector( '.workshops-list' );
@@ -56,7 +43,7 @@ const showWorkshops = ( workshops ) => {
 
 const fetchAndShowWorkshops = async () => {
     try {
-        const workshops = await fetchWorkshops();
+        const workshops = await fetchWorkshops( page );
         showWorkshops( workshops );
     } catch( error ) {
         const errorMessage = document.getElementById( 'error-message' );
