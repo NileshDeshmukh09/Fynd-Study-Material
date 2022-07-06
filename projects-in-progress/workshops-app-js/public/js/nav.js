@@ -1,4 +1,7 @@
+import { logout as logoutSvc } from './services/auth.js';
+
 const menuButton = document.getElementById( 'menu-button' );
+const logout = document.getElementById( 'logout' );
 
 menuButton.addEventListener( 'click', function() {
     // you get a list of elements
@@ -9,4 +12,9 @@ menuButton.addEventListener( 'click', function() {
         // add d-none if not present / remove d-none if present
         navItems[i].classList.toggle( 'd-sm-none' );
     }
+});
+
+logout.addEventListener( 'click', function() {
+    logoutSvc();
+    window.location = '/login.html';
 });

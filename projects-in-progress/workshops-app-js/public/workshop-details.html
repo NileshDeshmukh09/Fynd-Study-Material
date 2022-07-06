@@ -5,6 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Workshops Details | Workshops App</title>
+        <script src="/js/services/check-auth.js" type="module"></script>
         <link rel="stylesheet" href="/external/normalize.css/normalize.css">
         <link rel="stylesheet" href="/external/@fortawesome/fontawesome-free/css/all.min.css">
         <link rel="stylesheet" href="/css/utils.css">
@@ -26,6 +27,9 @@
                 </li>
                 <li class="nav-items d-sm-none">
                     <a href="/add-workshop.html" class="link-plain">Add a workshop</a>
+                </li>
+                <li class="nav-items d-sm-none">
+                    <a class="link-plain" id="logout">Logout</a>
                 </li>
             </ul>
         </nav>
@@ -132,6 +136,6 @@
             </section>
         </main>
 
-        <script src="/js/nav.js"></script>
+        <script src="/js/nav.js" type="module"></script>
     </body>
 </html>

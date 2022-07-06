@@ -1,9 +1,14 @@
 import Config from '../config.js';
+import { getToken } from './auth.js';
 
 const fetchWorkshops = async ( page ) => {
     const response = await fetch( `${Config.baseUrl}/workshops?` + new URLSearchParams({
         _page: page
-    }));
+    }), {
+        headers: {
+            'Authorization': 'Bearer ' + getToken()
+        }
+    });
     
     // take care of cases when backend returns an error - we need to throw the error from this function ourselves
     if( !response.ok ) {
@@ -20,7 +25,8 @@ const addWorkshop = async ( workshop ) => {
         method: 'post',
         body: JSON.stringify( workshop ),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getToken()
         }
     });
 
@@ -33,8 +39,11 @@ const addWorkshop = async ( workshop ) => {
 };
 
 const deleteWorkshop = async ( workshopId ) => {
-    const response = await fetch( `https://workshops-server.herokuapp.com/workshops/${workshopId}`, {
-        method: 'delete'
+    const response = await fetch( `${Config.baseUrl}/workshops/${workshopId}`, {
+        method: 'delete',
+        headers: {
+            'Authorization': 'Bearer ' + getToken()
+        }
     });
 
     if( !response.ok ) {
