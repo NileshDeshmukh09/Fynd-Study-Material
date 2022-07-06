@@ -87,6 +87,12 @@ const setupPagination = () => {
 // window.addEventListener( 'load', async function() {
 // DOMContentLoaded fires when the DOM is ready (happens before load event)
 document.addEventListener( 'DOMContentLoaded', function() {
+    // IMPORTANT: This will not be able to select the workshops list item element, because it does not exist right now
+    // document.querySelector( '.workshops-list-item' );
+
     setupPagination();
-    fetchAndShowWorkshops(); 
+    fetchAndShowWorkshops()
+        .then(() => { // runs after the fetchAndShowWorkshops() completes execution
+            console.log( 'first workshop list item = ', document.querySelector( '.workshops-list-item' ) );
+        });
 });

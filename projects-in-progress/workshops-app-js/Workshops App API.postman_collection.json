@@ -1,0 +1,73 @@
+{
+	"info": {
+		"_postman_id": "6fc04c6c-0582-49a1-840a-a0917aad16d3",
+		"name": "Workshops App API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "715971"
+	},
+	"item": [
+		{
+			"name": "List of workshops",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://workshops-server.herokuapp.com/workshops",
+					"protocol": "https",
+					"host": [
+						"workshops-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"workshops"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Single workshop by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://workshops-server.herokuapp.com/workshops/2",
+					"protocol": "https",
+					"host": [
+						"workshops-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"workshops",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List of sessions for workshop with given id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://workshops-server.herokuapp.com/workshops/2/sessions",
+					"protocol": "https",
+					"host": [
+						"workshops-server",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"workshops",
+						"2",
+						"sessions"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
