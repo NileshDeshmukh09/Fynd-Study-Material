@@ -21,13 +21,13 @@
                         category: "frontend",
                         id: 1,
                         description: "<p><strong>AngularJS</strong> (also written as <strong>Angular.js</strong>) is a JavaScript-based open-source front-end web application framework mainly maintained by Google and by a community of individuals and corporations to address many of the challenges encountered in developing single-page applications.</p><p>It aims to simplify both the development and the testing of such applications by providing a framework for client-side model–view–controller (MVC) and model–view–viewmodel (MVVM) architectures, along with components commonly used in rich Internet applications. (This flexibility has led to the acronym MVW, which stands for \"model-view-whatever\" and may also encompass model–view–presenter and model–view–adapter.)</p>",
-                        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/AngularJS_logo.svg/2000px-AngularJS_logo.svg.pn"
+                        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/AngularJS_logo.svg/2000px-AngularJS_logo.svg.png"
                     }
                 },
                 template: `
                     <div class="container my-5">
                         <div class="card p-5" style="width: 30rem;">
-                            <img :src="workshop.imageUrl" class="card-img-top" :alt="workshop.name + '(' + workshop.id + ')'">
+                            <img :src="workshop.imageUrl" class="card-img-top" :alt="workshop.name + '(' + workshop.id + ')'" />
                             <div class="card-body">
                                 <h5 class="card-title">{{workshop.name.toUpperCase()}}</h5>
                                 <div class="card-text" v-html="workshop.description"></div>
