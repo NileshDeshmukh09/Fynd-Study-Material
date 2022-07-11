@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script type="module">
+            import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
+
+            new Vue({
+                el: '#app',
+                data: {
+                    plan: 'pro' // 'free' | 'pro' | 'premium'
+                },
+                template: `
+                    <div>
+                        Plan : {{plan}}
+                        <div v-if="plan === 'pro'">
+                            You can host unlimited websites
+                        </div>
+                        <div v-else-if="plan === 'premium'">
+                            You can host 100 websites
+                        </div>
+                        <div v-else>
+                            You can host upto 3 websites
+                        </div>
+                    </div>
+                `
+            });
+        </script>
+    </body>
+</html>

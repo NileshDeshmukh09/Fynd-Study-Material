@@ -15,20 +15,20 @@
             new Vue({
                 el: '#app',
                 data: {
-                    plan: 'premium' // 'free' | 'pro' | 'premium'
+                    plan: 'free' // 'free' | 'pro' | 'premium'
                 },
                 template: `
                     <div>
                         Plan : {{plan}}
-                        <div v-if="plan === 'pro'">
+                        <template v-if="plan === 'pro'">
                             You can host unlimited websites
-                        </div>
-                        <div v-else-if="plan === 'premium'">
+                        </template>
+                        <template v-else-if="plan === 'premium'">
                             You can host 100 websites
-                        </div>
-                        <div v-else>
+                        </template>
+                        <template v-else>
                             You can host upto 3 websites
-                        </div>
+                        </template>
                     </div>
                 `
             });
