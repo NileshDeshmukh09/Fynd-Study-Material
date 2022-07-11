@@ -7,11 +7,7 @@
         <title>Document</title>
     </head>
     <body>
-        <!-- arrays, objects are stringified and shown by default -->
-        <!-- {{}} -> data binding ("live")-->
-        <!-- @click etc. are called "directives" - they help us tell Vue JS to set up something useful. @event (eg. @click) helps setup event handlers -->
         
-
         <script type="module">
             import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
 
@@ -39,7 +35,7 @@
                 </div>
             `;
 
-            // whenever the element with id="app" appears on the screen, then you can ask Vue to take care of the DOM for it using $mount()
+            // now the element with id="app" has appeared on the screen, Now we can ask Vue to take care of the DOM for it using $mount()
             rootInstance.$mount( '#app' );
         </script>
     </body>
