@@ -28,9 +28,11 @@
             import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
 
             /**
-             * v-if="variable" adds / removes the DOM node on which it is set based on the variable value (true / false)
+             * v-show="variable" shows / hides (using display CSS property) the DOM node on which it is set based on the variable value (true / false)
+             * v-if will be faster if lot of elements need to be hidden when the page loads (it will not be creating those elements on page load)
+             * v-show will be faster when shifting to hide / show state AFTER page load
+             * If you find performance issues when using one, try using the other
              */
-
             new Vue({
                 el: '#app',
                 data: {
@@ -38,11 +40,7 @@
                 },
                 methods: {
                     toggle() {
-                        if( this.visible === true ) {
-                            this.visible = false;
-                        } else {
-                            this.visible = true;
-                        }
+                        this.visible = !this.visible;
                     }
                 },
                 template: `
@@ -50,7 +48,7 @@
                         <div class="panel__question" @click="toggle">
                             What is Vue?
                         </div>
-                        <div class="panel__answer" v-if="visible">
+                        <div class="panel__answer" v-show="visible">
                             It is a frontend library
                         </div>
                     </div>
