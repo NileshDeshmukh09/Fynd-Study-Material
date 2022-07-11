@@ -30,7 +30,7 @@
             /**
              * v-show="variable" shows / hides (using display CSS property) the DOM node on which it is set based on the variable value (true / false)
              * v-if will be faster if lot of elements need to be hidden when the page loads (it will not be creating those elements on page load)
-             * v-show will be faster when shifting to hide / show state AFTER page load
+             * v-show will be faster when shifting to hide / show state AFTER page load (because element is already in the DOM, and only CSS change will be done)
              * If you find performance issues when using one, try using the other
              */
             new Vue({
