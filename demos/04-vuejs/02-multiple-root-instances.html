@@ -17,6 +17,10 @@
             <button @click="changeMessage">Change greeting</button>
         </div>
 
+        <section id="app2">
+            Hello {{backend}}
+        </section>
+
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js"></script> -->
 
         <script type="module">
@@ -33,6 +37,13 @@
                     changeMessage() {
                         this.name = this.name + '!';
                     }
+                }
+            });
+
+            new Vue({
+                el: '#app2',
+                data: {
+                    backend: 'Node JS'
                 }
             });
         </script>

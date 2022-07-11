@@ -17,14 +17,11 @@
             <button @click="changeMessage">Change greeting</button>
         </div>
 
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js"></script> -->
-
         <script type="module">
             import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
 
             // create a "root instance"
-            new Vue({
-                el: '#app', // what part of the DOM should Vue manage?
+            const rootInstance = new Vue({
                 data: { // what data should be associated with the DOM?
                     name: 'Vue JS',
                     alternatives: [ 'React', 'Angular' ]
@@ -35,6 +32,9 @@
                     }
                 }
             });
+
+            // whenever the element with id="app" appears on the screen, then you can ask Vue to take care of the DOM for it using $mount()
+            rootInstance.$mount( '#app' );
         </script>
     </body>
 </html>
