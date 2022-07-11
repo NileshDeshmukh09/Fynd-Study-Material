@@ -7,8 +7,13 @@
         <title>Document</title>
     </head>
     <body>
+        <!-- arrays, objects are stringified and shown by default -->
+        <!-- {{}} -> data binding ("live")-->
         <div id="app">
             Hello {{name}}
+            <br />
+            Alternatives: {{alternatives}}
+            <button @click="changeMessage">Change greeting</button>
         </div>
 
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js"></script> -->
@@ -20,7 +25,13 @@
             new Vue({
                 el: '#app', // what part of the DOM should Vue manage?
                 data: { // what data should be associated with the DOM?
-                    name: 'Vue JS'
+                    name: 'Vue JS',
+                    alternatives: [ 'React', 'Angular' ]
+                },
+                methods: {
+                    changeMessage() {
+                        this.name = this.name + '!';
+                    }
                 }
             });
         </script>
