@@ -23,14 +23,14 @@
                     // computed properties are "derived" properties
                     // they are defined using functions
                     // they must return the computed value
-                    // it runs each time the underlying data changes (i.e. when firstName / lastName change)
+                    // it runs each time the underlying data changes (i.e. when firstName / lastName change) - does not run when address changes
                     fullName() {
                         console.log( 'fullName computed property is recomputing' );
                         return this.firstName + ' ' + this.lastName;
                     }
                 },
                 methods: {
-                    // methods run on ANY data change (not only underlying data changes)
+                    // methods run on ANY data change (not only underlying data changes) - runs even when address changes
                     getFullName() {
                         console.log( 'getFullName function is running' );
                         return this.firstName + ' ' + this.lastName;
