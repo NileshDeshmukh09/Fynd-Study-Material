@@ -4,7 +4,7 @@
 ## Vue JS
 
 ## Official Guides
-1. Vue JS v2 : Official documentation (Guide) - https://vuejs.org/v2/guide/
+1. Vue JS v2 : Official documentation (Guide) - https://vuejs.org/v2/guide/, https://v2.vuejs.org/v2/guide/
 2. Vue Router : Official documentation (Guide) - https://router.vuejs.org/guide/
 3. Vuex : Official documentation (Guide) - https://vuex.vuejs.org/
 4. The official guides mention link to a free video on a concept on the very top of most of their pages - these are on https://vueschool.io/

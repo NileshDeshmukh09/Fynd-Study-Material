@@ -14,6 +14,9 @@
 
             /**
              * v-model can be used ONLY on input/select/textarea
+             * EXERCISE: v-model is a combination of :value="variable" and @input="this.variable = $event.target.value"
+             * 
+             * $event refers to the event object in the template code where you call the event handler
              */
             new Vue({
                 el: '#app',
@@ -24,8 +27,9 @@
                     }
                 },
                 methods: {
-                    login( event ) {
-                        event.preventDefault();
+                    login( /*event*/ ) {
+                        // Vue has already prevented the browser submission!
+                        // event.preventDefault();
 
                         console.log( this.credentials );
                     }
@@ -33,7 +37,8 @@
                 template: `
                     <div>
                         <h1>Login</h1>
-                        <form @submit="login">
+                        <!-- <form @submit="login( $event )"> -->
+                        <form @submit.prevent="login">
                             <label for="email">Email</label>
                             <input type="email" id="email" v-model="credentials.email" />
                             
