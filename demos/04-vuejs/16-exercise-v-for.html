@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script type="module">
+            import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
+
+            // EXERCISE: Show the persons in a table (columns - name, age, children). Show the children in a bulleted list. Please use :key when setting lists
+            new Vue({
+                el: '#app',
+                data: {
+                    persons: [
+                        {
+                            id: 1,
+                            name: 'John',
+                            age: 32,
+                            children: [ 'Jack', 'Jill' ]
+                        },
+                        {
+                            id: 2,
+                            name: 'Jane',
+                            age: 28,
+                            children: [ 'Jack', 'Jill' ]
+                        },
+                        {
+                            id: 3,
+                            name: 'Mark',
+                            age: 40,
+                            children: [ 'George', 'Genelia' ]
+                        }
+                    ]
+                }
+            });
+        </script>
+    </body>
+</html>
