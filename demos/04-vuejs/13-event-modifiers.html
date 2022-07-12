@@ -5,6 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <style>
+            pre {
+                background-color: lightgray;
+            }
+        </style>
     </head>
     <body>
         <div id="app"></div>
@@ -12,26 +17,33 @@
         <script type="module">
             import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
 
-            /**
-             * v-model can be used ONLY on input/select/textarea
-             * EXERCISE: v-model is a combination of :value="variable" and @input="this.variable = $event.target.value"
-             * 
-             * $event refers to the event object in the template code where you call the event handler
-             */
             new Vue({
                 el: '#app',
                 data: {
                     credentials: {
                         email: '',
-                        password: ''
-                    }
+                        password: '',
+                    },
+                    message: ''
                 },
                 methods: {
-                    login( /*event*/ ) {
-                        // Vue has already prevented the browser submission!
-                        // event.preventDefault();
-
+                    login() {
                         console.log( this.credentials );
+                    },
+                    log() {
+                        console.log( this.message );
+                    },
+                    handleKeyupEnter( event ) {
+                        // do something only when Enter key is pressed
+                        // if( event.keyCode === 13 ) {
+
+                        // }
+                        console.log( 'enter is presed - now we can do what has to be done' );
+                    },
+                    handleButtonClick( event ) {
+                        // if( event.meta ) { // is the CTRL key pressed
+                            console.log( 'you pressed CTRL key and clicked' );
+                        // }
                     }
                 },
                 template: `
@@ -40,14 +52,18 @@
                         <!-- <form @submit="login( $event )"> -->
                         <form @submit.prevent="login">
                             <label for="email">Email</label>
-                            <input type="email" id="email" v-model="credentials.email" />
-                            {{credentials.email}}
+                            <input type="email" id="email" v-model="credentials.email" @input="log" @keyup.enter="handleKeyupEnter" />
+                            
+                            <textarea v-model.trim="message" @input="log"></textarea>
+                            <pre>{{message}}</pre>
                             
                             <label for="password">Password</label>
                             <input type="password" id="password" v-model="credentials.password" />
 
                             <button type="submit">Login</button>
                         </form>
+
+                        <button @click.meta="handleButtonClick">Click me along with CTRL key</button>
                     </div>
                 `
             });
