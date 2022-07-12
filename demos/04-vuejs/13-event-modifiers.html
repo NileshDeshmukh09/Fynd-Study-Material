@@ -41,8 +41,8 @@
                         console.log( 'enter is presed - now we can do what has to be done' );
                     },
                     handleButtonClick( event ) {
-                        // if( event.meta ) { // is the CTRL key pressed
-                            console.log( 'you pressed CTRL key and clicked' );
+                        // if( event.meta ) { // is the Windows / Command key pressed
+                            console.log( 'you pressed Windows / Command key and clicked' );
                         // }
                     }
                 },
@@ -63,7 +63,7 @@
                             <button type="submit">Login</button>
                         </form>
 
-                        <button @click.meta="handleButtonClick">Click me along with CTRL key</button>
+                        <button @click.meta="handleButtonClick">Click me along with Windows / Command key</button>
                     </div>
                 `
             });
