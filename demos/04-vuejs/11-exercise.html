@@ -16,11 +16,19 @@
              * EXERCISE:
              * If you are on free plan, show 2 buttons - "Upgrade to premium" and "Upgrade to pro" which changes the plan appropriately
              * If you are on premium plan, show 1 button - "Upgrade to pro" which changes the plan accordingly
+             * 
+             * NOTE: You can pass arguments to methods if you call the method explicitly like so on an element...
+             * @click="switchToPlan( 'pro' )"
              */
             new Vue({
                 el: '#app',
                 data: {
                     plan: 'free' // 'free' | 'premium' | 'pro'
+                },
+                methods: {
+                    upgrade( newPlan ) {
+                        this.plan = newPlan;
+                    }
                 },
                 template: `
                     <div>
@@ -34,6 +42,10 @@
                         <template v-else>
                             You can host upto 3 websites
                         </template>
+                        <div>
+                            <button v-if="plan === 'free'" @click="upgrade( 'premium' )">Upgrade to Premium</button>
+                            <button v-if="plan === 'free' || plan === 'premium'" @click="upgrade( 'pro' )">Upgrade to Pro</button>
+                        </div>
                     </div>
                 `
             });
