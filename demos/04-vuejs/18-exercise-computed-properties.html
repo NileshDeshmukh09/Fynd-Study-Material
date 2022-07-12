@@ -32,12 +32,19 @@
                     filterKey: ''
                 },
                 computed: {
-                    // filteredTechnologies
+                    // your code goes in here...
+                    // filteredTechnologies will change when any of the underlying variables change (i.e. technologies / filterKey changes)
+                    filteredTechnologies() {
+                        return this.technologies.filter( tech => tech.includes( this.filterKey ) );
+                    }
                 },
                 template: `
                     <div>
                         <input type="search" placeholder="Type to filter" v-model="filterKey" />
-                        <!-- display names of (filtered) technologies in a list -->
+                        
+                        <ul>
+                            <li v-for="tech in filteredTechnologies">{{tech}}</li>
+                        </ul>
                     </div>
                 `
             });
