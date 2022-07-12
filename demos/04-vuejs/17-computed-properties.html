@@ -16,18 +16,31 @@
                 el: '#app',
                 data: {
                     firstName: 'John',
-                    lastName: 'Doe'
+                    lastName: 'Doe',
+                    address: 'Some address'
                 },
                 computed: {
                     // computed properties are "derived" properties
                     // they are defined using functions
                     // they must return the computed value
+                    // it runs each time the underlying data changes (i.e. when firstName / lastName change)
                     fullName() {
+                        console.log( 'fullName computed property is recomputing' );
+                        return this.firstName + ' ' + this.lastName;
+                    }
+                },
+                methods: {
+                    // methods run on ANY data change (not only underlying data changes)
+                    getFullName() {
+                        console.log( 'getFullName function is running' );
                         return this.firstName + ' ' + this.lastName;
                     }
                 },
                 template: `
                     <div>
+                        <input type="text" placeholder="First name" v-model="firstName" />
+                        <input type="text" placeholder="Last name" v-model="lastName" />
+                        <textarea v-model="address" />
                         <div>
                             First name: {{firstName}}
                         </div>
@@ -39,6 +52,9 @@
                         </div>
                         <div>
                             Full name: {{fullName}}
+                        </div>
+                        <div>
+                            Full name: {{getFullName()}}
                         </div>
                     </div>
                 `
