@@ -9,5 +9,6 @@ Vue.use( Router );
 
 new Vue({
   render: h => h(App),
+  // router: router
   router
 }).$mount('#app')
