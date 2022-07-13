@@ -29,8 +29,14 @@
 
             // component definition object
             const PanelQuestion = {
+                props: {
+                    toggle: {
+                        type: Function,
+                        required: true
+                    }
+                },
                 template: `
-                    <div class="panel__question">
+                    <div class="panel__question" @click="toggle">
                         What is Vue?
                     </div>
                 `
@@ -70,7 +76,7 @@
                 template: `
                     <div class="panel">
                         <!-- <panel-question /> -->
-                        <PanelQuestion />
+                        <PanelQuestion :toggle="toggle" />
                         <PanelAnswer :open="visible" answer="Vue is a frontend library" />
                     </div>
                 `
