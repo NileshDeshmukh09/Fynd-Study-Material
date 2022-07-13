@@ -1,15 +1,13 @@
 <template>
     <div>
-      Hello Vue CLI project
+      Home works!
     </div>
 </template>
 
 <script>
-const HelloWorld = {
-  name: 'HelloWorld',
+export default {
+  name: 'AppHome',
 }
-
-export default HelloWorld;
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
