@@ -25,7 +25,7 @@
         <div id="app"></div>
 
         <script type="module">
-            import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
+            import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.js';
 
             // component definition object
             const PanelQuestion = {
@@ -39,11 +39,15 @@
             const PanelAnswer = {
                 // props: [ 'open' ],
                 props : {
-                    open: Boolean
+                    open: Boolean,
+                    answer: {
+                        type: String,
+                        default: 'No answer provided' // if the answer prop is missing, this value is assigned to it
+                    }
                 },
                 template: `
                     <div class="panel__answer" v-if="open">
-                        It is a frontend library
+                        {{answer}}
                     </div>
                 `
             };
@@ -67,7 +71,7 @@
                     <div class="panel">
                         <!-- <panel-question /> -->
                         <PanelQuestion />
-                        <PanelAnswer :open="visible" answer="It is a frontend library" />
+                        <PanelAnswer :open="visible" answer="Vue is a frontend library" />
                     </div>
                 `
             });
