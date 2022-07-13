@@ -46,11 +46,16 @@
                     }
                 },
                 template: `
-                    <div
-                        class="alert"
-                        :class="alertClass"
-                    >
-                        {{message}}
+                    <div>
+                        <div
+                            class="alert"
+                            :class="alertClass"
+                        >
+                            {{message}}
+                        </div>
+                        <button @click="status = ( status === 'success' ) ? 'error' : 'success'">
+                            Change status
+                        </button>
                     </div>
                 `
             });

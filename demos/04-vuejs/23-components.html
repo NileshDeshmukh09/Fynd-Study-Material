@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            .panel {
+                border: 1px solid #555;
+            }
+
+            .panel__question,
+            .panel__answer {
+                padding: 0.75em;
+            }
+
+            .panel__question {
+                background-color: #555;
+                color: ivory;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script type="module">
+            import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
+
+            // component defintion object
+            const panelQuestion = {
+                template: `
+                    <div class="panel__question">
+                        What is Vue?
+                    </div>
+                `
+            };
+
+            new Vue({
+                el: '#app',
+                // local registration
+                components: {
+                    PanelQuestion: panelQuestion
+                },
+                data: {
+                    visible: false
+                },
+                methods: {
+                    toggle() {
+                        this.visible = !this.visible;
+                    }
+                },
+                template: `
+                    <div class="panel">
+                        <!-- <panel-question /> -->
+                        <PanelQuestion />
+                        <div class="panel__answer" v-if="visible">
+                            It is a frontend library
+                        </div>
+                    </div>
+                `
+            });
+        </script>
+    </body>
+</html>
