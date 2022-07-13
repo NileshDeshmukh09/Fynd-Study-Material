@@ -37,8 +37,12 @@
             };
 
             const PanelAnswer = {
+                // props: [ 'open' ],
+                props : {
+                    open: Boolean
+                },
                 template: `
-                    <div class="panel__answer">
+                    <div class="panel__answer" v-if="open">
                         It is a frontend library
                     </div>
                 `
@@ -52,7 +56,7 @@
                     PanelAnswer
                 },
                 data: {
-                    visible: false
+                    visible: true
                 },
                 methods: {
                     toggle() {
@@ -63,7 +67,7 @@
                     <div class="panel">
                         <!-- <panel-question /> -->
                         <PanelQuestion />
-                        <PanelAnswer />
+                        <PanelAnswer :open="visible" answer="It is a frontend library" />
                     </div>
                 `
             });
