@@ -32,12 +32,14 @@
                 methods: {
                     toggleParent() {
                         // inform the parent to toggle
-                        this.$emit( 'tg' );
+                        this.$emit( 'tg', { data: 123 } );
                     }
                 },
                 template: `
-                    <div class="panel__question" @click="toggleParent">
-                        What is Vue?
+                    <div>
+                        <div class="panel__question" @click="toggleParent">
+                            What is Vue?
+                        </div>
                     </div>
                 `
             };
@@ -69,8 +71,9 @@
                     visible: true
                 },
                 methods: {
-                    toggle() {
+                    toggle( data ) {
                         this.visible = !this.visible;
+                        console.log( data );
                     }
                 },
                 template: `
