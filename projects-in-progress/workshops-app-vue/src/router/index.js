@@ -19,7 +19,7 @@ const router = new Router({
         },
         {
             name: 'workshop-details',
-            path: '/workshops/1',
+            path: '/workshops/:id',
             component: WorkshopDetails
         }
     ]
