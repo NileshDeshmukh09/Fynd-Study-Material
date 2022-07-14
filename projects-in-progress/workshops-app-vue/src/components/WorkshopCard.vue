@@ -4,7 +4,7 @@
         <div class="card-body">
         <h5 class="card-title">{{workshop.name}}</h5>
         <div class="card-text">
-            <div>{{workshop.startDate}} - {{workshop.endDate}}</div>
+            <div>{{formatDate(workshop.startDate, format)}} - {{formatDate(workshop.endDate, format)}}</div>
         </div>
         <a href="#" class="btn btn-primary">View details</a>
         </div>
@@ -12,14 +12,26 @@
 </template>
 
 <script>
+// import { formatDate } from '@/mixins/formatDate';
+import formatDateMixin from '@/mixins/formatDate';
+
 export default {
     name: 'WorkshopCard',
+    data() {
+        return {
+            format: 'indian'
+        }
+    },
     props: {
         workshop: {
             type: Object,
             required: true
         }
-    }
+    },
+    // methods: {
+    //     formatDate: formatDate
+    // }
+    mixins: [ formatDateMixin ]
 }
 </script>
 
