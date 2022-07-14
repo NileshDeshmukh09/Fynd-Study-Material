@@ -43,6 +43,8 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.card:hover {
+    box-shadow: 0px 0px 2px 2px rgba(218, 165, 32, 0.5 );
+}
 </style>
