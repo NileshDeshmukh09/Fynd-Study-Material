@@ -1,7 +1,6 @@
 <template>
   <div>
     <AppMenu />
-    <AppMenu />
     <div class="container my-5">
       <router-view></router-view>
     </div>
