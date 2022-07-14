@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-sm bg-light">
       <div class="container">
         <a class="navbar-brand" href="/">Workshops App</a>
         <button
