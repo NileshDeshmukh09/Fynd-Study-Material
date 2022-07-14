@@ -2,7 +2,7 @@ import Config from '../config.js';
 
 const login = async ( credentials ) => {
     const response = await fetch( `${Config.baseUrl}/login`, {
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify( credentials ),
         headers: {
             'Content-Type': 'application/json'

@@ -32,6 +32,12 @@
 <script>
 export default {
   name: "AppMenu",
+  data() {
+    console.log( 'data for appmenu instance' );
+    return {
+
+    };
+  }
 };
 </script>
 

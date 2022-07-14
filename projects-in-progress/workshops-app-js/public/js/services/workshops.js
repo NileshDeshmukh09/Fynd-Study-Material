@@ -22,7 +22,7 @@ const fetchWorkshops = async ( page ) => {
 
 const addWorkshop = async ( workshop ) => {
     const response = await fetch( `${Config.baseUrl}/workshops`, {
-        method: 'post',
+        method: 'POST',
         body: JSON.stringify( workshop ),
         headers: {
             'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const addWorkshop = async ( workshop ) => {
 
 const deleteWorkshop = async ( workshopId ) => {
     const response = await fetch( `${Config.baseUrl}/workshops/${workshopId}`, {
-        method: 'delete',
+        method: 'DELETE',
         headers: {
             'Authorization': 'Bearer ' + getToken()
         }
