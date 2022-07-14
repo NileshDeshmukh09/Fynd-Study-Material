@@ -4,7 +4,14 @@
         <div class="card-body">
         <h5 class="card-title">{{workshop.name}}</h5>
         <div class="card-text">
-            <div>{{formatDate(workshop.startDate, format)}} - {{formatDate(workshop.endDate, format)}}</div>
+            <!--
+                When using mixins
+            -->
+            <!--
+                <div>{{formatDate(workshop.startDate, format)}} - {{formatDate(workshop.endDate, format)}}</div>
+            -->
+
+            <div>{{workshop.startDate | formatDate( format )}} - {{workshop.endDate | formatDate( format )}}</div>
         </div>
         <a href="#" class="btn btn-primary">View details</a>
         </div>
@@ -31,6 +38,7 @@ export default {
     // methods: {
     //     formatDate: formatDate
     // }
+    // using mixins, we can bring in shared functionality into components
     mixins: [ formatDateMixin ]
 }
 </script>
