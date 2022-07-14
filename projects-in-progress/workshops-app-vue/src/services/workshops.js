@@ -3,11 +3,16 @@ import Config from '@/config';
 
 const { baseUrl } = Config;
 
-const getWorkshops = async () => {
-    const response = await axios.get( `${baseUrl}/workshops` );
+const getWorkshopsByPage = async ( _page ) => {
+    const response = await axios.get( `${baseUrl}/workshops`, {
+        params: {
+            // _page: _page
+            _page
+        }
+    } );
     return response.data;
 };
 
 export {
-    getWorkshops
+    getWorkshopsByPage
 };

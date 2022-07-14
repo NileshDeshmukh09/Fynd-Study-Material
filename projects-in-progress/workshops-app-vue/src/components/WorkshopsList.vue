@@ -15,7 +15,13 @@
       </div>
     </div>
     <div v-else>
-        <h1>List of workshops</h1>
+        <h1>
+          List of workshops
+          <div class="float-end">
+            <button class="btn btn-sm btn-primary me-2" @click="previous">Previous</button>
+            <button class="btn btn-sm btn-primary" @click="next">Next</button>
+          </div>
+        </h1>
         <hr />
         <div class="row">
           <div class="col-12 col-sm-6 col-lg-3 d-flex my-3" v-for="workshop in workshops" :key="workshop.id">
@@ -36,7 +42,7 @@
 </template>
 
 <script>
-import { getWorkshops } from "@/services/workshops";
+import { getWorkshopsByPage } from "@/services/workshops";
 
 export default {
   name: "WorkshopsList",
@@ -45,18 +51,34 @@ export default {
     return {
         status: 'LOADING',
         workshops: [],
-        error: null
+        error: null,
+        page: 1
     };
   },
-  async created() {
-    try {
-        this.workshops = await getWorkshops();
+  methods: {
+    async fetchWorkshops() {
+      try {
+        this.workshops = await getWorkshopsByPage( this.page );
         this.status = 'LOADED';
-    } catch( error ) {
-        console.log( error.message );
-        this.status = 'ERROR';
-        this.error = error;
+      } catch( error ) {
+          console.log( error.message );
+          this.status = 'ERROR';
+          this.error = error;
+      }
+    },
+    previous() {
+      if( this.page !== 1 ) {
+        this.page = this.page - 1;
+        this.fetchWorkshops();
+      }
+    },
+    next() {
+      this.page = this.page + 1;
+      this.fetchWorkshops();
     }
+  },
+  created() {
+    this.fetchWorkshops();
   },
 };
 </script>
