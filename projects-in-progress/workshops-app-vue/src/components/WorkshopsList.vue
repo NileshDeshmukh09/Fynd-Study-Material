@@ -1,13 +1,7 @@
 <template>
   <div>
     <div v-if="status === 'LOADING'">
-      <div class="d-flex justify-content-center">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">
-            Please wait while we fetch workshops
-          </span>
-        </div>
-      </div>
+      <AppSpinner message="Please wait while we fetch workshops" />
     </div>
     <div v-else-if="status === 'ERROR'">
       <div class="alert alert-danger" role="alert">
