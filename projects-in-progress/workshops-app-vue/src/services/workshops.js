@@ -8,7 +8,10 @@ const getWorkshopsByPage = async ( _page ) => {
         params: {
             // _page: _page
             _page
-        }
+        },
+        // headers: {
+        //     Authorization: 'skdbvkbvebvkb',
+        // }
     } );
     return response.data;
 };
