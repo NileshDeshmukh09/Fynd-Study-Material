@@ -1,21 +1,22 @@
 <template>
-  <div class="card p-3">
-        <img :src="workshop.imageUrl" class="card-img-top" :alt="workshop.name">
-        <div class="card-body">
-        <h5 class="card-title">{{workshop.name}}</h5>
-        <div class="card-text">
-            <!--
-                When using mixins
-            -->
-            <!--
-                <div>{{formatDate(workshop.startDate, format)}} - {{formatDate(workshop.endDate, format)}}</div>
-            -->
+    <router-link :to="`/workshops/${workshop.id}`" class="text-reset text-decoration-none d-flex w-100">
+        <div class="card p-3 w-100">
+            <img :src="workshop.imageUrl" class="card-img-top" :alt="workshop.name">
+            <div class="card-body">
+                <h5 class="card-title">{{workshop.name}}</h5>
+                <div class="card-text">
+                    <!--
+                        When using mixins
+                    -->
+                    <!--
+                        <div>{{formatDate(workshop.startDate, format)}} - {{formatDate(workshop.endDate, format)}}</div>
+                    -->
 
-            <div>{{workshop.startDate | formatDate( format )}} - {{workshop.endDate | formatDate( format )}}</div>
+                    <div>{{workshop.startDate | formatDate( format )}} - {{workshop.endDate | formatDate( format )}}</div>
+                </div>
+            </div>
         </div>
-        <a href="#" class="btn btn-primary">View details</a>
-        </div>
-    </div>
+    </router-link>
 </template>
 
 <script>

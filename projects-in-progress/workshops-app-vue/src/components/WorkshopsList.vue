@@ -4,9 +4,14 @@
       <AppSpinner message="Please wait while we fetch workshops" />
     </div>
     <div v-else-if="status === 'ERROR'">
-      <div class="alert alert-danger" role="alert">
-        {{error.message}}
-      </div>
+      <!-- pass HTML content for the child (used in slot of child ) -->
+      <AppAlert heading="Oops! Some error occured" theme="danger">
+        <p>{{error.message}}</p>
+
+        <template v-slot:hint>
+          <small>Please try again later. Contact system administrator if you continue seeing this error.</small>
+        </template>
+      </AppAlert>
     </div>
     <div v-else>
         <h1>
@@ -29,12 +34,14 @@
 <script>
 import WorkshopCard from './WorkshopCard';
 import { getWorkshopsByPage } from "@/services/workshops";
+import AppAlert from './utils/AppAlert.vue';
 
 export default {
   name: "WorkshopsList",
   components: {
-    WorkshopCard
-  },
+    WorkshopCard,
+    AppAlert
+},
   data() {
     // console.log( 'component instantiated - data is being created' );
     return {
