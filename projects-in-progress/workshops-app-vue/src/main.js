@@ -8,6 +8,7 @@ import { formatDate } from './filters/formatDate';
 
 // path is wrt node_modules
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 Vue.config.productionTip = false
 
