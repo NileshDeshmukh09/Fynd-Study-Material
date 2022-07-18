@@ -11,6 +11,7 @@
         <div id="app"></div>
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+        
         <script type="module">
             import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
             import Vuex from 'https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.esm.browser.js';
@@ -18,7 +19,7 @@
             Vue.use( Vuex );
 
             const fetchWorkshops = async () => {
-                const response = await axios.get( `http://workshops-server.herokuapp.com/workshop` );
+                const response = await axios.get( `http://workshops-server.herokuapp.com/workshops` );
                 return response.data;
             };
 
@@ -27,6 +28,15 @@
                     workshops: [],
                     error: '',
                     status: 'UNDEFINED'
+                },
+                getters: { // "derived from state"
+                    numWorkshops( state ) { // defined as a method, but used like a property
+                        return {
+                            any: state.workshops.length,
+                            online: state.workshops.filter( w => w.modes.online ).length,
+                            inPerson: state.workshops.filter( w => w.modes.inPerson ).length,
+                        };
+                    }
                 },
                 mutations: {
                     setWorkshops( state, payload ) {
@@ -69,19 +79,31 @@
                     },
                     status() {
                         return this.$store.state.status;
+                    },
+                    numWorkshops() {
+                        return this.$store.getters.numWorkshops;
                     }
                 },
                 template: `
-                    <div>
+                    <div class="container my-5">
                         <div v-if="status === 'LOADING'" class="spinner-border" role="status"></div>
                         <div v-else-if="status === 'ERROR'">
                             {{error}}
                         </div>
-                        <ol v-else>
-                            <li v-for="workshop in workshops" :key="workshop.id">
-                                {{workshop.name}}
-                            </li>
-                        </ol>
+                        <div v-else>
+                            <div>
+                                <div>Total: {{numWorkshops.any}}</div>
+                                <div>Online: {{numWorkshops.online}}</div>
+                                <div>In-person: {{numWorkshops.inPerson}}</div>
+                            </div>
+                            <ol class="list-group">
+                                <li class="list-group-item" v-for="workshop in workshops" :key="workshop.id">
+                                    {{workshop.name}}
+                                    <span class="badge" :class="workshop.modes.online ? 'bg-primary' : 'bg-secondary'">online</span>
+                                    <span class="badge" :class="workshop.modes.inPerson ? 'bg-primary' : 'bg-secondary'">In-person</span>
+                                </li>
+                            </ol>
+                        </div>
                     </div>
                 `,
                 created() {
