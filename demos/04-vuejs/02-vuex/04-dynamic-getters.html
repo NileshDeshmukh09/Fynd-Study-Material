@@ -118,7 +118,7 @@
                             <label for="category">Filter by category</label>
                             <select id="category" v-model="category">
                                 <option value="">-- Select a category --</option>
-                                <option value="frontend" v-for="category in categories" :key="category">{{category}}</option>
+                                <option :value="category" v-for="category in categories" :key="category">{{category}}</option>
                             </select>
                             <ol class="list-group">
                                 <li class="list-group-item" v-for="workshop in workshopsInCategory" :key="workshop.id">
