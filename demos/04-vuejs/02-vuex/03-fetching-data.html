@@ -47,10 +47,10 @@
                             const data = await fetchWorkshops();
                         
                             commit( 'setWorkshops', data );
-                        } catch( error ) {
-                            commit( 'setError', error.message )
-                        } finally {
                             commit( 'changeStatus', 'LOADED' );
+                        } catch( error ) {
+                            commit( 'setError', error.message );
+                            commit( 'changeStatus', 'ERROR' );
                         }
                     }
                 }
