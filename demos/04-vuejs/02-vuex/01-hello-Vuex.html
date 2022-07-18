@@ -20,24 +20,29 @@
                     value: 0
                 },
                 mutations: {
-                    decrement( state ) {
-                        state.value--;
+                    decrement( state, payload ) {
+                        console.log( this ); // store object
+                        console.log( state ); // state object
+                        state.value -= payload;
                     },
-                    increment( state ) {
-                        state.value++;
+                    increment( state, payload ) {
+                        state.value += payload;
                     }
                 }
             });
 
             new Vue({
                 el: '#app',
+                data: {
+                    changeBy: 1
+                },
                 methods: {
                     dec() {
                         // we request the store to make mutations using commit() method
-                        store.commit( 'decrement' );
+                        store.commit( 'decrement', this.changeBy );
                     },
                     inc() {
-                        store.commit( 'increment' );
+                        store.commit( 'increment', this.changeBy );
                     }
                 },
                 computed: {
@@ -47,6 +52,7 @@
                 },
                 template: `
                     <div>
+                        <input type="number" v-model.number="changeBy" />
                         <button @click="dec">-</button>
                         <span>{{value}}</span>
                         <button @click="inc">+</button>
