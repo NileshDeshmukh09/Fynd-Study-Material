@@ -39,6 +39,7 @@
                 actions: {
                     decrement( context, payload ) {
                         context.commit( 'setProcessing', true );
+                        console.log( context ); // has useful methods to make use of store and its state, and make changes to state
 
                         // let us do an async operation
                         setTimeout(() => {
