@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id="app"></div>
+
+        <script type="module">
+            import Vue from 'https://cdnjs.cloudflare.com/ajax/libs/vue/2.7.4/vue.esm.browser.min.js';
+            import Vuex from 'https://cdnjs.cloudflare.com/ajax/libs/vuex/3.6.2/vuex.esm.browser.js';
+
+            Vue.use( Vuex );
+
+            const store = new Vuex.Store({
+                state: {
+                    value: 0
+                },
+                mutations: {
+                    decrement( state, payload ) {
+                        console.log( this ); // store object
+                        console.log( state ); // state object
+                        state.value -= payload;
+                    },
+                    increment( state, payload ) {
+                        state.value += payload;
+                    }
+                }
+            });
+
+            new Vue({
+                el: '#app',
+                store,
+                data: {
+                    changeBy: 1
+                },
+                methods: {
+                    // if you have method that simply commit a mutation, and receive and pass on payload, in such situations you can use mapMutations
+                    // dec( payload ) {
+                    //     store.commit( 'decrement', payload );
+                    // },
+                    // increment( payload ) {
+                    //     store.commit( 'increment', payload );
+                    // }
+                    // EXPLORE: mapActions()
+                    ...Vuex.mapMutations({
+                        dec: 'decrement'
+                    }),
+                    ...Vuex.mapMutations([
+                        'increment'
+                    ])
+                },
+                computed: {
+                    value() {
+                        return store.state.value;
+                    }
+                },
+                template: `
+                    <div>
+                        <input type="number" v-model.number="changeBy" />
+                        <button @click="dec( changeBy )">-</button>
+                        <span>{{value}}</span>
+                        <button @click="increment( changeBy )">+</button>
+                    </div>
+                `
+            });
+        </script>
+    </body>
+</html>

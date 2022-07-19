@@ -81,6 +81,8 @@
                 return this.$store.state.auth.role;
             },
             isAuthenticated() {
+                // no module name in case of using getters!
+                // return this.$store.getters.auth.isAuthenticated;
                 return this.$store.getters.isAuthenticated;
             }
         },

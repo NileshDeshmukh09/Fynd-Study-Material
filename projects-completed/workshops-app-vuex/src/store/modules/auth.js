@@ -31,7 +31,10 @@ const auth = {
     },
     actions: {
         // credentials = { email: string, password: string }
+        // login( context, credentials ) {
         login( { commit }, credentials ) {
+            // console.log( context ); // { commit: fn, getters: fn, }
+
             return login( credentials )
                         .then( data => {
                             const { authToken, email, role } = data
