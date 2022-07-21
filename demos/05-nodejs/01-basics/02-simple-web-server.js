@@ -1,3 +1,6 @@
+// npm i -g nodemon
+// nodemon filename.js
+
 // import http from 'http';
 const http = require( 'http' );
 
@@ -8,7 +11,7 @@ const server = http.createServer();
 
 // Hey Server! When you receive requests, please call this method which sends the response
 server.on( 'request', ( req, res ) => {
-    res.end( 'Hello Node!' );
+    res.end( 'Hello Node!!!' );
 });
 
 // in case the server throws an error at startup, let us print the error
