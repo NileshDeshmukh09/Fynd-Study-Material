@@ -2,8 +2,8 @@ const fs = require( 'fs' );
 const path = require( 'path' ); // platform-independent file paths
 
 // 2 special variables in a Node script
-console.log( __filename );
-console.log( __dirname );
+console.log( __filename ); // absolute path of current file 
+console.log( __dirname ); // absolute path of current file's folder
 
 const filePath = path.join( __dirname, '..', 'index.md' );
 
