@@ -18,3 +18,6 @@
 - Jun 29
     - 04 - JS (ES2015+) Lab Guide
         - Q. 1, 3, 4, 5, 7, 8
+- Jul 21
+    - 06 - Node JS Lab Guide
+        - Q. 1, 2, 3, 7, 8, 9, 10
