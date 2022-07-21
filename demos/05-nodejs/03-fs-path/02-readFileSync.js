@@ -6,7 +6,7 @@ console.log( __dirname );
 
 const filePath = path.join( __dirname, '..', 'index.md' );
 
-// synchronous method - VERY BAD!
+// synchronous method - VERY BAD! - Rest of the code that follows has to wait till file is read completely
 try {
     const contents = fs.readFileSync( filePath, 'utf-8' );
     console.log( contents );
