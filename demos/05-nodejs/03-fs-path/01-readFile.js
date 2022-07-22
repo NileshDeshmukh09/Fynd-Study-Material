@@ -5,7 +5,7 @@ const path = require( 'path' ); // platform-independent file paths
 console.log( __filename ); // absolute path of current file 
 console.log( __dirname ); // absolute path of current file's folder
 
-const filePath = path.join( __dirname, '..', 'index.md' );
+const filePath = path.join( __dirname, '..', 'index.md' ); // shows the location of the file
 
 // asynchronous
 // the callback function is called when the file has been read
