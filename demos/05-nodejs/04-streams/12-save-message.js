@@ -8,7 +8,9 @@ const server = http.createServer(( req, res ) => {
         res.write( chunk );
     });
 
-    req.on( 'end', () => res.end( '\nOkay, noted!' ) );
+    req.on( 'end', function() {
+        res.end( '\nOkay, noted!' );
+    });
 });
 
 server.listen( 8080 );
