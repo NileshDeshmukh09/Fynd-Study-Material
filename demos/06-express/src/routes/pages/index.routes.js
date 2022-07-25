@@ -44,6 +44,7 @@ router.get( '/pong', ( req, res ) => {
 //     );
 // });
 router.get( '/about', ( req, res ) => {
+    // process.cwd() -> path from which we start node (npm start), i.e. the project folder
     res.sendFile( path.join( process.cwd(), 'views', 'about.html' ) );
 });
 
