@@ -6,7 +6,7 @@ const workshopsRouter = require( './routes/api/workshops.routes' );
 const app = express();
 
 app.use( indexRouter );
-app.use( workshopsRouter );
+app.use( '/workshops', workshopsRouter );
 
 const PORT = process.env.PORT || 3000;
 
