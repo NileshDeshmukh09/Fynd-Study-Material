@@ -1,10 +1,12 @@
 const express = require( 'express' );
 const indexRouter = require( './routes/pages/index.routes' );
+const workshopsRouter = require( './routes/api/workshops.routes' );
 
 // Application object (has a web server within)
 const app = express();
 
 app.use( indexRouter );
+app.use( workshopsRouter );
 
 const PORT = process.env.PORT || 3000;
 

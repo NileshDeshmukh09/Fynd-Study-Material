@@ -7,7 +7,6 @@ const router = express.Router();
 router.get( '/', ( req, res ) => {
     // res.send() adds Response header - 'Content-Type': 'text/html'
     res.send( 'This is the workshops app' );
-    console.log( '***' );
 });
 
 router.get( '/about', ( req, res ) => {
