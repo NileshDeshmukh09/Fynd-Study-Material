@@ -14,6 +14,17 @@ router.get( '/home', ( req, res ) => {
     res.redirect( '/' );
 });
 
+// EXERCISE: Just for fun
+// /ping -> /pong
+// /pong -> /ping
+router.get( '/ping', ( req, res ) => {
+    res.redirect( '/pong' );
+});
+
+router.get( '/pong', ( req, res ) => {
+    res.redirect( '/ping' );
+});
+
 router.get( '/about', ( req, res ) => {
     res.send( 'This server serves details about workshops in and around your city' );
 });
