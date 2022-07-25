@@ -1,16 +1,10 @@
 const express = require( 'express' );
+const indexRouter = require( './routes/pages/index.routes' );
 
 // Application object (has a web server within)
 const app = express();
 
-// Method = GET
-// req, res -> same as in Node JS but with extra features
-app.get( '/', ( req, res ) => {
-    // res.send() adds Response header - 'Content-Type': 'text/html'
-    res.send( 'This is the workshops app' );
-});
-
-// EXERCISE: Handle /about and send something about the app.
+app.use( indexRouter );
 
 const PORT = process.env.PORT || 3000;
 
