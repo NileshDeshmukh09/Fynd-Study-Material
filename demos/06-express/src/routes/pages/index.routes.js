@@ -1,4 +1,5 @@
 const express = require( 'express' );
+const path = require( 'path' );
 
 const router = express.Router();
 
@@ -25,8 +26,25 @@ router.get( '/pong', ( req, res ) => {
     res.redirect( '/ping' );
 });
 
+// router.get( '/about', ( req, res ) => {
+//     res.send(
+//         `
+//             <!doctype html>
+//             <html>
+//                 <head>
+//                     <title>About | Workshops App</title>
+//                 </head>
+//                 <body>
+//                     <h1>Workshops App</h1>
+//                     <hr />
+//                     This is the workshops app. You can view details of workshops nearby.
+//                 </body>
+//             </html>
+//         `
+//     );
+// });
 router.get( '/about', ( req, res ) => {
-    res.send( 'This server serves details about workshops in and around your city' );
+    res.sendFile( path.join( process.cwd(), 'views', 'about.html' ) );
 });
 
 module.exports = router;

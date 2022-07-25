@@ -5,7 +5,7 @@ const workshops = require( './data/workshops.json' );
 const router = express.Router();
 
 router.get( '/', ( req, res ) => {
-    // send(), redirect(), json(), render()
+    // send(), redirect(), json(), sendFile(), render()
     res.status( 200 ).json( workshops );
 });
 
