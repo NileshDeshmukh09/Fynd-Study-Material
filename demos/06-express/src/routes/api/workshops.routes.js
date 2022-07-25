@@ -1,9 +1,12 @@
 const express = require( 'express' );
+// NOTE: we must .json extension
+const workshops = require( './data/workshops.json' );
 
 const router = express.Router();
 
 router.get( '/', ( req, res ) => {
-    res.send( 'We will send workshops' );
+    // send(), redirect(), json(), render()
+    res.json( workshops );
 });
 
 router.post( '/', ( req, res ) => {
