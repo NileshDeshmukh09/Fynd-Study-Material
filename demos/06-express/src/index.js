@@ -1,3 +1,4 @@
+const path = require( 'path' );
 const express = require( 'express' );
 const indexRouter = require( './routes/pages/index.routes' );
 const workshopsRouter = require( './routes/pages/workshops.routes' );
@@ -5,6 +6,13 @@ const workshopsApiRouter = require( './routes/api/workshops.routes' );
 
 // Application object (has a web server within)
 const app = express();
+
+// app allows us to store and share key-value pairs
+// in router handlers, we can use req.app.get( 'title' ) to read this
+app.set( 'title', 'Workshops App' );
+
+app.set( 'view engine', 'ejs' );
+app.set( 'views', path.join( process.cwd(), 'views' ) );
 
 app.use( indexRouter );
 app.use( '/workshops', workshopsRouter );
