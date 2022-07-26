@@ -1,16 +1,13 @@
 const express = require( 'express' );
-// NOTE: we must .json extension
-const workshops = require( './data/workshops.json' );
+const {
+    getWorkshops,
+    postWorkshop
+} = require( '../../controllers/api/workshops.controller' );
 
 const router = express.Router();
 
-router.get( '/', ( req, res ) => {
-    // send(), redirect(), json(), sendFile(), render()
-    res.status( 200 ).json( workshops );
-});
+router.get( '/', getWorkshops );
 
-router.post( '/', ( req, res ) => {
-    res.status( 201 ).send( 'We will add a workshop' );
-});
+router.post( '/', postWorkshop );
 
 module.exports = router;
