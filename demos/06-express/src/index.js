@@ -3,6 +3,7 @@ const express = require( 'express' );
 const indexRouter = require( './routes/pages/index.routes' );
 const workshopsRouter = require( './routes/pages/workshops.routes' );
 const workshopsApiRouter = require( './routes/api/workshops.routes' );
+const logger = require( './middleware/logger' );
 
 // Application object (has a web server within)
 const app = express();
@@ -14,7 +15,19 @@ app.set( 'title', 'Workshops App' );
 app.set( 'view engine', 'ejs' );
 app.set( 'views', path.join( process.cwd(), 'views' ) );
 
+app.use( logger );
+
+// app.use(( req, res, next ) => {
+//     console.log( 'A request was received (1) | req.url = ', req.url );
+//     next();
+// });
+
 app.use( express.static( path.join( process.cwd(), 'public' ) ) );
+
+// app.use(( req, res, next ) => {
+//     console.log( 'A request was received (2) | req.url = ', req.url );
+//     next();
+// });
 
 app.use( indexRouter );
 app.use( '/workshops', workshopsRouter );
