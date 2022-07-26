@@ -4,7 +4,11 @@ const path = require( 'path' );
 // req, res -> same as in Node JS but with extra features
 const showHome = ( req, res ) => {
     // res.send() adds Response header - 'Content-Type': 'text/html'
-    res.send( 'This is the workshops app' );
+    // res.send( 'This is the workshops app' );
+
+    res.render( 'home', {
+        title: req.app.get( 'title' )
+    } );
 };
 
 const redirectToHome = ( req, res ) => {

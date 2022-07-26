@@ -4,6 +4,7 @@ const indexRouter = require( './routes/pages/index.routes' );
 const workshopsRouter = require( './routes/pages/workshops.routes' );
 const workshopsApiRouter = require( './routes/api/workshops.routes' );
 const logger = require( './middleware/logger' );
+const { pageNotFound } = require( './middleware/error' );
 
 // Application object (has a web server within)
 const app = express();
@@ -32,6 +33,8 @@ app.use( express.static( path.join( process.cwd(), 'public' ) ) );
 app.use( indexRouter );
 app.use( '/workshops', workshopsRouter );
 app.use( '/api/workshops', workshopsApiRouter );
+
+app.use( pageNotFound );
 
 const PORT = process.env.PORT || 3000;
 

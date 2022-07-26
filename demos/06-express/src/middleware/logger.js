@@ -13,6 +13,7 @@ const logger = ( req, res, next ) => {
 
     next(); // control transfers to the next middleware
 
+    // this part executes after some middleware sends a response
     const dateOfResponse = (new Date()).toString();
     const messageResponse = `Response sent | ${method} ${url} | Time: ${dateOfResponse} | IP = ${ip} | UA = ${userAgent}`;
     console.log( messageResponse );
