@@ -1,6 +1,9 @@
+const { getAllWorkshops } = require( '../../services/workshops.service' );
+
 const showWorkshops = ( req, res ) => {
+    const workshops = getAllWorkshops();
     res.render( 'workshops', {
-        numWorkshops: 20,
+        workshops,
         title: req.app.get( 'title' )
     });
 };

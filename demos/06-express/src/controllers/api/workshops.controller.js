@@ -1,7 +1,7 @@
-// NOTE: we must .json extension
-const workshops = require( './data/workshops.json' );
+const { getAllWorkshops } = require( '../../services/workshops.service' );
 
 const getWorkshops = ( req, res ) => {
+    const workshops = getAllWorkshops();
     // send(), redirect(), json(), sendFile(), render()
     res.status( 200 ).json( workshops );
 };
