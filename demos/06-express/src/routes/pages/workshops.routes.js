@@ -1,12 +1,10 @@
 const express = require( 'express' );
+const {
+    showWorkshops
+} = require( '../../controllers/page/workshops.controller' );
 
 const router = express.Router();
 
-router.get( '/', ( req, res ) => {
-    res.render( 'workshops', {
-        numWorkshops: 20,
-        title: req.app.get( 'title' )
-    });
-});
+router.get( '/', showWorkshops );
 
 module.exports = router;

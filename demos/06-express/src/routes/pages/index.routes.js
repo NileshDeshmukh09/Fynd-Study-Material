@@ -9,12 +9,10 @@ const {
 const router = express.Router();
 
 router.get( '/', showHome );
-
 router.get( '/home', redirectToHome );
+router.get( '/about', showAbout );
 
-// EXERCISE: Just for fun
-// /ping -> /pong
-// /pong -> /ping
+// just for fun
 router.get( '/ping', ( req, res ) => {
     res.redirect( '/pong' );
 });
@@ -22,7 +20,5 @@ router.get( '/ping', ( req, res ) => {
 router.get( '/pong', ( req, res ) => {
     res.redirect( '/ping' );
 });
-
-router.get( '/about', showAbout );
 
 module.exports = router;
