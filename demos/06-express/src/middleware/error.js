@@ -1,3 +1,7 @@
+const apiNotFound = ( req, res, next ) => {
+    res.status( 404 ).json();
+};
+
 const pageNotFound = ( req, res, next ) => {
     res.render( 'page-not-found', {
         title: req.app.get( 'title' )
@@ -5,5 +9,6 @@ const pageNotFound = ( req, res, next ) => {
 };
 
 module.exports = {
+    apiNotFound,
     pageNotFound
 };
