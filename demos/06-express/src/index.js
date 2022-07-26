@@ -1,5 +1,6 @@
 const path = require( 'path' );
 const express = require( 'express' );
+const morgan = require( 'morgan' );
 const indexRouter = require( './routes/pages/index.routes' );
 const workshopsRouter = require( './routes/pages/workshops.routes' );
 const workshopsApiRouter = require( './routes/api/workshops.routes' );
@@ -16,7 +17,8 @@ app.set( 'title', 'Workshops App' );
 app.set( 'view engine', 'ejs' );
 app.set( 'views', path.join( process.cwd(), 'views' ) );
 
-app.use( logger );
+// app.use( logger );
+app.use( morgan( 'combined' ) ); // 'combined' -> Apache HTTP server format for logs
 
 // app.use(( req, res, next ) => {
 //     console.log( 'A request was received (1) | req.url = ', req.url );
