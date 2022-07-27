@@ -19,8 +19,7 @@ const getWorkshopById = ( req, res, next ) => {
     const workshop = getWorkshopByIdSvc( id );
 
     if( !workshop ) {
-        const error = new Error( `Workshop with id = ${id} does not exist` );
-        error.status = 404;
+        const error = new HttpError( `Workshop with id = ${id} does not exist`, 404 );
 
         next( error );
         // since response is sent, we need to return so as not to continue try processing the request further
