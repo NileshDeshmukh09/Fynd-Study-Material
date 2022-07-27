@@ -22,6 +22,14 @@
                                     <%= workshop.startDate.toString().substr( 0, 10 ) %>
                                     -
                                     <%= workshop.endDate.toString().substr( 0, 10 ) %>
+
+                                    <% if( workshop.modes.online ) { %>
+                                        <span class="badge bg-primary">online</span>
+                                    <% } %>
+                                    
+                                    <% if( workshop.modes.inPerson ) { %>
+                                        <span class="badge bg-success">classroom</span>
+                                    <% } %>
                                 </p>
                                 <a href="/workshops/<%= workshop.id %>" class="btn btn-primary">View details</a>
                             </div>
