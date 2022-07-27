@@ -13,16 +13,17 @@ const getWorkshops = ( req, res ) => {
     });
 };
 
-const getWorkshopById = ( req, res ) => {
+const getWorkshopById = ( req, res, next ) => {
     const id = +req.params.id;
 
     const workshop = getWorkshopByIdSvc( id );
 
     if( !workshop ) {
-        res.status( 404 ).json({
-            status: 'error',
-            message: `Workshop with id = ${id} does not exist`
-        });
+        const error = new Error( `Workshop with id = ${id} does not exist` );
+        error.status = 404;
+
+        next( error );
+        // since response is sent, we need to return so as not to continue try processing the request further
         return;
     }
     
