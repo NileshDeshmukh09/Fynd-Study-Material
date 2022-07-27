@@ -4,6 +4,11 @@ const getAllWorkshops = () => {
     return workshops;
 };
 
+const getWorkshopById = ( id ) => {
+    return workshops.find( workshop => workshop.id === id );
+};
+
 module.exports = {
-    getAllWorkshops
+    getAllWorkshops,
+    getWorkshopById
 };
