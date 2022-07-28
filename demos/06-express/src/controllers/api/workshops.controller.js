@@ -6,9 +6,9 @@ const {
 } = require( '../../services/workshops.service' );
 
 // http://localhost:3000/api/workshops
-// http://localhost:3000/api/workshops?page=2
+// http://localhost:3000/api/workshops?page=2&sort=name
 const getWorkshops = ( req, res ) => {
-    let { page, sort } = req.query;
+    let { page, sort : sortField } = req.query;
 
     if( page ) {
         page = +page;
@@ -17,9 +17,9 @@ const getWorkshops = ( req, res ) => {
     }
 
     console.log( page );
-    console.log( sort );
+    console.log( sortField );
 
-    const workshops = getAllWorkshops( page );
+    const workshops = getAllWorkshops( page, sortField );
     // send(), redirect(), json(), sendFile(), render()
     res.status( 200 ).json({
         status: 'success',
