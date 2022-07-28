@@ -2,8 +2,11 @@ const workshops = require( './data/workshops.json' );
 
 let nextId = 13;
 
-const getAllWorkshops = () => {
-    return workshops;
+const getAllWorkshops = ( page ) => {
+    const startIndex = 10 * ( page - 1 );
+    const endIndex = 10 * page;
+
+    return workshops.slice( startIndex, endIndex );
 };
 
 const getWorkshopById = ( id ) => {

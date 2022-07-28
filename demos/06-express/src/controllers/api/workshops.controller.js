@@ -5,8 +5,21 @@ const {
     addWorkshop
 } = require( '../../services/workshops.service' );
 
+// http://localhost:3000/api/workshops
+// http://localhost:3000/api/workshops?page=2
 const getWorkshops = ( req, res ) => {
-    const workshops = getAllWorkshops();
+    let { page, sort } = req.query;
+
+    if( page ) {
+        page = +page;
+    } else {
+        page = 1;
+    }
+
+    console.log( page );
+    console.log( sort );
+
+    const workshops = getAllWorkshops( page );
     // send(), redirect(), json(), sendFile(), render()
     res.status( 200 ).json({
         status: 'success',
