@@ -1,7 +1,8 @@
 const {
     getAllWorkshops,
     // renaming while destructuring since there is a function with the same name in this file as well
-    getWorkshopById : getWorkshopByIdSvc
+    getWorkshopById : getWorkshopByIdSvc,
+    addWorkshop
 } = require( '../../services/workshops.service' );
 
 const getWorkshops = ( req, res ) => {
@@ -33,7 +34,14 @@ const getWorkshopById = ( req, res, next ) => {
 };
 
 const postWorkshop = ( req, res ) => {
-    res.status( 201 ).send( 'We will add a workshop' );
+    const workshop = req.body;
+    
+    let updatedWorkshop = addWorkshop( workshop );
+
+    res.status( 201 ).send({
+        status: 'success',
+        data: updatedWorkshop
+    });
 };
 
 module.exports = {

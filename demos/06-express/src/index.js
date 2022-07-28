@@ -38,6 +38,12 @@ app.use( express.static( path.join( process.cwd(), 'public' ) ) );
 //     next();
 // });
 
+// if there is any data in the request body, this middleware will read it and set it up on req.body
+app.use( express.json() );
+
+// to take care of reading data submitted using a form
+app.use( express.urlencoded() );
+
 app.use( indexRouter );
 app.use( '/workshops', workshopsRouter );
 app.use( '/api/workshops', workshopsApiRouter );
