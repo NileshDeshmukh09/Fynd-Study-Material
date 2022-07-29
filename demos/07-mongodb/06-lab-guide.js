@@ -88,13 +88,87 @@ db.shows.find(
 
 // Find shows that are of type Animation or Reality 
 // EXERCISE...
-// ___ shows
+// 24 shows
 db.shows.find(
     {
-
+        type: {
+            $in: [ 'Animation', 'Reality' ]
+        }
     }
 ).count();
 
+// Find shows that have neither Drama nor Horror as genres in them
+// 81 shows (if $in selects a document, $nin will not select the document!, and vice-versa)
+db.shows.find(
+    {
+        genres: {
+            $nin: [ 'Drama', 'Horror' ]
+        }
+    }
+).count();
+
+// Find shows that are neither of type Animation, nor Reality 
+// 216 shows
+// EXERCISE..
+db.shows.find(
+    {
+        type: {
+            $nin: [ 'Animation', 'Reality' ]
+        }
+    }
+).count();
+
+
+// Find shows that are not running on the network HBO, nor FOX
+// 202 shows
+// EXERCISE..
+db.shows.find(
+    {
+        "network.name": {
+            $nin: [ 'HBO', 'FOX' ]
+        }
+    }
+).count();
+
+// Find shows that have one of Drama or Horror as genres in them (try this  without using $in) 
+// logical operators are above the conditions (top-level)
+// 159 shows
+// syntax - { $or: [ condition1, condition2, condition3, ... ] }
+db.shows.find(
+    {
+        $or: [
+            {
+                genres: 'Drama'
+            },
+            {
+                genres: 'Horror'
+            }
+        ]
+    }
+).count();
+
+// Find shows that have neither Drama nor Horror as genres in them (try this with $not and $in)
+// // syntax - { $and: [ condition1, condition2, condition3, ... ] }
+db.shows.find(
+    {
+        $and: [
+            {
+                genres: {
+                    $not: {
+                        $eq: 'Drama'
+                    }
+                }
+            },
+            {
+                genres: {
+                    $not: {
+                        $eq: 'Drama'
+                    }
+                }
+            }
+        ]
+    }
+).count();
 
 db.shows.find(
     {
