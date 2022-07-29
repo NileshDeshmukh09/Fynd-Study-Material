@@ -44,6 +44,9 @@ db.users.insertMany(
     ]
 );
 
+// findOne() -> first match
+// find() -> all matches
+
 // find users who live in Delhi
 db.users.find({
     "address.city": "Delhi"
@@ -98,6 +101,9 @@ db.users.find({
     _id : ObjectId("62e3ccee5faa4530e1f7fbd1")
 }).pretty();
 
+// updateOne -> updates first match
+// updateMany -> updates all matches
+
 // 1st argument is same as in find() - which document(s) to update - updateOne() will update only the first matched document
 // 2nd argument is the update clause
 // $set is an "update clause operator"
@@ -123,3 +129,20 @@ db.users.updateOne(
         }
     }
 );
+
+// deleteOne -> deletes first match
+// deleteMany -> deletes all matches
+
+// 1st argument -> filtering criteria
+db.users.deleteOne(
+    {
+        emails: 'jane.doe@example.com'
+    }
+);
+
+// there will be 1 less document (or none if we had only 1 with email id jane.doe@example.com)
+db.users.find(
+    {
+        emails: 'jane.doe@example.com'
+    }
+).pretty();
