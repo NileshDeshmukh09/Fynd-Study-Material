@@ -111,3 +111,15 @@ db.users.updateOne(
         }
     }
 );
+
+// $push operator to add a new entry at the end of an array field
+db.users.updateOne(
+    {
+        emails: 'jane.doe@example.com'
+    },
+    {
+        $push: {
+            emails: 'jane.doe@fynd.com'
+        }
+    }
+);
