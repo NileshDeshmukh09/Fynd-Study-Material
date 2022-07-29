@@ -215,6 +215,25 @@ db.shows.find(
     }
 ).count();
 
+// Find shows that have a "externals.imdb" property 
+// 0 shows
+db.shows.find(
+    {
+        "externals.imdb": {
+            $exists: false
+        }
+    }
+).count();
+
+// Find shows that have a webChannel with a country field within
+db.shows.find(
+    {
+        "webChannel.country": {
+            $exists: true
+        }
+    }
+).count();
+
 
 db.shows.find(
     {
