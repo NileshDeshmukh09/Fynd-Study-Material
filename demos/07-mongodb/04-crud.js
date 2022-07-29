@@ -1,14 +1,45 @@
 // Add to a collection
 db.users.insertOne({
-    name: 'Jane Doe',
+    name: 'Mark Smith',
     emails: [
-        'jane.doe@example.com',
-        'jane.doe@yahoo.com'
+        'mark.smith@example.com',
+        'mark.smith@yahoo.com'
     ],
-    password: 'password123',
+    password: 'password345',
     prime: true,
     address: {
-        city: 'Chennai',
-        pinCode: 600101
+        city: 'Delhi',
+        pinCode: 100001
     }
 });
+
+db.users.insertMany(
+    [
+        {
+            name: 'Mary Smith',
+            emails: [
+                'mary.smith@example.com',
+                'mary.smith@yahoo.com'
+            ],
+            password: 'password345',
+            prime: true,
+            address: {
+                city: 'Delhi',
+                pinCode: 100001
+            }
+        },
+        {
+            name: 'David Smith',
+            emails: [
+                'david.smith@example.com',
+                'david.smith@yahoo.com'
+            ],
+            password: 'password345',
+            prime: true,
+            address: {
+                city: 'Bangalore',
+                pinCode: 560101
+            }
+        }
+    ]
+)
