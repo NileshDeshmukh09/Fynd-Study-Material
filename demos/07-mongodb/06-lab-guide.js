@@ -171,11 +171,14 @@ db.shows.find(
 ).count();
 
 // Find shows that have BOTH Drama and Horror as their genre 
-// ___ shows
+// 17 shows
 // EXERCISE...
 db.shows.find(
     {
-
+        $and: [
+            { genres: 'Drama' },
+            { genres: 'Horror' },
+        ]
     }
 ).count();
 
