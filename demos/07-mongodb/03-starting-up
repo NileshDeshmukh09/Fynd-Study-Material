@@ -20,3 +20,8 @@ show collections;
 ## Check Current DB
 db;
 
+## Clears screen
+cls;
+
+## Get help
+help
