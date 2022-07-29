@@ -234,9 +234,64 @@ db.shows.find(
     }
 ).count();
 
+// Find shows which have a web channel (not null, but an object)
+// 10 shows
+db.shows.find(
+    {
+        "webChannel": {
+            $type: "object"
+        }
+    }
+).count();
+
+// Find all shows whose name contains the word “Last” (case-insensitive)
+db.shows.find(
+    {
+        name: /Last/i
+    }
+).count();
 
 db.shows.find(
     {
+        name: {
+            $regex: /Last/,
+            $options: 'i'
+        }
+    }
+).count();
 
+// Find all shows whose weight is more than 10 times their average rating
+// weight > 10 * rating.average
+db.shows.find(
+    {
+        $expr: {
+            $gt: [
+                "$weight",
+                {
+                    $multiply: [
+                        10,
+                        "$rating.average"
+                    ]
+                }
+            ]
+        }
+    }
+).count();
+
+// Find shows that have BOTH Drama and Horror as their genre. Use $all.
+// We did this earlier with $and
+// 17 shows
+db.shows.find(
+    {
+        genres: {
+            $all: [ 'Drama', 'Horror' ]
+        }
+    }
+).count();
+
+
+db.shows.find(
+    {
+        
     }
 ).count();
