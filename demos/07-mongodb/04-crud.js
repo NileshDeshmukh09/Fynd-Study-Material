@@ -42,4 +42,29 @@ db.users.insertMany(
             }
         }
     ]
-)
+);
+
+// find users who live in Delhi
+db.users.find({
+    "address.city": "Delhi"
+}).pretty()
+
+// search by name
+db.users.find({
+    name: "David Smith"
+}).pretty()
+
+// no filtering -> we get all users!
+db.users.find().pretty();
+
+// query array-valued attributes like they have simple values (and not array!)
+db.users.find({
+    emails: 'jane.doe@example.com'
+}).pretty();
+
+// multiple filtering criteria (all criteria have to match)
+db.users.find({
+    prime: true,
+    "address.city": "Delhi"
+}).pretty();
+
