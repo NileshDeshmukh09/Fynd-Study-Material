@@ -182,6 +182,39 @@ db.shows.find(
     }
 ).count();
 
+// Find shows that have genre Drama but not Horror. Again, find shows that have genre Horror but not Drama.
+// 142 shows
+db.shows.find(
+    {
+        $or: [
+            {
+                $and: [
+                    {
+                        genres: 'Drama'
+                    },
+                    {
+                        genres: {
+                            $ne: 'Horror'
+                        }
+                    }
+                ]
+            },
+            {
+                $and: [
+                    {
+                        genres: 'Horror'
+                    },
+                    {
+                        genres: {
+                            $ne: 'Drama'
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+).count();
+
 
 db.shows.find(
     {
