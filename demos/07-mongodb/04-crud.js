@@ -68,3 +68,46 @@ db.users.find({
     "address.city": "Delhi"
 }).pretty();
 
+// how to get only specific fields in the results??...
+// 1st argument (filtering condition), 2nd argument (fields to select)
+// pass 1st argument empty object - {}, to get all records
+db.users.find(
+    {
+        prime: true,
+        "address.city": "Delhi"
+    },
+    {
+        _id: false,
+        name: true,
+        password: true
+    }
+).pretty();
+
+// get all users (no filtering), but only selected fields
+db.users.find(
+    {},
+    {
+        _id: false,
+        name: true,
+        password: true
+    }
+).pretty();
+
+// query by id
+db.users.find({
+    _id : ObjectId("62e3ccee5faa4530e1f7fbd1")
+}).pretty();
+
+// 1st argument is same as in find() - which document(s) to update - updateOne() will update only the first matched document
+// 2nd argument is the update clause
+// $set is an "update clause operator"
+db.users.updateOne(
+    {
+        _id : ObjectId("62e3ccee5faa4530e1f7fbd1")
+    },
+    {
+        $set: {
+            name: 'Jonathan Doe'
+        }
+    }
+);
