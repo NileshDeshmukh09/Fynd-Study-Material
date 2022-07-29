@@ -1,0 +1,22 @@
+## Start MongoDB server
+On a fresh terminal type
+mongod --dbpath=./data/db
+
+## Mongo / mongosh shell
+Once you start the DB, on a fresh terminal type
+mongo
+or
+mongosh
+
+## Show DB
+show dbs;
+
+## Using a DB
+use workshopsdb;
+
+## Show collections
+show collections;
+
+## Check Current DB
+db;
+
