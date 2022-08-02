@@ -145,7 +145,24 @@ db.shows.findOne(
     }
 );
 
-// vi. Rename criticsChoice field as cc in all documents 
+// vi. Rename criticsChoice field as cc in all documents
+db.shows.updateMany(
+    { },
+    {
+        $rename: {
+            criticsChoice: 'cc'
+        }
+    }
+)
+
+db.shows.find(
+    {
+        cc: {
+            $exists: true
+        }
+    }
+);
+
 // vii. Remove field cc (criticsChoice) from all documents 
 // viii. Try finding a document with a show name that does not exist (also use language : 
 // “English” while finding). Set the rating and genres for it. Use the upsert option and 
