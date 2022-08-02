@@ -182,9 +182,38 @@ db.shows.find(
     }
 );
 
-// viii. Try finding a document with a show name that does not exist (also use language : “English” while finding). Set the rating and genres for it. Use the upsert option and check that the upserted documented has fields that are part of the filter clause, as well as the update clause. 
+// viii. Try finding a document with a show name that does not exist (also use language : Hindi” while finding). Set the rating and genres for it. Use the upsert option and check that the upserted documented has fields that are part of the filter clause, as well as the update clause. 
+db.shows.find(
+    {
+        name: 'Kapil Sharma Show',
+        language: 'Hindi'
+    }
+)
 
+db.shows.updateOne(
+    {
+        name: 'Kapil Sharma Show',
+        language: 'Hindi'
+    },
+    {
+        $set: {
+            "rating.average": 8.5,
+            genres: [
+                "Comedy",
+                "Drama"
+            ]
+        }
+    },
+    {
+        upsert: 1
+    }
+);
 
+db.shows.findOne(
+    {
+        _id: ObjectId("62e939222f172902ff3d219a")
+    }
+);
 
 // b) Array update operators - $, $push, $each, $sort, $slice, $pull, $pop, $addToSet 
 // i) Update all shows that have a scheduled screening on “Monday”, and replace the 
