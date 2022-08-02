@@ -241,7 +241,6 @@ db.shows.findOne(
     }
 );
 
-
 // ii) Update all shows with genre “Horror” by adding another genre “Supernatural” 
 
 // iii) Update all shows with genre “Horror” by adding 2 other genres “Supernatural” and “Spook” (you will need to use $each). Also explore how $sort and $slice can be used in this case. 
