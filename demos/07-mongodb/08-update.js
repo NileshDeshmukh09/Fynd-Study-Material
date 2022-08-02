@@ -49,12 +49,102 @@ db.shows.updateOne(
     }
 )
 
-// iii. Find the first show that has a weight of more than 80 and rating less than 6 and 
-// decrease weight by 10. Also set a new field “criticsChoice” to false. 
-// iv. Find all shows that have a weight of less than 50 and rating more 7 and increase 
-// weight to maximum( 50, current value ). 
-// v. Find all shows that have a weight of less than 60 and rating more 8 and multiply the 
-// weight by 1.333333 
+// iii. Find the first show that has a weight of more than 80 and rating less than 6 and decrease weight by 10. Also set a new field “criticsChoice” to false. 
+db.shows.findOne(
+    {
+        weight: {
+            $gt: 80
+        },
+        "rating.average": {
+            $lt: 6
+        }
+    }
+);
+
+db.shows.updateOne(
+    {
+        weight: {
+            $gt: 80
+        },
+        "rating.average": {
+            $lt: 6
+        }
+    },
+    {
+        $inc: {
+            weight: -10
+        },
+        $set: {
+            criticsChoice: false
+        }
+    }
+);
+
+// iv. Find all shows that have a weight of less than 50 and rating more 7 and increase weight to maximum( 50, current value ). 
+db.shows.find(
+    {
+        weight: {
+            $lt: 50
+        },
+        "rating.average": {
+            $gt: 7
+        }
+    }
+);
+
+db.shows.updateMany(
+    {
+        weight: {
+            $lt: 50
+        },
+        "rating.average": {
+            $gt: 7
+        }
+    },
+    {
+        $max: {
+            weight: 50
+        }
+    }
+);
+
+// query back to check the update
+db.shows.findOne( { name: /Hellsing/ } )
+
+// v. Find all shows that have a weight of less than 60 and rating more 8 and multiply the weight by 1.333333 
+db.shows.findOne(
+    {
+        weight: {
+            $lt: 60
+        },
+        "rating.average": {
+            $gt: 8
+        }
+    }
+)
+
+db.shows.updateMany(
+    {
+        weight: {
+            $lt: 60
+        },
+        "rating.average": {
+            $gt: 8
+        }
+    },
+    {
+        $mul: {
+            weight: 1.333333
+        }
+    }
+);
+
+db.shows.findOne(
+    {
+        _id: ObjectId("62e3e05afa79d4fcd6b9e36d")
+    }
+);
+
 // vi. Rename criticsChoice field as cc in all documents 
 // vii. Remove field cc (criticsChoice) from all documents 
 // viii. Try finding a document with a show name that does not exist (also use language : 
