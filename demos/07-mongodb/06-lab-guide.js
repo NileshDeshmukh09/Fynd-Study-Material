@@ -304,10 +304,6 @@ db.shows.find(
 // document, each with the subject name and score. Insert some documents so that some 
 // subjects are shared among students and some subjects are specific to a student (elective 
 // subjects). Now do the following. 
-// i) Find all students who have a score of more 90% in some subject and have taken 
-// up history 
-// ii) Find all students who have a score of more than 90% in history 
-// iii) Find all students who have taken up exactly 2 subjects
 use examsdb;
 
 db.scores.insertMany(
@@ -338,6 +334,20 @@ db.scores.insertMany(
         }
     ]
 )
+
+// i) Find all students who have a score of more 95% in some subject and have taken up history 
+db.scores.find(
+    {
+        "scores.subject": "History",
+        "scores.score": {
+            $gte: 95
+        }
+    }
+);
+
+// ii) Find all students who have a score of more than 90% in history 
+// iii) Find all students who have taken up exactly 2 subjects
+
 
 db.shows.find(
     {
