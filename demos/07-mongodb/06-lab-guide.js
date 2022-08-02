@@ -359,9 +359,28 @@ db.scores.find(
             }
         } 
     }
-)
+);
 
 // iii) Find all students who have taken up exactly 2 subjects
+// EXERCISE: Add 2 new students with only 2 subjects each
+db.scores.insertMany(
+    [
+        {
+            name: 'Mary Smith',
+            scores: [
+                { subject: 'Maths', score: 100 },
+                { subject: 'Physics', score: 78 },
+            ]
+        },
+        {
+            name: 'David Lane',
+            scores: [
+                { subject: 'Maths', score: 90 },
+                { subject: 'Physics', score: 85 },
+            ]
+        }
+    ]
+);
 
 
 db.shows.find(
