@@ -164,12 +164,28 @@ db.shows.find(
 );
 
 // vii. Remove field cc (criticsChoice) from all documents 
-// viii. Try finding a document with a show name that does not exist (also use language : 
-// “English” while finding). Set the rating and genres for it. Use the upsert option and 
- 
-// www.digdeeper.in © Prashanth Puranik puranik@digdeeper.in 
-// check that the upserted documented has fields that are part of the filter clause, as 
-// well as the update clause. 
+db.shows.updateMany(
+    { },
+    {
+        $unset: {
+            cc: true
+        }
+    }
+)
+
+// 0 documents matched
+db.shows.find(
+    {
+        cc: {
+            $exists: true
+        }
+    }
+);
+
+// viii. Try finding a document with a show name that does not exist (also use language : “English” while finding). Set the rating and genres for it. Use the upsert option and check that the upserted documented has fields that are part of the filter clause, as well as the update clause. 
+
+
+
 // b) Array update operators - $, $push, $each, $sort, $slice, $pull, $pop, $addToSet 
 // i) Update all shows that have a scheduled screening on “Monday”, and replace the 
 // item “Monday” with “monday” (lowercase). Hint: Use $ operator. 
