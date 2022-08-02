@@ -289,6 +289,65 @@ db.shows.find(
     }
 ).count();
 
+// Find shows that are scheduled on both "Monday" and "Tuesday"
+// 4 shows
+db.shows.find(
+    {
+        "schedule.days": {
+            $all: [ 'Monday', 'Tuesday' ]
+        }
+    }
+).count();
+
+// Create a collection to store scores of students in various subjects. Include name of 
+// students in one field, and scores in another (between 0 – 100). Scores is an array of 
+// document, each with the subject name and score. Insert some documents so that some 
+// subjects are shared among students and some subjects are specific to a student (elective 
+// subjects). Now do the following. 
+use examsdb;
+
+db.scores.insertMany(
+    [
+        {
+            name: 'John Doe',
+            scores: [
+                { subject: 'History', score: 91 },
+                { subject: 'Geography', score: 85 },
+                { subject: 'English', score: 79 }
+            ]
+        },
+        {
+            name: 'Jane Doe',
+            scores: [
+                { subject: 'History', score: 84 },
+                { subject: 'Maths', score: 97 },
+                { subject: 'Geography', score: 67 }
+            ]
+        },
+        {
+            name: 'Mark Smith',
+            scores: [
+                { subject: 'Maths', score: 85 },
+                { subject: 'Physics', score: 99 },
+                { subject: 'Chemistry', score: 82 }
+            ]
+        }
+    ]
+)
+
+// i) Find all students who have a score of more 95% in some subject and have taken up history 
+db.scores.find(
+    {
+        "scores.subject": "History",
+        "scores.score": {
+            $gte: 95
+        }
+    }
+);
+
+// ii) Find all students who have a score of more than 90% in history 
+// iii) Find all students who have taken up exactly 2 subjects
+
 
 db.shows.find(
     {
