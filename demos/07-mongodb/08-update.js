@@ -260,9 +260,51 @@ db.shows.find(
 );
 
 // iii) Update all shows with genre “Horror” by adding 2 other genres “Supernatural” and “Spook” (you will need to use $each). Also explore how $sort and $slice can be used in this case. 
+db.shows.updateMany(
+    {
+        genres: "Horrific"
+    },
+    {
+        $addToSet: {
+            genres: {
+                $each: [ "Supernatural", "Spook" ]
+            }
+        }
+    }
+)
 
-// iv) Remove the genre Supernatural from the first matching document 
+// iv) Remove the genre Supernatural from the all matching documents
+db.shows.updateMany(
+    {
+        genres: 'Supernatural'
+    },
+    {
+        $pull: {
+            genres: 'Supernatural'
+        }
+    }
+);
 
-// v) Remove the last genre from every document 
+// v) Remove the last genre from every document
+db.shows.updateMany(
+    {},
+    {
+        $pop: {
+            genres: 1
+        }
+    }
+);
 
-// vi) Add genre Supernatural to all documents of genre Horror. However the Supernatural genre should not be added if it already exists as a genre in the document. 
+// vi) Add genre Supernatural, Spook to all documents of genre Horror. However the Supernatural/Spook genre should not be added if it already exists as a genre in the document. 
+db.shows.updateMany(
+    {
+        genres: "Horrific"
+    },
+    {
+        $addToSet: {
+            genres: {
+                $each: [ "Supernatural", "Spook" ]
+            }
+        }
+    }
+)
