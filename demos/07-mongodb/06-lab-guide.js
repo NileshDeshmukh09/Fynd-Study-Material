@@ -361,7 +361,6 @@ db.scores.find(
     }
 );
 
-// iii) Find all students who have taken up exactly 2 subjects
 // EXERCISE: Add 2 new students with only 2 subjects each
 db.scores.insertMany(
     [
@@ -382,9 +381,77 @@ db.scores.insertMany(
     ]
 );
 
+// iii) Find all students who have taken up exactly 2 subjects
+// 2 students (in my case)
+db.scores.find(
+    {
+        scores: {
+            $size: 2
+        }
+    },
+    { // projection clause (fields to choose in documents)
+        _id: false,
+        name: true
+    }
+)
 
+// EXERCISE: How many shows are scheduled for exactly 2 days?
+// 1 show (name: 'The Voice')
 db.shows.find(
     {
-        
+        "schedule.days": {
+            $size: 2
+        }
     }
-).count();
+);
+
+// Projection operator - $, $slice 
+// NOTE: This operator is used on the projection object (second argument) and not the 
+// filter object (first argument) – it transforms arrays values that are projected. 
+// i)  Find all students who have taken up history and project the matching subject details (i..e history)
+db.scores.find(
+    {
+        "scores.subject": "History"
+    },
+    {
+        name: true,
+        "scores.$": true
+    }
+);
+
+// ii) Find all students who have taken up history and project the first 2 subjects they have in the document. 
+db.scores.find(
+    {
+        "scores.subject": "History"
+    },
+    {
+        name: true,
+        scores: {
+            $slice: 2
+        }
+    }
+);
+
+// select all documents, but project only first 2 subject scores
+db.scores.find(
+    {
+    },
+    {
+        name: true,
+        scores: {
+            $slice: 5
+        }
+    }
+);
+
+// EXERCISE: Repeat the above query, but select the last 2 subject scores for every person
+db.scores.find(
+    {
+    },
+    {
+        name: true,
+        scores: {
+            $slice: -2
+        }
+    }
+);
