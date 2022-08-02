@@ -205,7 +205,7 @@ db.shows.updateOne(
         }
     },
     {
-        upsert: 1
+        upsert: true
     }
 );
 
