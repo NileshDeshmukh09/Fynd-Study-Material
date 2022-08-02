@@ -336,6 +336,7 @@ db.scores.insertMany(
 )
 
 // i) Find all students who have a score of more 95% in some subject and have taken up history 
+// Result -> Only 1 student (Jane)
 db.scores.find(
     {
         "scores.subject": "History",
@@ -346,6 +347,20 @@ db.scores.find(
 );
 
 // ii) Find all students who have a score of more than 90% in history 
+// result -> Only 1 student (John)
+db.scores.find(
+    {
+        scores: {
+            $elemMatch: {
+                subject: 'History',
+                score: {
+                    $gte: 90
+                }
+            }
+        } 
+    }
+)
+
 // iii) Find all students who have taken up exactly 2 subjects
 
 
