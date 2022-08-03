@@ -420,10 +420,20 @@ db.shows.aggregate(
 )
 
 
-// viii) We can use $slice to project only a portion of an array. Modify the above query, 
-// to use $slice to additionally find the first 2 days on which a show is aired. 
-// NOTE: You may need to add a $match stage to filter out documents that may not 
-// have the schedule days, or it exists but is not an array 
+// vii) We can use $slice to project a given number of items from an array field. Use this to get the first 2 genres of each show.
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $slice: [ "$genres", 2 ]
+                }
+            }
+        }
+    ]
+)
+
 // ix)  We can use $filter to choose items of an array based on a condition. Modify the 
 // above query to include the schedule days in the projected array, only if it airs on a 
 // weekend. The $in operator is used differently in the pipeline stage (not like 
