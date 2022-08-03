@@ -421,6 +421,10 @@ db.shows.aggregate(
 
 
 // vii) We can use $slice to project a given number of items from an array field. Use this to get the first 2 genres of each show.
+// EXERCISE: Modify below query to...
+    // a) get the last 2 genres for every show
+    // b) get the 2nd and 3rd genres from every show 
+// https://www.mongodb.com/docs/manual/reference/operator/aggregation/slice/
 db.shows.aggregate(
     [
         {
@@ -428,6 +432,32 @@ db.shows.aggregate(
                 name: "$name",
                 numGenres: {
                     $slice: [ "$genres", 2 ]
+                }
+            }
+        }
+    ]
+)
+
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $slice: [ "$genres", -2 ]
+                }
+            }
+        }
+    ]
+)
+
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $slice: [ "$genres", 1, 2 ]
                 }
             }
         }
@@ -442,8 +472,33 @@ db.shows.aggregate(
 // to use it 
 // NOTE: The above query can definitely be simplified using a $match to obtain 
 // shows that air only on weekends (using $in: [ ‘Sunday’, ‘Saturday’] in $match instead)  
+
 // f) Using $unwind creates a set of documents in place of a single document, using the 
 // different items in an array-valued field of the original document. 
+db.shows.aggregate(
+    [
+        {
+            $unwind: "$genres"
+        }
+    ]
+);
+
+db.shows.aggregate(
+    [
+        {
+            $unwind: "$genres"
+        },
+        {
+            $group: {
+                _id: "$genres",
+                numShows: {
+                    $count: {}
+                }
+            }
+        }
+    ]
+)
+
 // i) Group shows by network name and country and create a new field “genres” that has 
 // all the genres of all the shows in the group (you will need to $unwind, then $group). 
 // Try both $push, as well as $addToSet when defining the genres array in $group 
