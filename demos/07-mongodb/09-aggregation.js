@@ -500,11 +500,28 @@ db.shows.aggregate(
 )
 
 // i) Group shows by network name and country and create a new field “genres” that has 
-// all the genres of all the shows in the group (you will need to $unwind, then $group). 
+// all the genres of all the shows in the group (you will need to $unwind, then $group by network name, country). 
 // Try both $push, as well as $addToSet when defining the genres array in $group 
 // stage. 
+db.shows.aggregate(
+    [
+        {
+            $unwind:'$genres'
+        },
+        {
+            $group:{
+                _id:{
+                    network:"$network.name",
+                    country:"$network.country.code"
+                },
+                genres:{
+                    $addToSet:'$genres'
+                }
+            }
+        }
+    ]
+)
  
-// www.digdeeper.in © Prashanth Puranik puranik@digdeeper.in 
 // ii)  Sort the above results in descending order of number of genres in a network. This is 
 // not straight-forward in MongoDB. 
 // Hint: One way you can do this is to add a $project phase after $group, that adds a 
@@ -513,6 +530,28 @@ db.shows.aggregate(
 // g) Using $out creates a new collection 
 // i) Use $out to create a new collection called “networkGenres” that has all genres of a 
 // TV network (result of $unwind section exercise i). 
+db.shows.aggregate(
+    [
+        {
+            $unwind:'$genres'
+        },
+        {
+            $group:{
+                _id:{
+                    network:"$network.name",
+                    country:"$network.country.code"
+                },
+                genres:{
+                    $addToSet:'$genres'
+                }
+            }
+        },
+        {
+            $out: "newtworkGenres" // a new collection is permanently created
+        }
+    ]
+)
+
 // ii)  Again use $out to create a new collection called “networkStats” that has some 
 // statistics of a TV network (result of $group section exercise ii/iii/iv or v). 
 // h)  Use $lookup to join the networkGenres and networkStats tables. 
