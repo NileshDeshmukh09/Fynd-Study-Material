@@ -115,11 +115,51 @@ db.shows.aggregate(
 // we can create a new array with one item per document in the group! This is a special 
 // feature of MongoDB with no equivalent in SQL (you can calculate only aggregate 
 // values like sum, average etc. there). Repeat the above exercise, and create an 
-// additional field “names” that is an array of names of all shows in the group. 
+// additional field “names” that is an array of names of all shows in the group.
+db.shows.aggregate(
+    [
+        {
+            $group: {
+                _id: {
+                    network: "$network.name",
+                    country: "$network.country.code"
+                },
+                numShows: {
+                    $count: {}
+                },
+                avgRuntime: {
+                    $avg: "$runtime"
+                },
+                shows: {
+                    $push: "$name"
+                }
+            }
+        }
+    ]
+)
+
 
 // v)  Select all shows that are in English (“language” value), and then group them by their 
 // type. The output should have the names of the group in the type field, along with 
 // the number of shows in each group. 
+db.shows.aggregate(
+    [
+        {
+            $match: {
+                language: 'English'
+            }
+        },
+        {
+            $group: {
+                _id: "$type",
+                numShows: {
+                    $count: {}
+                }
+            }
+        }
+    ]
+)
+
 // c) Using $match to filter grouped documents 
 // SQL has a WHERE clause to filter records before grouping, and a HAVING clause 
 // after grouping (which filters the grouped records based on some aggregate value 
