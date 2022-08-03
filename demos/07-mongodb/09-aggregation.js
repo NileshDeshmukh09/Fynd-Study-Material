@@ -364,10 +364,60 @@ db.shows.aggregate(
 // vi)  Just like we can transform document to form new fields with subdocuments while 
 // projecting, we can also create a new array. Repeat the above query but set premiered 
 // as an array with the 3 parts of the date as items within. 
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                networkName: {
+                    $concat: [ "$network.name", " (", "$network.country.code", ")" ]
+                },
+                schedule: "$schedule",
+                runtime: "$runtime",
+                premiered: {
+                    $convert: {
+                        input: "$premiered",
+                        to: "date" // this is the data type (should one among the data types supported)
+                    }
+                }
+            }
+        },
+        {
+            $project: {
+                name: 1,
+                networkName: 1,
+                schedule: 1,
+                runtime: 1,
+                schedule: [
+                    {
+                        $year: "$premiered"
+                    },
+                    {
+                        $month: "$premiered"
+                    },
+                    {
+                        $dayOfMonth: "$premiered"
+                    },
+                ]
+            }
+        }
+    ]
+)
 
 
-// vii) We can use $size to get the size of any array. Use this to find name and number of 
-// days on which a show is aired for each show. 
+// vii) We can use $size to get the size of any array. Use this to find  number of genres of each show.
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $size: "$genres"
+                }
+            }
+        }
+    ]
+)
 
 
 // viii) We can use $slice to project only a portion of an array. Modify the above query, 
