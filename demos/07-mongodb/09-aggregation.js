@@ -293,17 +293,46 @@ db.shows.aggregate(
 
 // iii)  Repeat the above query, but add premiered to the list of fields. However it should be 
 // converted to a Date object. Use $toDate. 
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                networkName: {
+                    $concat: [ "$network.name", " (", "$network.country.code", ")" ]
+                },
+                schedule: "$schedule",
+                runtime: "$runtime",
+                premiered: {
+                    $convert: {
+                        input: "$premiered",
+                        to: "date" // this is the data type (should one among the data types supported)
+                    }
+                }
+            }
+        }
+    ]
+)
+
 // iv)  Repeat the above query using $convert instead of $toDate. 
+
+
 // v)  Repeat the above query, but premiered should now be an object with fields year, 
 // month and date when the show was premiered (use $year, $month, $dayOfMonth – 
 // you may also use $dateToParts). 
 // NOTE: You can make use of the fact that there can be multiple stages of the same 
 // kind, for example you can use 2 project stages in the pipeline. 
+
+
 // vi)  Just like we can transform document to form new fields with subdocuments while 
 // projecting, we can also create a new array. Repeat the above query but set premiered 
 // as an array with the 3 parts of the date as items within. 
+
+
 // vii) We can use $size to get the size of any array. Use this to find name and number of 
 // days on which a show is aired for each show. 
+
+
 // viii) We can use $slice to project only a portion of an array. Modify the above query, 
 // to use $slice to additionally find the first 2 days on which a show is aired. 
 // NOTE: You may need to add a $match stage to filter out documents that may not 
