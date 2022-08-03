@@ -547,7 +547,7 @@ db.shows.aggregate(
             }
         },
         {
-            $out: "newtworkGenres" // a new collection is permanently created
+            $out: "networkGenres" // a new collection is permanently created
         }
     ]
 )
