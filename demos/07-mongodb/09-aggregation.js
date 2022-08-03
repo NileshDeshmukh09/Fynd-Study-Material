@@ -276,6 +276,21 @@ db.shows.aggregate(
 
 // Modify the above query so that the network name is reported along with the 
 // network’s country code like so – “name (code)”, i.e. like “HBO (US)” 
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                networkName: {
+                    $concat: [ "$network.name", " (", "$network.country.code", ")" ]
+                },
+                schedule: "$schedule",
+                runtime: "$runtime"
+            }
+        }
+    ]
+)
+
 // iii)  Repeat the above query, but add premiered to the list of fields. However it should be 
 // converted to a Date object. Use $toDate. 
 // iv)  Repeat the above query using $convert instead of $toDate. 
