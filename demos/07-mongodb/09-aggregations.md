@@ -25,10 +25,10 @@ MNO         C               125
                             125
 
 
-Language    Total_box_office_collection     num_movies
-A           175                             2
-B           140                             2
-C           125                             1
+Language    Total_box_office_collection     num_movies      movies
+A           175                             2               [ "ABC", "GHI" ]
+B           140                             2               [ "DEF", "JKL" ]
+C           125                             1               [ "MNO" ]
 
 Language    Total_box_office_collection     num_movies
 A           175                             2
