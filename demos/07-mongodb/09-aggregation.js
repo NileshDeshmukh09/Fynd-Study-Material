@@ -164,15 +164,68 @@ db.shows.aggregate(
 // SQL has a WHERE clause to filter records before grouping, and a HAVING clause 
 // after grouping (which filters the grouped records based on some aggregate value 
 // usually). In MongoDB, $match fulfils both these requirements. 
+
+
 // i) Repeat the exercise grouping shows by network name and country. The final results 
 // should show only the grouped documents of networks that have at least 5 shows. 
-// ii)  Repeat the same but show only groups with average runtime at less than 50. 
+// ALREADY DONE
+
+// ii)  Repeat the same but show only groups with average runtime less than 50. 
+// EXERCISE
+db.shows.aggregate(
+    [
+        {
+            $group: {
+                _id: {
+                    network: "$network.name",
+                    country: "$network.country.code"
+                },
+                avgRuntime: {
+                    $avg: "$runtime"
+                }
+            }
+        },
+        {
+            $match: {
+                avgRuntime: {
+                    $lt: 50
+                }
+            }
+        }
+    ]
+)
+
 // d)  Using $sort to sort documents 
 // i) Group shows by name of network and country they are running in, and also find the 
 // number of shows, and average runtime of shows in each group (network+country 
 // combination). Now sort them by the number of shows (group with highest number 
 // of shows appears first). If 2 networks are tied on number of shows, the one with the 
 // lower average runtime appears first. 
+db.shows.aggregate(
+    [
+        {
+            $group: {
+                _id: {
+                    network: "$network.name",
+                    country: "$network.country.code"
+                },
+                numShows: {
+                    $count: {}
+                },
+                avgRuntime: {
+                    $avg: "$runtime"
+                }
+            }
+        },
+        {
+            $sort: {
+                numShows: -1,
+                avgRuntime: 1
+            }
+        }
+    ]
+);
+
 // ii)  Repeat the above exercise, but make sure groups are formed only on shows that are 
 // “Running
 
