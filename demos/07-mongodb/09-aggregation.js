@@ -293,6 +293,7 @@ db.shows.aggregate(
 
 // iii)  Repeat the above query, but add premiered to the list of fields. However it should be 
 // converted to a Date object. Use $toDate. 
+// iv)  Repeat the above query using $convert instead of $toDate. 
 db.shows.aggregate(
     [
         {
@@ -314,14 +315,50 @@ db.shows.aggregate(
     ]
 )
 
-// iv)  Repeat the above query using $convert instead of $toDate. 
-
-
 // v)  Repeat the above query, but premiered should now be an object with fields year, 
 // month and date when the show was premiered (use $year, $month, $dayOfMonth – 
 // you may also use $dateToParts). 
 // NOTE: You can make use of the fact that there can be multiple stages of the same 
 // kind, for example you can use 2 project stages in the pipeline. 
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                networkName: {
+                    $concat: [ "$network.name", " (", "$network.country.code", ")" ]
+                },
+                schedule: "$schedule",
+                runtime: "$runtime",
+                premiered: {
+                    $convert: {
+                        input: "$premiered",
+                        to: "date" // this is the data type (should one among the data types supported)
+                    }
+                }
+            }
+        },
+        {
+            $project: {
+                name: 1,
+                networkName: 1,
+                schedule: 1,
+                runtime: 1,
+                schedule: {
+                    year: {
+                        $year: "$premiered"
+                    },
+                    month: {
+                        $month: "$premiered"
+                    },
+                    day: {
+                        $dayOfMonth: "$premiered"
+                    },
+                }
+            }
+        }
+    ]
+)
 
 
 // vi)  Just like we can transform document to form new fields with subdocuments while 
