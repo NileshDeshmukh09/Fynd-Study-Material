@@ -109,3 +109,14 @@ db.shows.find({
         $meta: "textScore"
     }
 }).limit(3);
+
+// search for documents which have British, but which DO NOT have the word knowledge
+db.shows.find({
+    $text: {
+        $search: "British -knowledge"
+    }
+}).sort({
+    score: {
+        $meta: "textScore"
+    }
+}).limit(3);
