@@ -33,3 +33,8 @@ db.shows.explain("executionStats").find(
         }
     }
 );
+
+// Having both weight index and weight-rating index has no special benefit for the following query
+db.shows.explain().find( { weight: { $gt: 90 } } );
+
+db.shows.dropIndex( "weight-idx" );
