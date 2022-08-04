@@ -1,5 +1,8 @@
 const mongoose = require( 'mongoose' );
 
+// define the Models
+require( '../models/Workshop' );
+
 const connect = async () => {
     try {
         await mongoose.connect( `mongodb://localhost:27017` );
