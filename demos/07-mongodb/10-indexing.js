@@ -22,3 +22,14 @@ db.shows.createIndex(
     { weight: 1, "rating.average": 1 },
     { name: "weight-rating-idx" }
 )
+
+db.shows.explain("executionStats").find(
+    {
+        weight: {
+            $gt: 90
+        },
+        "rating.average": {
+            $gt: 8
+        }
+    }
+);
