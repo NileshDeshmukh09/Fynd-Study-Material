@@ -1,5 +1,8 @@
 require( './init' );
 
+const { connect } = require( './data/db' );
+connect();
+
 const path = require( 'path' );
 const express = require( 'express' );
 const morgan = require( 'morgan' );
