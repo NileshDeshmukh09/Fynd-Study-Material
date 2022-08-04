@@ -1,4 +1,4 @@
-const mongoose = equire( 'mongoose' );
+const mongoose = require( 'mongoose' );
 
 const workshopSchema = new mongoose.Schema({
     // name: String,
@@ -21,24 +21,32 @@ const workshopSchema = new mongoose.Schema({
     startTime: {
         hours: {
             type: Number,
-            required: true
+            required: true,
+            min: 0,
+            max: 23
         },
         minutes: {
             type: Number,
-            default: 0
+            default: 0,
+            min: 0,
+            max: 59
         }
     },
     endTime: {
         hours: {
             type: Number,
-            required: true
+            required: true,
+            min: 0,
+            max: 23
         },
         minutes: {
             type: Number,
-            default: 0
+            default: 0,
+            min: 0,
+            max: 59
         }
     }
 });
 
 // Model is a class that has various methods to query and update the workshops collection
-mongoose.model( 'Workshop', workshopSchema/*, 'workshops' */ );
+/*const Workshop = */mongoose.model( 'Workshop', workshopSchema/*, 'workshops' */ );

@@ -1,5 +1,6 @@
-const mongoose = require( 'mongoose' );
-const Workshop = mongoose.model( 'Workshop' );
+const workshops = require( './data/workshops.json' );
+
+let nextId = 13;
 
 const getAllWorkshops = ( page, sortField ) => {
     const startIndex = 10 * ( page - 1 );
@@ -24,13 +25,11 @@ const getWorkshopById = ( id ) => {
     return workshops.find( workshop => workshop.id === id );
 };
 
-const addWorkshop = async ( workshop ) => {
-    try {
-        const insertedWorkshop = await Workshop.create( workshop );
-        return insertedWorkshop;
-    } catch( error ) {
-        throw error;
-    }
+const addWorkshop = ( workshop ) => {
+    workshop.id = 13;
+    workshops.push( workshop );
+    
+    return workshop;
 };
 
 module.exports = {

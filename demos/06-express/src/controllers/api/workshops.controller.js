@@ -46,10 +46,10 @@ const getWorkshopById = ( req, res, next ) => {
     });
 };
 
-const postWorkshop = ( req, res ) => {
+const postWorkshop = async ( req, res ) => {
     const workshop = req.body;
     
-    let updatedWorkshop = addWorkshop( workshop );
+    let updatedWorkshop = await addWorkshop( workshop );
 
     res.status( 201 ).send({
         status: 'success',

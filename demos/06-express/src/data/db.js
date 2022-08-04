@@ -5,7 +5,7 @@ require( '../models/Workshop' );
 
 const connect = async () => {
     try {
-        await mongoose.connect( `mongodb://localhost:27017` );
+        await mongoose.connect( `mongodb://localhost:27017/workshopsDB` );
         console.log( 'connected to db' );
     } catch( error ) {
         console.error( error.message );
