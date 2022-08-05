@@ -46,15 +46,21 @@ const getWorkshopById = ( req, res, next ) => {
     });
 };
 
-const postWorkshop = async ( req, res ) => {
+const postWorkshop = async ( req, res, next ) => {
     const workshop = req.body;
     
-    let updatedWorkshop = await addWorkshop( workshop );
+    try {
+        let updatedWorkshop = await addWorkshop( workshop );
+        
+        res.status( 201 ).json({
+            status: 'success',
+            data: updatedWorkshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 400 );
 
-    res.status( 201 ).send({
-        status: 'success',
-        data: updatedWorkshop
-    });
+        next( httpError );
+    }
 };
 
 module.exports = {
