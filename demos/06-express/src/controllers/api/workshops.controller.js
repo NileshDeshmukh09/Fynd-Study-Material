@@ -2,12 +2,13 @@ const {
     getAllWorkshops,
     // renaming while destructuring since there is a function with the same name in this file as well
     getWorkshopById : getWorkshopByIdSvc,
-    addWorkshop
+    addWorkshop,
+    deleteWorkshop : deleteWorkshopSvc
 } = require( '../../services/workshops.service' );
 
 // http://localhost:3000/api/workshops
 // http://localhost:3000/api/workshops?page=2&sort=name
-const getWorkshops = ( req, res ) => {
+const getWorkshops = async ( req, res ) => {
     let { page, sort : sortField } = req.query;
 
     if( page ) {
@@ -16,10 +17,7 @@ const getWorkshops = ( req, res ) => {
         page = 1;
     }
 
-    console.log( page );
-    console.log( sortField );
-
-    const workshops = getAllWorkshops( page, sortField );
+    const workshops = await getAllWorkshops( page, sortField );
     // send(), redirect(), json(), sendFile(), render()
     res.status( 200 ).json({
         status: 'success',
@@ -27,38 +25,58 @@ const getWorkshops = ( req, res ) => {
     });
 };
 
-const getWorkshopById = ( req, res, next ) => {
-    const id = +req.params.id;
+// http://localhost:3000/api/workshops/:id
+const getWorkshopById = async ( req, res, next ) => {
+    const id = req.params.id;
 
-    const workshop = getWorkshopByIdSvc( id );
+    try {
+        const workshop = await getWorkshopByIdSvc( id );
 
-    if( !workshop ) {
-        const error = new HttpError( `Workshop with id = ${id} does not exist`, 404 );
+        res.status( 200 ).json({
+            status: 'success',
+            data: workshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 ); // 404 -> not found
 
-        next( error );
-        // since response is sent, we need to return so as not to continue try processing the request further
-        return;
+        next( httpError );
     }
-    
-    res.status( 200 ).json({
-        status: 'success',
-        data: workshop
-    });
 };
 
-const postWorkshop = ( req, res ) => {
+const postWorkshop = async ( req, res, next ) => {
     const workshop = req.body;
     
-    let updatedWorkshop = addWorkshop( workshop );
+    try {
+        let updatedWorkshop = await addWorkshop( workshop );
+        
+        res.status( 201 ).json({
+            status: 'success',
+            data: updatedWorkshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 400 );
 
-    res.status( 201 ).send({
-        status: 'success',
-        data: updatedWorkshop
-    });
+        next( httpError );
+    }
+};
+
+const deleteWorkshop = async ( req, res, next ) => {
+    const id = req.params.id;
+
+    try {
+        await deleteWorkshopSvc( id );
+        // 204 -> use this status code for successful operation but you do not want to send any data in response
+        res.status( 204 ).json();
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 );
+
+        next( httpError );
+    }
 };
 
 module.exports = {
     getWorkshops,
     postWorkshop,
-    getWorkshopById
+    getWorkshopById,
+    deleteWorkshop
 };

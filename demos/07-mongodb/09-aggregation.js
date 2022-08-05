@@ -294,20 +294,176 @@ db.shows.aggregate(
 // iii)  Repeat the above query, but add premiered to the list of fields. However it should be 
 // converted to a Date object. Use $toDate. 
 // iv)  Repeat the above query using $convert instead of $toDate. 
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                networkName: {
+                    $concat: [ "$network.name", " (", "$network.country.code", ")" ]
+                },
+                schedule: "$schedule",
+                runtime: "$runtime",
+                premiered: {
+                    $convert: {
+                        input: "$premiered",
+                        to: "date" // this is the data type (should one among the data types supported)
+                    }
+                }
+            }
+        }
+    ]
+)
+
 // v)  Repeat the above query, but premiered should now be an object with fields year, 
 // month and date when the show was premiered (use $year, $month, $dayOfMonth – 
 // you may also use $dateToParts). 
 // NOTE: You can make use of the fact that there can be multiple stages of the same 
 // kind, for example you can use 2 project stages in the pipeline. 
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                networkName: {
+                    $concat: [ "$network.name", " (", "$network.country.code", ")" ]
+                },
+                schedule: "$schedule",
+                runtime: "$runtime",
+                premiered: {
+                    $convert: {
+                        input: "$premiered",
+                        to: "date" // this is the data type (should one among the data types supported)
+                    }
+                }
+            }
+        },
+        {
+            $project: {
+                name: 1,
+                networkName: 1,
+                schedule: 1,
+                runtime: 1,
+                schedule: {
+                    year: {
+                        $year: "$premiered"
+                    },
+                    month: {
+                        $month: "$premiered"
+                    },
+                    day: {
+                        $dayOfMonth: "$premiered"
+                    },
+                }
+            }
+        }
+    ]
+)
+
+
 // vi)  Just like we can transform document to form new fields with subdocuments while 
 // projecting, we can also create a new array. Repeat the above query but set premiered 
 // as an array with the 3 parts of the date as items within. 
-// vii) We can use $size to get the size of any array. Use this to find name and number of 
-// days on which a show is aired for each show. 
-// viii) We can use $slice to project only a portion of an array. Modify the above query, 
-// to use $slice to additionally find the first 2 days on which a show is aired. 
-// NOTE: You may need to add a $match stage to filter out documents that may not 
-// have the schedule days, or it exists but is not an array 
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                networkName: {
+                    $concat: [ "$network.name", " (", "$network.country.code", ")" ]
+                },
+                schedule: "$schedule",
+                runtime: "$runtime",
+                premiered: {
+                    $convert: {
+                        input: "$premiered",
+                        to: "date" // this is the data type (should one among the data types supported)
+                    }
+                }
+            }
+        },
+        {
+            $project: {
+                name: 1,
+                networkName: 1,
+                schedule: 1,
+                runtime: 1,
+                schedule: [
+                    {
+                        $year: "$premiered"
+                    },
+                    {
+                        $month: "$premiered"
+                    },
+                    {
+                        $dayOfMonth: "$premiered"
+                    },
+                ]
+            }
+        }
+    ]
+)
+
+
+// vii) We can use $size to get the size of any array. Use this to find  number of genres of each show.
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $size: "$genres"
+                }
+            }
+        }
+    ]
+)
+
+
+// vii) We can use $slice to project a given number of items from an array field. Use this to get the first 2 genres of each show.
+// EXERCISE: Modify below query to...
+    // a) get the last 2 genres for every show
+    // b) get the 2nd and 3rd genres from every show 
+// https://www.mongodb.com/docs/manual/reference/operator/aggregation/slice/
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $slice: [ "$genres", 2 ]
+                }
+            }
+        }
+    ]
+)
+
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $slice: [ "$genres", -2 ]
+                }
+            }
+        }
+    ]
+)
+
+db.shows.aggregate(
+    [
+        {
+            $project: {
+                name: "$name",
+                numGenres: {
+                    $slice: [ "$genres", 1, 2 ]
+                }
+            }
+        }
+    ]
+)
+
 // ix)  We can use $filter to choose items of an array based on a condition. Modify the 
 // above query to include the schedule days in the projected array, only if it airs on a 
 // weekend. The $in operator is used differently in the pipeline stage (not like 
@@ -316,14 +472,56 @@ db.shows.aggregate(
 // to use it 
 // NOTE: The above query can definitely be simplified using a $match to obtain 
 // shows that air only on weekends (using $in: [ ‘Sunday’, ‘Saturday’] in $match instead)  
+
 // f) Using $unwind creates a set of documents in place of a single document, using the 
 // different items in an array-valued field of the original document. 
+db.shows.aggregate(
+    [
+        {
+            $unwind: "$genres"
+        }
+    ]
+);
+
+db.shows.aggregate(
+    [
+        {
+            $unwind: "$genres"
+        },
+        {
+            $group: {
+                _id: "$genres",
+                numShows: {
+                    $count: {}
+                }
+            }
+        }
+    ]
+)
+
 // i) Group shows by network name and country and create a new field “genres” that has 
-// all the genres of all the shows in the group (you will need to $unwind, then $group). 
+// all the genres of all the shows in the group (you will need to $unwind, then $group by network name, country). 
 // Try both $push, as well as $addToSet when defining the genres array in $group 
 // stage. 
+db.shows.aggregate(
+    [
+        {
+            $unwind:'$genres'
+        },
+        {
+            $group:{
+                _id:{
+                    network:"$network.name",
+                    country:"$network.country.code"
+                },
+                genres:{
+                    $addToSet:'$genres'
+                }
+            }
+        }
+    ]
+)
  
-// www.digdeeper.in © Prashanth Puranik puranik@digdeeper.in 
 // ii)  Sort the above results in descending order of number of genres in a network. This is 
 // not straight-forward in MongoDB. 
 // Hint: One way you can do this is to add a $project phase after $group, that adds a 
@@ -332,6 +530,28 @@ db.shows.aggregate(
 // g) Using $out creates a new collection 
 // i) Use $out to create a new collection called “networkGenres” that has all genres of a 
 // TV network (result of $unwind section exercise i). 
+db.shows.aggregate(
+    [
+        {
+            $unwind:'$genres'
+        },
+        {
+            $group:{
+                _id:{
+                    network:"$network.name",
+                    country:"$network.country.code"
+                },
+                genres:{
+                    $addToSet:'$genres'
+                }
+            }
+        },
+        {
+            $out: "networkGenres" // a new collection is permanently created
+        }
+    ]
+)
+
 // ii)  Again use $out to create a new collection called “networkStats” that has some 
 // statistics of a TV network (result of $group section exercise ii/iii/iv or v). 
 // h)  Use $lookup to join the networkGenres and networkStats tables. 
