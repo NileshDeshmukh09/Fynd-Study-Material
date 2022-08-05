@@ -65,8 +65,21 @@ const addWorkshop = async ( workshop ) => {
     }
 };
 
+const deleteWorkshop = async ( id ) => {
+    const deletedWorkshop = await Workshop.findByIdAndRemove( id );
+
+    if( deletedWorkshop === null ) {
+        const error = new Error( 'No such workshop' );
+        error.type = 'NotFound';
+        throw error;
+    }
+
+    return deletedWorkshop;
+};
+
 module.exports = {
     getAllWorkshops,
     getWorkshopById,
-    addWorkshop
+    addWorkshop,
+    deleteWorkshop
 };

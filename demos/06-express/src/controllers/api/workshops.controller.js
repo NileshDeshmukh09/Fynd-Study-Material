@@ -2,7 +2,8 @@ const {
     getAllWorkshops,
     // renaming while destructuring since there is a function with the same name in this file as well
     getWorkshopById : getWorkshopByIdSvc,
-    addWorkshop
+    addWorkshop,
+    deleteWorkshop : deleteWorkshopSvc
 } = require( '../../services/workshops.service' );
 
 // http://localhost:3000/api/workshops
@@ -15,9 +16,6 @@ const getWorkshops = async ( req, res ) => {
     } else {
         page = 1;
     }
-
-    console.log( page );
-    console.log( sortField );
 
     const workshops = await getAllWorkshops( page, sortField );
     // send(), redirect(), json(), sendFile(), render()
@@ -62,8 +60,23 @@ const postWorkshop = async ( req, res, next ) => {
     }
 };
 
+const deleteWorkshop = async ( req, res, next ) => {
+    const id = req.params.id;
+
+    try {
+        await deleteWorkshopSvc( id );
+        // 204 -> use this status code for successful operation but you do not want to send any data in response
+        res.status( 204 ).json();
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 );
+
+        next( httpError );
+    }
+};
+
 module.exports = {
     getWorkshops,
     postWorkshop,
-    getWorkshopById
+    getWorkshopById,
+    deleteWorkshop
 };
