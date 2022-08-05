@@ -23,12 +23,24 @@ const getAllWorkshops = ( page, sortField ) => {
 const getWorkshopById = async ( id ) => {
     try {
         const workshop = await Workshop.findById( id );
+
+        if( workshop === null ) {
+            const error = new Error( 'No such workshop' );
+            error.type = 'NotFound';
+            throw error;
+        }
+
         return workshop;
+
     } catch( error ) {
         if( error.name === 'CastError' ) {
             const dbError = new Error( `Data type error : ${error.message}` );
             dbError.type = 'CastError';
             throw dbError;
+        }
+
+        if( error.type === 'NotFound' ) {
+            throw error;
         }
     }
 };
