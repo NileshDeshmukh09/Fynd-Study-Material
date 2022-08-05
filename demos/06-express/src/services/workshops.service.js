@@ -5,6 +5,7 @@ const getAllWorkshops = async ( page, sortField ) => {
     // const startIndex = 10 * ( page - 1 );
     // const endIndex = 10 * page;
 
+    // if we do not await, the query does not execute immediately (it will only execute when the function pauses/completes without pausing) - this allows us to customize the query (Add sorting, pagination etc.)
     const query = Workshop.find();
 
     if( sortField ) {
@@ -12,6 +13,9 @@ const getAllWorkshops = async ( page, sortField ) => {
             [sortField]: 1
         });
     }
+
+    // pagination (assuming 10 per page)
+    query.skip( 10 * ( page - 1 ) ).limit( 10 );
 
     const workshops = await query.exec();
     return workshops;
