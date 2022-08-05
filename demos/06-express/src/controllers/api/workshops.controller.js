@@ -7,7 +7,7 @@ const {
 
 // http://localhost:3000/api/workshops
 // http://localhost:3000/api/workshops?page=2&sort=name
-const getWorkshops = ( req, res ) => {
+const getWorkshops = async ( req, res ) => {
     let { page, sort : sortField } = req.query;
 
     if( page ) {
@@ -19,7 +19,7 @@ const getWorkshops = ( req, res ) => {
     console.log( page );
     console.log( sortField );
 
-    const workshops = getAllWorkshops( page, sortField );
+    const workshops = await getAllWorkshops( page, sortField );
     // send(), redirect(), json(), sendFile(), render()
     res.status( 200 ).json({
         status: 'success',
