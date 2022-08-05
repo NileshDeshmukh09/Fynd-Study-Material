@@ -20,8 +20,17 @@ const getAllWorkshops = ( page, sortField ) => {
     return sortedWorkshops.slice( startIndex, endIndex );
 };
 
-const getWorkshopById = ( id ) => {
-    return workshops.find( workshop => workshop.id === id );
+const getWorkshopById = async ( id ) => {
+    try {
+        const workshop = await Workshop.findById( id );
+        return workshop;
+    } catch( error ) {
+        if( error.name === 'CastError' ) {
+            const dbError = new Error( `Data type error : ${error.message}` );
+            dbError.type = 'CastError';
+            throw dbError;
+        }
+    }
 };
 
 const addWorkshop = async ( workshop ) => {

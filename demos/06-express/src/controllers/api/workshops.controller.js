@@ -27,23 +27,22 @@ const getWorkshops = ( req, res ) => {
     });
 };
 
-const getWorkshopById = ( req, res, next ) => {
-    const id = +req.params.id;
+// http://localhost:3000/api/workshops/:id
+const getWorkshopById = async ( req, res, next ) => {
+    const id = req.params.id;
 
-    const workshop = getWorkshopByIdSvc( id );
+    try {
+        const workshop = await getWorkshopByIdSvc( id );
 
-    if( !workshop ) {
-        const error = new HttpError( `Workshop with id = ${id} does not exist`, 404 );
+        res.status( 200 ).json({
+            status: 'success',
+            data: workshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 ); // 404 -> not found
 
-        next( error );
-        // since response is sent, we need to return so as not to continue try processing the request further
-        return;
+        next( httpError );
     }
-    
-    res.status( 200 ).json({
-        status: 'success',
-        data: workshop
-    });
 };
 
 const postWorkshop = async ( req, res, next ) => {
