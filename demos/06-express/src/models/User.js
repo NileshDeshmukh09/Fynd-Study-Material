@@ -38,7 +38,9 @@ userSchema.path( 'password' ).validate(
 
 const SALT_FACTOR = 10;
 
-userSchema.pre( 'save', function( done ) {
+console.log( this ); // global / window
+
+userSchema.pre( 'save', function( done ) { // DO NOT use arrow function here
     const user = this; // const user -> new User()
 
     if( !user.isModified( 'password' ) ) {
