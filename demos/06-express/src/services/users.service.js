@@ -17,6 +17,8 @@ const addUser = async ( user ) => {
             dbError.type = 'CastError';
             throw dbError;
         }
+
+        throw error;
     }
 };
 
