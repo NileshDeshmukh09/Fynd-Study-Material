@@ -22,6 +22,20 @@ const addUser = async ( user ) => {
     }
 };
 
+const getUserByEmail = async ( email ) => {
+    const user = await User.findOne({
+        // email: email
+        email
+    });
+
+    if( user === null ) {
+        throw new Error( 'User not found' );
+    }
+
+    return user;
+}
+
 module.exports = {
-    addUser
+    addUser,
+    getUserByEmail
 };

@@ -36,7 +36,7 @@ userSchema.path( 'password' ).validate(
     "Password must have at least 1 upper case, 1 lower case, 1 digit, 1 special characters, and should be 8 characters in length."
 );
 
-const SALT_FACTOR = 10;
+const SALT_FACTOR = 10; // decides the "Strength" of the salt (should not be higher as salting will take long time and occupy CPU time (blocking) - nothing else will execute in the app in that time)
 
 console.log( this ); // global / window
 

@@ -1,5 +1,6 @@
 const {
-    addUser
+    addUser,
+    getUserByEmail
 } = require( '../../services/users.service' );
 
 const register = async ( req, res, next ) => {
@@ -32,7 +33,34 @@ const register = async ( req, res, next ) => {
     }
 };
 
+const login = async ( req, res, next ) => {
+    const credentials = req.body;
+
+    if( !( credentials?.email && credentials?.password ) ) {
+        const httpError = new HttpError( "Bad credentials", 400 );
+
+        next( httpError );
+        return;
+    }
+
+    const { email, password } = credentials;
+
+    try {
+        const user = await getUserByEmail( email );
+        // we are not done with user check
+        // but let us respond with success for now
+        res.json({
+            status: 'success'
+        });
+    } catch( error ) {
+        const httpError = new HttpError( "Bad credentials", 400 );
+
+        next( httpError );
+        return;
+    }
+};
 
 module.exports = {
-    register
+    register,
+    login
 };
