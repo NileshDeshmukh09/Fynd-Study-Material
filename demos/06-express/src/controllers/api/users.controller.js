@@ -37,7 +37,7 @@ const login = async ( req, res, next ) => {
     const credentials = req.body;
 
     if( !( credentials?.email && credentials?.password ) ) {
-        const httpError = new HttpError( "Bad credentials", 400 );
+        const httpError = new HttpError( "Bad request", 400 );
 
         next( httpError );
         return;
@@ -53,7 +53,7 @@ const login = async ( req, res, next ) => {
             status: 'success'
         });
     } catch( error ) {
-        const httpError = new HttpError( "Bad credentials", 400 );
+        const httpError = new HttpError( "Bad credentials", 403 );
 
         next( httpError );
         return;
