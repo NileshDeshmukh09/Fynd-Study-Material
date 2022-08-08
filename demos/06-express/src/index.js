@@ -8,7 +8,9 @@ const express = require( 'express' );
 const morgan = require( 'morgan' );
 const indexRouter = require( './routes/pages/index.routes' );
 const workshopsRouter = require( './routes/pages/workshops.routes' );
+const usersApiRouter = require( './routes/api/users.routes' );
 const workshopsApiRouter = require( './routes/api/workshops.routes' );
+
 const logger = require( './middleware/logger' );
 const {
     apiNotFound,
@@ -49,6 +51,8 @@ app.use( express.urlencoded() );
 
 app.use( indexRouter );
 app.use( '/workshops', workshopsRouter );
+
+app.use( '/api/auth', usersApiRouter );
 app.use( '/api/workshops', workshopsApiRouter );
 
 app.use( '/api', apiNotFound );
