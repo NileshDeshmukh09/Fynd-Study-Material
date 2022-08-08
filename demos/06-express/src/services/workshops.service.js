@@ -87,6 +87,39 @@ const updateWorkshop = async ( id, workshop ) => {
             const dbError = new Error( `Data type error : ${error.message}` );
             dbError.type = 'CastError';
             throw dbError;
+        } else if( error.name === 'ValidationError' ) {
+            const dbError = new Error( `Validation error : ${error.message}` );
+            dbError.type = 'ValidationError';
+            throw dbError;
+        } else {
+            throw error;
+        }
+    }
+};
+
+const addSpeakers = async ( id, speakers ) => {
+    // by default, $set is applied to the fields
+    // Therefore we ned to construct the update clause ourselves
+    const updateClause = {
+        $addToSet: {
+            speakers: {
+                $each: speakers
+            }
+        }
+    };
+    
+    try {
+        const updatedWorkshop = await Workshop.findByIdAndUpdate( id, updateClause );
+        return updatedWorkshop;
+    } catch( error ) {
+        if( error.name === 'CastError' ) {
+            const dbError = new Error( `Data type error : ${error.message}` );
+            dbError.type = 'CastError';
+            throw dbError;
+        } else if( error.name === 'ValidationError' ) {
+            const dbError = new Error( `Validation error : ${error.message}` );
+            dbError.type = 'ValidationError';
+            throw dbError;
         } else {
             throw error;
         }
@@ -110,5 +143,6 @@ module.exports = {
     getWorkshopById,
     addWorkshop,
     updateWorkshop,
+    addSpeakers,
     deleteWorkshop
 };

@@ -4,6 +4,7 @@ const {
     getWorkshopById,
     postWorkshop,
     patchWorkshop,
+    addSpeakers,
     deleteWorkshop
 } = require( '../../controllers/api/workshops.controller' );
 
@@ -13,6 +14,7 @@ router.get( '/', getWorkshops );
 router.get( '/:id', getWorkshopById )
 router.post( '/', postWorkshop );
 router.patch( '/:id', patchWorkshop );
+router.patch( '/:id/speakers', addSpeakers );
 router.delete( '/:id', deleteWorkshop );
 
 module.exports = router;

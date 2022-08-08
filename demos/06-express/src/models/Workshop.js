@@ -7,6 +7,10 @@ const workshopSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    speakers: {
+        type: [ String ],
+        required: true
+    },
     category: {
         type: String,
         enum: [ 'frontend', 'backend' ]

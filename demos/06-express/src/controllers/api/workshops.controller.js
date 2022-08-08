@@ -4,6 +4,7 @@ const {
     getWorkshopById : getWorkshopByIdSvc,
     addWorkshop,
     updateWorkshop,
+    addSpeakers : addSpeakersSvc,
     deleteWorkshop : deleteWorkshopSvc
 } = require( '../../services/workshops.service' );
 
@@ -87,6 +88,35 @@ const patchWorkshop = async ( req, res, next ) => {
     }
 };
 
+// http://localhost:3000/api/workshops/62ed07b0437f58e437c01f57/speakers
+// body -> [
+//     "john.doe@example.com",
+//     "jane.doe@example.com"
+// ]
+const addSpeakers = async ( req, res, next ) => {
+    const id = req.params.id;
+    const speakers = req.body;
+
+    if( !( speakers instanceof Array ) || speakers.length === 0 ) {
+        const httpError = new HttpError( "Speakers must be a non-empty array. Data is missing or formed incorrectly", 400 );
+
+        next( httpError );
+        return;
+    }
+
+    try {
+        const updatedWorkshop = await addSpeakersSvc( id, speakers );
+        res.status( 200 ).json({
+            status: 'success',
+            data: updatedWorkshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 );
+
+        next( httpError );
+    }
+};
+
 const deleteWorkshop = async ( req, res, next ) => {
     const id = req.params.id;
 
@@ -106,5 +136,6 @@ module.exports = {
     getWorkshopById,
     postWorkshop,
     patchWorkshop,
+    addSpeakers,
     deleteWorkshop
 };
