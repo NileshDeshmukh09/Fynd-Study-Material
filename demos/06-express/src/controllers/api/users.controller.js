@@ -14,6 +14,7 @@ const register = async ( req, res, next ) => {
     }
 
     try {
+        // updatedUser actually has many more details than the ones in the user document.
         const updatedUser = await addUser( user );
         const userToSend = {
             ...updatedUser.toObject()
@@ -22,7 +23,7 @@ const register = async ( req, res, next ) => {
 
         res.status( 201 ).json({
             status: 'success',
-            data: userToSend
+            data: userToSend // internally userToSend.toJSON() runs which returns details about the user that are part of the user document
         });
     } catch( error ) {
         const httpError = new HttpError( error.message, 400 );
