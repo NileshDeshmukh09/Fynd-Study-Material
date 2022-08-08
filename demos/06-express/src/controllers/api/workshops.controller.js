@@ -3,6 +3,7 @@ const {
     // renaming while destructuring since there is a function with the same name in this file as well
     getWorkshopById : getWorkshopByIdSvc,
     addWorkshop,
+    updateWorkshop,
     deleteWorkshop : deleteWorkshopSvc
 } = require( '../../services/workshops.service' );
 
@@ -60,6 +61,24 @@ const postWorkshop = async ( req, res, next ) => {
     }
 };
 
+const patchWorkshop = async ( req, res, next ) => {
+    const id = req.params.id;
+
+    const workshop = req.body;
+
+    try {
+        const updatedWorkshop = await updateWorkshop( id, workshop );
+        res.status( 200 ).json({
+            status: 'success',
+            data: updatedWorkshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 );
+
+        next( httpError );
+    }
+};
+
 const deleteWorkshop = async ( req, res, next ) => {
     const id = req.params.id;
 
@@ -76,7 +95,8 @@ const deleteWorkshop = async ( req, res, next ) => {
 
 module.exports = {
     getWorkshops,
-    postWorkshop,
     getWorkshopById,
+    postWorkshop,
+    patchWorkshop,
     deleteWorkshop
 };

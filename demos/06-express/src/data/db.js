@@ -1,5 +1,8 @@
 const mongoose = require( 'mongoose' );
 
+mongoose.set( 'returnOriginal', false );
+mongoose.set( 'runValidators', true );
+
 // define the Models
 require( '../models/Workshop' );
 
