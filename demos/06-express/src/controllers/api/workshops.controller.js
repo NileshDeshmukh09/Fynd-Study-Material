@@ -123,7 +123,9 @@ const deleteWorkshop = async ( req, res, next ) => {
     try {
         await deleteWorkshopSvc( id );
         // 204 -> use this status code for successful operation but you do not want to send any data in response
-        res.status( 204 ).json();
+        res.json({
+            status: 'success'
+        });
     } catch( error ) {
         const httpError = new HttpError( error.message, 404 );
 
