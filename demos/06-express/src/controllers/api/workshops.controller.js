@@ -65,6 +65,14 @@ const patchWorkshop = async ( req, res, next ) => {
     const id = req.params.id;
 
     const workshop = req.body;
+    
+    // if workshop = req.body -> {}
+    if( Object.keys( workshop ).length === 0 ) {
+        const httpError = new HttpError( "Body is missing", 400 );
+
+        next( httpError );
+        return;
+    }
 
     try {
         const updatedWorkshop = await updateWorkshop( id, workshop );
