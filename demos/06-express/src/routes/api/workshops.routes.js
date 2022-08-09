@@ -1,5 +1,8 @@
 const express = require( 'express' );
 const {
+    authenticate
+} = require( '../../middleware/auth' );
+const {
     getWorkshops,
     getWorkshopById,
     postWorkshop,
@@ -12,7 +15,7 @@ const router = express.Router();
 
 router.get( '/', getWorkshops );
 router.get( '/:id', getWorkshopById )
-router.post( '/', postWorkshop );
+router.post( '/', authenticate, postWorkshop );
 router.patch( '/:id', patchWorkshop );
 router.patch( '/:id/speakers', addSpeakers );
 router.delete( '/:id', deleteWorkshop );

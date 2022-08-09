@@ -46,6 +46,8 @@ const getWorkshopById = async ( req, res, next ) => {
 };
 
 const postWorkshop = async ( req, res, next ) => {
+    console.log( 'claims = ', res.locals.claims );
+    
     const workshop = req.body;
     
     try {

@@ -80,11 +80,9 @@ const login = async ( req, res, next ) => {
         if( error.type === 'BadCredentials' ) {
             // Email, password is provided but is incorrect -> 403
             const httpError = new HttpError( "Bad credentials", 403 );
-
             next( httpError );
         } else {
             const httpError = new HttpError( "Internal Server Error", 500 );
-
             next( httpError );
         }
     }
