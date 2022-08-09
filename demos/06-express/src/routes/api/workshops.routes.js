@@ -17,8 +17,8 @@ const router = express.Router();
 router.get( '/', getWorkshops );
 router.get( '/:id', getWorkshopById )
 router.post( '/', authenticate, authorize( [ 'admin' ] ), postWorkshop );
-router.patch( '/:id', patchWorkshop );
-router.patch( '/:id/speakers', addSpeakers );
-router.delete( '/:id', deleteWorkshop );
+router.patch( '/:id', authenticate, authorize( [ 'admin' ] ),patchWorkshop );
+router.patch( '/:id/speakers', authenticate, authorize( [ 'general' ] ), addSpeakers );
+router.delete( '/:id', authenticate, authorize( [ 'admin' ] ), deleteWorkshop );
 
 module.exports = router;
