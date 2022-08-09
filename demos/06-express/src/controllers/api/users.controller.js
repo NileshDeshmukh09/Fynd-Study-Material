@@ -60,6 +60,12 @@ const login = async ( req, res, next ) => {
 
         // The secret key which is used to generate the digital signature must be stored in environment variable and NEVER in code
         jwt.sign( claims, process.env.JWT_SECRET, function( error, token ) {
+            // some problem in generating JWT
+            if( error ) {
+                const httpError = new HttpError( "Internal Server Error", 500 );
+                next( httpError );
+            }
+
             res.json({
                 status: 'success',
                 data: {
