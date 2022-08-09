@@ -1,4 +1,5 @@
 const mongoose = require( 'mongoose' );
+const timeSchema = require( './Time' );
 
 const workshopSchema = new mongoose.Schema({
     // name: String,
@@ -24,32 +25,12 @@ const workshopSchema = new mongoose.Schema({
         required: true
     },
     startTime: {
-        hours: {
-            type: Number,
-            required: true,
-            min: 0,
-            max: 23
-        },
-        minutes: {
-            type: Number,
-            default: 0,
-            min: 0,
-            max: 59
-        }
+        type: timeSchema,
+        required: true
     },
     endTime: {
-        hours: {
-            type: Number,
-            required: true,
-            min: 0,
-            max: 23
-        },
-        minutes: {
-            type: Number,
-            default: 0,
-            min: 0,
-            max: 59
-        }
+        type: timeSchema,
+        required: true
     }
 });
 
