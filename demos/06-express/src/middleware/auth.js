@@ -17,18 +17,20 @@ const authenticate = ( req, res, next ) => {
     });
 };
 
-const authorize = ( req, res, next ) => {
-    const { claims } = res.locals;
+const authorize = ( allowedRoles ) => {
+    return ( req, res, next ) => {
+        const { claims } = res.locals;
 
-    if( claims.role !== 'admin' ) {
-        const error = new Error( 'Unauthorized' );
-        // for a valid user, but one who has insufficient privileges (send 403)
-        error.status = 403;
-        next( error );
-        return;
-    }
+        if( !allowedRoles.includes( claims.role ) ) {
+            const error = new Error( 'Unauthorized' );
+            // for a valid user, but one who has insufficient privileges (send 403)
+            error.status = 403;
+            next( error );
+            return;
+        }
 
-    next();
+        next();
+    };
 };
 
 module.exports = {

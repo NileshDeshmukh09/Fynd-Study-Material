@@ -16,7 +16,7 @@ const router = express.Router();
 
 router.get( '/', getWorkshops );
 router.get( '/:id', getWorkshopById )
-router.post( '/', authenticate, authorize, postWorkshop );
+router.post( '/', authenticate, authorize( [ 'admin' ] ), postWorkshop );
 router.patch( '/:id', patchWorkshop );
 router.patch( '/:id/speakers', addSpeakers );
 router.delete( '/:id', deleteWorkshop );
