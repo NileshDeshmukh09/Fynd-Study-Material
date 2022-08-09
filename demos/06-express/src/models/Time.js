@@ -1,3 +1,4 @@
+/** No model is created from this schema (therefore no collection as well). This is intended to be used as part of other schemas */
 const mongoose = require( 'mongoose' );
 
 const timeSchema = new mongoose.Schema({
