@@ -1,6 +1,7 @@
 const {
     addUser,
-    getUserByEmail
+    getUserByEmail,
+    checkPassword
 } = require( '../../services/users.service' );
 
 const register = async ( req, res, next ) => {
@@ -49,14 +50,23 @@ const login = async ( req, res, next ) => {
         const user = await getUserByEmail( email );
         // we are not done with user check
         // but let us respond with success for now
+        await checkPassword( user, password );
+
         res.json({
-            status: 'success'
+            status: 'success',
+            data: "Token to be generated"
         });
     } catch( error ) {
-        const httpError = new HttpError( "Bad credentials", 403 );
+        if( error.type === 'BadCredentials' ) {
+            // Email, password is provided but is incorrect -> 403
+            const httpError = new HttpError( "Bad credentials", 403 );
 
-        next( httpError );
-        return;
+            next( httpError );
+        } else {
+            const httpError = new HttpError( "Internal Server Error", 500 );
+
+            next( httpError );
+        }
     }
 };
 

@@ -66,4 +66,13 @@ userSchema.pre( 'save', function( done ) { // DO NOT use arrow function here
     console.log( 'executes immediately' );
 });
 
+userSchema.methods.checkPassword = async function( plainTextPassword ) {
+    const hashedPassword = this.password;
+    
+    // this line will throw an error sometimes
+    // if on the other hand bcrypt is able to compare it will return true / false
+    const isMatch = await bcrypt.compare( plainTextPassword, hashedPassword );
+    return isMatch;
+}
+
 mongoose.model( 'User', userSchema );

@@ -29,13 +29,36 @@ const getUserByEmail = async ( email ) => {
     });
 
     if( user === null ) {
-        throw new Error( 'User not found' );
+        const error = new Error( 'Bad Credentials' );
+        error.type = 'BadCredentials';
+        throw error;
     }
 
     return user;
-}
+};
+
+const checkPassword = async ( user, plainTextPassword ) => {
+    let  isMatch;
+    
+    try {
+        isMatch = await user.checkPassword( plainTextPassword );
+    } catch( err ) {
+        const error = new Error( 'Something went wrong checking credentials' );
+        error.type = 'DBError';
+        throw error;
+    }
+
+    if( !isMatch ) {
+        const error = new Error( 'Bad Credentials' );
+        error.type = 'BadCredentials';
+        throw error;
+    }
+
+    return isMatch;
+};
 
 module.exports = {
     addUser,
-    getUserByEmail
+    getUserByEmail,
+    checkPassword
 };
