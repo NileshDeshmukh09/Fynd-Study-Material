@@ -46,4 +46,5 @@ const workshopSchema = new mongoose.Schema({
 });
 
 // Model is a class that has various methods to query and update the workshops collection
+// NOTE: Mongoose will create a new model (a class), and register the class with the name 'Workshop' (a string).
 /*const Workshop = */mongoose.model( 'Workshop', workshopSchema/*, 'workshops' */ );
