@@ -12,6 +12,7 @@ const indexRouter = require( './routes/pages/index.routes' );
 const workshopsRouter = require( './routes/pages/workshops.routes' );
 const usersApiRouter = require( './routes/api/users.routes' );
 const workshopsApiRouter = require( './routes/api/workshops.routes' );
+const topicsApiRouter = require( './routes/api/topics.routes' );
 
 const logger = require( './middleware/logger' );
 const {
@@ -56,6 +57,7 @@ app.use( '/workshops', workshopsRouter );
 
 app.use( '/api/auth', usersApiRouter );
 app.use( '/api/workshops', workshopsApiRouter );
+app.use( '/api/topics', topicsApiRouter );
 
 app.use( '/api', apiNotFound );
 app.use( pageNotFound );
