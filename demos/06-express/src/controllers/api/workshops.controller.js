@@ -7,6 +7,9 @@ const {
     addSpeakers : addSpeakersSvc,
     deleteWorkshop : deleteWorkshopSvc
 } = require( '../../services/workshops.service' );
+const {
+    addTopic
+} = require( '../../services/topics.service' );
 
 // http://localhost:3000/api/workshops
 // http://localhost:3000/api/workshops?page=2&sort=name
@@ -135,11 +138,34 @@ const deleteWorkshop = async ( req, res, next ) => {
     }
 };
 
+const postTopic = async ( req, res, next ) => {
+    const workshop = req.params.id;
+    const topic = {
+        // workshop: workshop,
+        workshop,
+        ...req.body
+    };
+    
+    try {
+        let updatedTopic = await addTopic( topic );
+        
+        res.status( 201 ).json({
+            status: 'success',
+            data: updatedTopic
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 400 );
+
+        next( httpError );
+    }
+};
+
 module.exports = {
     getWorkshops,
     getWorkshopById,
     postWorkshop,
     patchWorkshop,
     addSpeakers,
-    deleteWorkshop
+    deleteWorkshop,
+    postTopic
 };
