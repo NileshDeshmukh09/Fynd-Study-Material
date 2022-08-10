@@ -10,9 +10,24 @@ const storage = multer.diskStorage({
     }
 });
 
+const fileFilter = ( req, file, done ) => {
+    const extension = path.extname( file.originalname ).toUpperCase();
+
+    const allowedExtensions = [ '.JPG', 'JPEG', '.PNG' ];
+    
+    if( !allowedExtensions.includes( extension ) ) {
+        const error = new HttpError( 'Allowed file extension are .jpg, .jpeg and .png' );
+        done( error );
+        return;
+    }
+
+    done( null, true );
+};
+
 const upload = multer({
     // storage: storage,
-    storage
+    storage,
+    fileFilter
 });
 
 module.exports = upload;
