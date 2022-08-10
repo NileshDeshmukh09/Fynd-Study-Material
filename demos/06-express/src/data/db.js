@@ -6,6 +6,7 @@ mongoose.set( 'runValidators', true );
 // define the Models
 require( '../models/User' );
 require( '../models/Workshop' );
+require( '../models/Topic' );
 
 const connect = async () => {
     try {
