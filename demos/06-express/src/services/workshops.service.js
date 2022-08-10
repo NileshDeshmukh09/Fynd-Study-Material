@@ -65,6 +65,67 @@ const addWorkshop = async ( workshop ) => {
     }
 };
 
+const updateWorkshop = async ( id, workshop ) => {
+    // by default, $set is applied to the fields
+    /**
+     *  {
+            $set: {
+                "name": "Vue JS v2",
+                "category": "frontend"
+            }
+        }
+     */
+    // by default Mongoose will not perform schema validations on update
+    try {
+        const updatedWorkshop = await Workshop.findByIdAndUpdate( id, workshop/*, {
+            // returnOriginal: false
+            new: true
+        } */);
+        return updatedWorkshop;
+    } catch( error ) {
+        if( error.name === 'CastError' ) {
+            const dbError = new Error( `Data type error : ${error.message}` );
+            dbError.type = 'CastError';
+            throw dbError;
+        } else if( error.name === 'ValidationError' ) {
+            const dbError = new Error( `Validation error : ${error.message}` );
+            dbError.type = 'ValidationError';
+            throw dbError;
+        } else {
+            throw error;
+        }
+    }
+};
+
+const addSpeakers = async ( id, speakers ) => {
+    // by default, $set is applied to the fields
+    // Therefore we ned to construct the update clause ourselves
+    const updateClause = {
+        $addToSet: {
+            speakers: {
+                $each: speakers
+            }
+        }
+    };
+    
+    try {
+        const updatedWorkshop = await Workshop.findByIdAndUpdate( id, updateClause );
+        return updatedWorkshop;
+    } catch( error ) {
+        if( error.name === 'CastError' ) {
+            const dbError = new Error( `Data type error : ${error.message}` );
+            dbError.type = 'CastError';
+            throw dbError;
+        } else if( error.name === 'ValidationError' ) {
+            const dbError = new Error( `Validation error : ${error.message}` );
+            dbError.type = 'ValidationError';
+            throw dbError;
+        } else {
+            throw error;
+        }
+    }
+};
+
 const deleteWorkshop = async ( id ) => {
     const deletedWorkshop = await Workshop.findByIdAndRemove( id );
 
@@ -81,5 +142,7 @@ module.exports = {
     getAllWorkshops,
     getWorkshopById,
     addWorkshop,
+    updateWorkshop,
+    addSpeakers,
     deleteWorkshop
 };

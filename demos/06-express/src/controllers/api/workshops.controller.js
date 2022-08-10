@@ -3,6 +3,8 @@ const {
     // renaming while destructuring since there is a function with the same name in this file as well
     getWorkshopById : getWorkshopByIdSvc,
     addWorkshop,
+    updateWorkshop,
+    addSpeakers : addSpeakersSvc,
     deleteWorkshop : deleteWorkshopSvc
 } = require( '../../services/workshops.service' );
 
@@ -44,6 +46,8 @@ const getWorkshopById = async ( req, res, next ) => {
 };
 
 const postWorkshop = async ( req, res, next ) => {
+    console.log( 'claims = ', res.locals.claims );
+    
     const workshop = req.body;
     
     try {
@@ -60,13 +64,70 @@ const postWorkshop = async ( req, res, next ) => {
     }
 };
 
+const patchWorkshop = async ( req, res, next ) => {
+    const id = req.params.id;
+
+    const workshop = req.body;
+    
+    // if workshop = req.body -> {}
+    if( Object.keys( workshop ).length === 0 ) {
+        const httpError = new HttpError( "Body is missing", 400 );
+
+        next( httpError );
+        return;
+    }
+
+    try {
+        const updatedWorkshop = await updateWorkshop( id, workshop );
+        res.status( 200 ).json({
+            status: 'success',
+            data: updatedWorkshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 );
+
+        next( httpError );
+    }
+};
+
+// http://localhost:3000/api/workshops/62ed07b0437f58e437c01f57/speakers
+// body -> [
+//     "john.doe@example.com",
+//     "jane.doe@example.com"
+// ]
+const addSpeakers = async ( req, res, next ) => {
+    const id = req.params.id;
+    const speakers = req.body;
+
+    if( !( speakers instanceof Array ) || speakers.length === 0 ) {
+        const httpError = new HttpError( "Speakers must be a non-empty array. Data is missing or formed incorrectly", 400 );
+
+        next( httpError );
+        return;
+    }
+
+    try {
+        const updatedWorkshop = await addSpeakersSvc( id, speakers );
+        res.status( 200 ).json({
+            status: 'success',
+            data: updatedWorkshop
+        });
+    } catch( error ) {
+        const httpError = new HttpError( error.message, 404 );
+
+        next( httpError );
+    }
+};
+
 const deleteWorkshop = async ( req, res, next ) => {
     const id = req.params.id;
 
     try {
         await deleteWorkshopSvc( id );
         // 204 -> use this status code for successful operation but you do not want to send any data in response
-        res.status( 204 ).json();
+        res.json({
+            status: 'success'
+        });
     } catch( error ) {
         const httpError = new HttpError( error.message, 404 );
 
@@ -76,7 +137,9 @@ const deleteWorkshop = async ( req, res, next ) => {
 
 module.exports = {
     getWorkshops,
-    postWorkshop,
     getWorkshopById,
+    postWorkshop,
+    patchWorkshop,
+    addSpeakers,
     deleteWorkshop
 };

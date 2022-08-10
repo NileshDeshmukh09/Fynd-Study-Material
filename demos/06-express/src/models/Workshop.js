@@ -1,4 +1,10 @@
 const mongoose = require( 'mongoose' );
+const timeSchema = require( './Time' );
+
+/**
+ * In MongoDB, the documents can store related information together
+ * For example, we can store, the topics for a particular workshop, in the workshop document as an array, say "topics".
+ */
 
 const workshopSchema = new mongoose.Schema({
     // name: String,
@@ -6,6 +12,10 @@ const workshopSchema = new mongoose.Schema({
         type: String,
         required: true,
         unique: true
+    },
+    speakers: {
+        type: [ String ],
+        required: true
     },
     category: {
         type: String,
@@ -20,34 +30,21 @@ const workshopSchema = new mongoose.Schema({
         required: true
     },
     startTime: {
-        hours: {
-            type: Number,
-            required: true,
-            min: 0,
-            max: 23
-        },
-        minutes: {
-            type: Number,
-            default: 0,
-            min: 0,
-            max: 59
-        }
+        type: timeSchema,
+        required: true
     },
     endTime: {
-        hours: {
-            type: Number,
-            required: true,
-            min: 0,
-            max: 23
-        },
-        minutes: {
-            type: Number,
-            default: 0,
-            min: 0,
-            max: 59
-        }
-    }
+        type: timeSchema,
+        required: true
+    },
+    // prefer this as far as possible
+    // topics: {
+    //     type: [
+    //         topicSchema
+    //     ]
+    // }
 });
 
 // Model is a class that has various methods to query and update the workshops collection
+// NOTE: Mongoose will create a new model (a class), and register the class with the name 'Workshop' (a string).
 /*const Workshop = */mongoose.model( 'Workshop', workshopSchema/*, 'workshops' */ );
