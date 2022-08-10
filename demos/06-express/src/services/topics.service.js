@@ -3,8 +3,10 @@ const Topic = mongoose.model( 'Topic' );
 const Workshop = mongoose.model( 'Workshop' );
 
 const addTopic = async ( topic ) => {
+    let workshop;
+    
     try {
-        const workshop = await Workshop.findById( topic.workshop );
+        workshop = await Workshop.findById( topic.workshop );
 
         if( workshop ) {
             const insertedTopic = await Topic.create( topic );
