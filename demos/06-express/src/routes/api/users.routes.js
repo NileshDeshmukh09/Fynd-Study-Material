@@ -14,6 +14,6 @@ router.post( '/login', login );
 // <form action="/api/auth/upload-profile-image" method="POST" enctype="multipart/form-data">
 //      <input type="file" name="profilePic" />
 // </form>
-router.post( '/upload-profile-image', upload.single( 'profilePic' ), uploadProfileImage );
+router.post( '/:id/profile-image', upload.single( 'profilePic' ), uploadProfileImage );
 
 module.exports = router;

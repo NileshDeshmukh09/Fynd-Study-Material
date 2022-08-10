@@ -3,10 +3,15 @@ const multer = require( 'multer' );
 
 const storage = multer.diskStorage({
     destination( req, file, done ) {
-        done( null, path.join( process.cwd(), 'public/images/profile-pics' ) );
+        const publicPath = '/images/profile-pics';
+        req.publicPath = publicPath;
+        
+        const destination = path.join( process.cwd(), 'public', publicPath );
+        done( null, destination );
     },
     filename( req, file, done ) {
-        done( null, file.originalname );
+        req.filename = file.originalname;
+        done( null, req.filename );
     }
 });
 
@@ -29,7 +34,7 @@ const upload = multer({
     storage,
     fileFilter,
     limits: {
-        fileSize: 2 ** 20 // 2 MB (2^20 bytes)
+        fileSize: 2 ** 20 // 1 MB (2^20 bytes)
     }
 });
 

@@ -1,8 +1,10 @@
+const path = require( 'path' );
 const jwt = require( 'jsonwebtoken' );
 const {
     addUser,
     getUserByEmail,
-    checkPassword
+    checkPassword,
+    updateProfilePic
 } = require( '../../services/users.service' );
 
 const register = async ( req, res, next ) => {
@@ -88,11 +90,23 @@ const login = async ( req, res, next ) => {
     }
 };
 
-const uploadProfileImage = ( req, res, next ) => {
-    res.status( 201 ).json({
-        data: 'success',
-        message: 'Your profile pic has been saved'
-    });
+const uploadProfileImage = async ( req, res, next ) => {
+    const id = req.params.id;
+    const { publicPath, filename } = req;
+
+    const profilePic = path.join( publicPath, filename );
+
+    try {
+        await updateProfilePic( id, profilePic );
+        
+        res.status( 201 ).json({
+            data: 'success',
+            message: 'Your profile pic has been saved'
+        });
+    } catch( error ) {
+        const httpError = new HttpError( "Internal Server Error", 500 );
+        next( httpError );
+    }
 };
 
 module.exports = {

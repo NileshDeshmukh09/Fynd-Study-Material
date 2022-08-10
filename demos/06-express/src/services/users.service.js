@@ -57,8 +57,20 @@ const checkPassword = async ( user, plainTextPassword ) => {
     return isMatch;
 };
 
+const updateProfilePic = async ( id, profilePic ) => {
+    try {
+        const updatedUser = await User.findByIdAndUpdate( id, {
+            profilePic
+        });
+        return updatedUser;
+    } catch( error ) {
+        throw error;
+    }
+};
+
 module.exports = {
     addUser,
     getUserByEmail,
-    checkPassword
+    checkPassword,
+    updateProfilePic
 };
