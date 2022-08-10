@@ -1,10 +1,15 @@
 const mongoose = require( 'mongoose' );
 const Topic = mongoose.model( 'Topic' );
+const Workshop = mongoose.model( 'Workshop' );
 
 const addTopic = async ( topic ) => {
     try {
-        const insertedTopic = await Topic.create( topic );
-        return insertedTopic;
+        const workshop = await Workshop.findById( topic.workshop );
+
+        if( workshop ) {
+            const insertedTopic = await Topic.create( topic );
+            return insertedTopic;
+        }
     } catch( error ) {
         if( error.name === 'ValidationError' ) {
             const dbError = new Error( `Validation error : ${error.message}` );
@@ -17,6 +22,12 @@ const addTopic = async ( topic ) => {
             dbError.type = 'CastError';
             throw dbError;
         }
+    }
+
+    if( !workshop ) {
+        const error = new Error( `Workshop not found` );
+        error.type = 'ValidationError';
+        throw error;
     }
 };
 
