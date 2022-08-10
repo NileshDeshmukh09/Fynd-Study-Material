@@ -88,7 +88,15 @@ const login = async ( req, res, next ) => {
     }
 };
 
+const uploadProfileImage = ( req, res, next ) => {
+    res.status( 201 ).json({
+        data: 'success',
+        message: 'Your profile pic has been saved'
+    });
+};
+
 module.exports = {
     register,
-    login
+    login,
+    uploadProfileImage
 };
