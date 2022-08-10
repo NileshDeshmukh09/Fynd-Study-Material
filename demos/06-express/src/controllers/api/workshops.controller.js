@@ -7,9 +7,7 @@ const {
     addSpeakers : addSpeakersSvc,
     deleteWorkshop : deleteWorkshopSvc
 } = require( '../../services/workshops.service' );
-const {
-    addTopic
-} = require( '../../services/topics.service' );
+const TopicsService = require( '../../services/topics.service' );
 
 // http://localhost:3000/api/workshops
 // http://localhost:3000/api/workshops?page=2&sort=name
@@ -138,6 +136,27 @@ const deleteWorkshop = async ( req, res, next ) => {
     }
 };
 
+// Sample: http://localhost:3000/api/workshops/62ed150ad0d302eca77f0f38/topics
+const getTopics = async ( req, res, next ) => {
+    const workshopId = req.params.id;
+
+    try {
+        const topics = await TopicsService.getTopics( workshopId );
+        res.status( 200 ).json({
+            status: 'success',
+            data: topics
+        });
+    } catch( error ) {
+        if( error.type === 'CastError' ) {
+            const httpError = new HttpError( error.message, 400 );
+            next( httpError );
+        } else if( error.type === 'NotFound' ) {
+            const httpError = new HttpError( error.message, 404 );
+            next( httpError );
+        }
+    }
+};
+
 const postTopic = async ( req, res, next ) => {
     const workshop = req.params.id;
     const topic = {
@@ -147,7 +166,7 @@ const postTopic = async ( req, res, next ) => {
     };
     
     try {
-        let updatedTopic = await addTopic( topic );
+        let updatedTopic = await TopicsService.addTopic( topic );
         
         res.status( 201 ).json({
             status: 'success',
@@ -167,5 +186,6 @@ module.exports = {
     patchWorkshop,
     addSpeakers,
     deleteWorkshop,
+    getTopics,
     postTopic
 };

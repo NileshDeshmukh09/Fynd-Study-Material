@@ -2,9 +2,36 @@ const mongoose = require( 'mongoose' );
 const Topic = mongoose.model( 'Topic' );
 const Workshop = mongoose.model( 'Workshop' );
 
+const getTopics = async ( workshopId ) => {
+    let workshop;
+
+    try {
+        workshop = await Workshop.findById( workshopId );
+
+        if( workshop ) {
+            const topics = await Topic.find({
+                workshop: workshopId
+            });
+            return topics;
+        }
+    } catch( error ) {
+        if( error.name === 'CastError' ) {
+            const dbError = new Error( `Data type error : ${error.message}` );
+            dbError.type = 'CastError';
+            throw dbError;
+        }
+    }
+
+    if( !workshop ) {
+        const error = new Error( `Workshop not found` );
+        error.type = 'NotFound';
+        throw error;
+    }
+};
+
 const addTopic = async ( topic ) => {
     let workshop;
-    
+
     try {
         workshop = await Workshop.findById( topic.workshop );
 
@@ -34,5 +61,6 @@ const addTopic = async ( topic ) => {
 };
 
 module.exports = {
-    addTopic
+    addTopic,
+    getTopics
 };

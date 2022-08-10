@@ -10,7 +10,8 @@ const {
     patchWorkshop,
     addSpeakers,
     deleteWorkshop,
-    postTopic
+    postTopic,
+    getTopics
 } = require( '../../controllers/api/workshops.controller' );
 
 const router = express.Router();
@@ -21,6 +22,7 @@ router.post( '/', authenticate, authorize( [ 'admin' ] ), postWorkshop );
 router.patch( '/:id', authenticate, authorize( [ 'admin' ] ),patchWorkshop );
 router.patch( '/:id/speakers', authenticate, authorize( [ 'general' ] ), addSpeakers );
 router.delete( '/:id', authenticate, authorize( [ 'admin' ] ), deleteWorkshop );
+router.get( '/:id/topics', getTopics );
 router.post( '/:id/topics', postTopic );
 
 module.exports = router;
