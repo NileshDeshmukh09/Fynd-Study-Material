@@ -11,7 +11,8 @@ const {
     addSpeakers,
     deleteWorkshop,
     postTopic,
-    getTopics
+    getTopics,
+    generateWorkshopsPdf
 } = require( '../../controllers/api/workshops.controller' );
 
 const router = express.Router();
@@ -24,5 +25,6 @@ router.patch( '/:id/speakers', authenticate, authorize( [ 'general' ] ), addSpea
 router.delete( '/:id', authenticate, authorize( [ 'admin' ] ), deleteWorkshop );
 router.get( '/:id/topics', getTopics );
 router.post( '/:id/topics', postTopic );
+router.post( '/generate-pdf', generateWorkshopsPdf )
 
 module.exports = router;

@@ -5,7 +5,8 @@ const {
     addWorkshop,
     updateWorkshop,
     addSpeakers : addSpeakersSvc,
-    deleteWorkshop : deleteWorkshopSvc
+    deleteWorkshop : deleteWorkshopSvc,
+    generateWorkshopsPdf: generateWorkshopsPdfSvc
 } = require( '../../services/workshops.service' );
 const TopicsService = require( '../../services/topics.service' );
 
@@ -177,6 +178,10 @@ const postTopic = async ( req, res, next ) => {
 
         next( httpError );
     }
+};
+
+const generateWorkshopsPdf = ( req, res, next ) => {
+    await generateWorkshopsPdf()
 };
 
 module.exports = {
