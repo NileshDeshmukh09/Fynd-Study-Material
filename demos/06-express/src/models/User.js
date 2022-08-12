@@ -19,7 +19,8 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'general',
         enum: [ 'admin', 'general' ]
-    }
+    },
+    profilePic: String
 });
 
 const emailPat = /^[A-Za-z0-9_\.]+@fynd\.com$/;

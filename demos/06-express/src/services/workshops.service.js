@@ -23,7 +23,7 @@ const getAllWorkshops = async ( page, sortField ) => {
 
 const getWorkshopById = async ( id ) => {
     try {
-        const workshop = await Workshop.findById( id );
+        const workshop = await Workshop.findById( id ).populate( 'topics' );
 
         if( workshop === null ) {
             const error = new Error( 'No such workshop' );
