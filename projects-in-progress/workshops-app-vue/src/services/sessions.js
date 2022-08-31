@@ -16,8 +16,10 @@ const vote = async ( sessionId, voteType ) => {
 };
 
 const addSession = async ( session ) => {
-    const response = await axios.post( `${baseUrl}/sessions`, session );
-    return response.data;
+    // const response = await axios.post( `${baseUrl}/sessions`, session );
+    const response = await axios.post( `${baseUrl}/topics`, session );
+    // return response.data;
+    return response.data.data;
 }
 
 export {

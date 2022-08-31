@@ -43,10 +43,12 @@ const router = new Router(
                 name: 'workshops-list',
                 path: '/workshops',
                 component: WorkshopsList,
-                meta
+                meta: {
+                    authorize: [ 'admin', 'general' ]
+                }
             },
             {
-                name: 'workshops-list',
+                name: 'add-workshop',
                 path: '/workshops/add',
                 component: AddWorkshop,
                 meta: {
@@ -91,7 +93,15 @@ const router = new Router(
 
 // Global auth guard
 router.beforeEach(( to, from, next ) => {
-    const authorize = to.meta.authorize
+    const authorize = to.meta.authorize;
+
+    // if we are authenticated, we must not be able to login page
+    if( store.getters.isAuthenticated && to.name === 'login' ) {
+        return next({
+            name: 'home'
+        });
+    }
+
     // Right now, role-based authorization is NOT supported
     if( authorize && !store.getters.isAuthenticated ) {
         return next({
