@@ -1,5 +1,5 @@
 const Config = {
-    baseUrl: 'http://workshops-server.herokuapp.com',
+    baseUrl: 'http://localhost:3000/api',
     toastDuration: 5000
 };
 
