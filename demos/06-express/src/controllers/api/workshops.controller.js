@@ -180,7 +180,7 @@ const postTopic = async ( req, res, next ) => {
     }
 };
 
-const generateWorkshopsPdf = ( req, res, next ) => {
+const generateWorkshopsPdf =async ( req, res, next ) => {
     await generateWorkshopsPdf()
 };
 
